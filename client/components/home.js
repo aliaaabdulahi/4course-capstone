@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-//import { apiKey } from "../../secret.js";
-import Map from "./Map.js";
 
 /**
  * COMPONENT
  */
 export const Home = (props) => {
+  console.log("what are my props at home ", props);
   const { username } = props;
 
   let myCoords = [];
@@ -70,7 +69,14 @@ export const Home = (props) => {
   return (
     <div>
       <h3>Welcomeeee, {username}</h3>
-      <Map />
+      <button
+        type="button"
+        onClick={() =>
+          props.history.push(`/yelp/${myCoords[0]}/${myCoords[1]}`)
+        }
+      >
+        See Restaurants Near You!
+      </button>
     </div>
   );
 };

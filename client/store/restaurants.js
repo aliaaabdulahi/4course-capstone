@@ -10,10 +10,10 @@ export const setRestaurants = (restaurants) => {
   };
 };
 
-export const setRestaurantsThunk = () => {
+export const setRestaurantsThunk = (lat, long) => {
   return async (dispatch) => {
     try {
-      const response = await axios.get("/api/yelp");
+      const response = await axios.get(`/api/yelp/${lat}/${long}`);
       const data = response.data;
       dispatch(setRestaurants(data));
     } catch (error) {

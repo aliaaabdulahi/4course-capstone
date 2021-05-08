@@ -10,7 +10,7 @@ class MapView extends React.PureComponent {
     this.state = {
       lng: -73.9784895,
       lat: 40.7850574,
-      zoom: 9,
+      zoom: 15,
     };
     console.log("this.props in constructor--->", this.props.restaurants.length);
     this.mapContainer = React.createRef();
@@ -39,14 +39,6 @@ class MapView extends React.PureComponent {
           ])
           .addTo(map);
       });
-      /*
-      let mark = new mapboxgl.Marker({
-        color: "#FFFFFF",
-        draggable: true,
-      })
-        .setLngLat([-73.9784895, 40.7850574])
-        .addTo(map);
-        */
     });
     map.on("move", () => {
       this.setState({

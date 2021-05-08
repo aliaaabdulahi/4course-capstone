@@ -6,9 +6,12 @@ import MapView from "./MapView";
 class Map extends React.Component {
   constructor(props) {
     super(props);
+    console.log("props I get on Map", this.props);
   }
   componentDidMount() {
-    this.props._getRestaurants();
+    let lat = this.props.match.params.lat;
+    let long = this.props.match.params.long;
+    this.props._getRestaurants(lat, long);
   }
 
   render() {
@@ -32,8 +35,8 @@ const mapState = (state) => ({
 
 const mapDispatch = (dispatch) => {
   return {
-    _getRestaurants: () => {
-      dispatch(setRestaurantsThunk());
+    _getRestaurants: (lat, long) => {
+      dispatch(setRestaurantsThunk(lat, long));
     },
   };
 };
