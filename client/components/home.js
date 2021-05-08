@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { apiKey } from "../../secret.js";
+//import { apiKey } from "../../secret.js";
+import Map from "./Map.js";
 
 /**
  * COMPONENT
@@ -27,13 +28,14 @@ export const Home = (props) => {
     myCoords.push(crd.latitude);
     myCoords.push(crd.longitude);
 
-    getBusinesses(myCoords[0], myCoords[1]);
+    //getBusinesses(myCoords[0], myCoords[1]);
   }
 
   function error(err) {
     console.warn(`ERROR(${err.code}): ${err.message}`);
   }
 
+  /*
   async function getBusinesses(lat, long) {
     //https://api.yelp.com/v3/businesses/search?term=restaurant&latitude=40.778900199999995&longitude=-73.948848
     try {
@@ -58,6 +60,8 @@ export const Home = (props) => {
     }
   }
 
+  */
+
   useEffect(() => {
     console.log("inside useEffect");
     navigator.geolocation.getCurrentPosition(success, error, options);
@@ -66,6 +70,7 @@ export const Home = (props) => {
   return (
     <div>
       <h3>Welcomeeee, {username}</h3>
+      <Map />
     </div>
   );
 };

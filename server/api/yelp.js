@@ -6,8 +6,8 @@ module.exports = router;
 
 const searchRequest = {
   term: "restaurants",
-  latitude: 40.779014,
-  longitude: -73.945238,
+  latitude: 40.7850574,
+  longitude: -73.9784895,
 };
 
 const client = yelp.client(apiKey);
@@ -24,3 +24,13 @@ router.get("/", async (req, res, next) => {
       console.log(e);
     });
 });
+
+//imageUrl
+//Url
+//coordinates Lat
+//coordinates Long
+//is_closed
+//name
+//categories.title
+//location
+//phone
