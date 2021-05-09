@@ -5,7 +5,6 @@ import { connect } from "react-redux";
  * COMPONENT
  */
 export const Home = (props) => {
-  console.log("what are my props at home ", props);
   const { username } = props;
 
   let myCoords = [];

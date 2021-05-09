@@ -12,14 +12,9 @@ class MapView extends React.PureComponent {
       lat: 40.7850574,
       zoom: 15,
     };
-    console.log("this.props in constructor--->", this.props.restaurants.length);
     this.mapContainer = React.createRef();
   }
   componentDidMount() {
-    console.log(
-      "this.props in componentDidMount--->",
-      this.props.restaurants.length
-    );
     const { lng, lat, zoom } = this.state;
     const map = new mapboxgl.Map({
       container: this.mapContainer.current,
@@ -29,14 +24,22 @@ class MapView extends React.PureComponent {
     });
     map.on("load", () => {
       let resList = this.props.restaurants.map((marker) => {
+        let popup = new mapboxgl.Popup({ offset: 25 }).setHTML(
+          "<h5>" +
+            marker.name +
+            "</h5><h6>" +
+            marker.location.display_address +
+            "</h6>"
+        );
         let mark = new mapboxgl.Marker({
-          color: "#FFFFFF",
+          color: "#DC143C",
           draggable: true,
         })
           .setLngLat([
             marker.coordinates.longitude,
             marker.coordinates.latitude,
           ])
+          .setPopup(popup)
           .addTo(map);
       });
     });
@@ -49,7 +52,6 @@ class MapView extends React.PureComponent {
     });
   }
   render() {
-    console.log("this.props in render--->", this.props.restaurants.length);
     return (
       <div>
         <div ref={this.mapContainer} className="map-container" />
