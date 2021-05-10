@@ -4,15 +4,14 @@ const { apiKey } = require("../../secret.js");
 
 module.exports = router;
 
-const searchRequest = {
-  term: "restaurants",
-  latitude: 40.779014,
-  longitude: -73.945238,
-};
-
 const client = yelp.client(apiKey);
 
-router.get("/", async (req, res, next) => {
+router.get("/:lat/:long", async (req, res, next) => {
+  const searchRequest = {
+    term: "restaurants",
+    latitude: req.params.lat,
+    longitude: req.params.long,
+  };
   client
     .search(searchRequest)
     .then((response) => {
@@ -24,3 +23,14 @@ router.get("/", async (req, res, next) => {
       console.log(e);
     });
 });
+
+//
+//imageUrl
+//Url
+//coordinates Lat
+//coordinates Long
+//is_closed
+//name
+//categories.title
+//location
+//phone
