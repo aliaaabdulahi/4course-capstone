@@ -22,7 +22,7 @@ class Routes extends Component {
         {isLoggedIn ? (
           <Switch>
             <Route path="/home" component={Home} />
-            <Route path="/yelp/:lat/:long" component={Map} />
+            <Route path="/yelp" component={Map} />
             <Redirect to="/home" />
           </Switch>
         ) : (

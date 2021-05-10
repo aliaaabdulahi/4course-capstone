@@ -1,37 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 
 /**
  * COMPONENT
  */
 export const Home = (props) => {
+  console.log("what are my props at home ", props);
   const { username } = props;
-
-  let myCoords = [];
-
-  const options = {
-    enableHighAccuracy: false,
-    timeout: 5000,
-    maximumAge: 0,
-  };
-
-  function success(pos) {
-    var crd = pos.coords;
-
-    console.log("Your current position is:");
-    console.log(`Latitude : ${crd.latitude}`);
-    console.log(`Longitude: ${crd.longitude}`);
-    console.log(`More or less ${crd.accuracy} meters.`);
-
-    myCoords.push(crd.latitude);
-    myCoords.push(crd.longitude);
-
-    //getBusinesses(myCoords[0], myCoords[1]);
-  }
-
-  function error(err) {
-    console.warn(`ERROR(${err.code}): ${err.message}`);
-  }
 
   /*
   async function getBusinesses(lat, long) {
@@ -60,20 +35,15 @@ export const Home = (props) => {
 
   */
 
-  useEffect(() => {
-    console.log("inside useEffect");
-    navigator.geolocation.getCurrentPosition(success, error, options);
-  });
+  // useEffect(() => {
+  //   console.log("inside useEffect");
+  //   navigator.geolocation.getCurrentPosition(success, error, options);
+  // });
 
   return (
     <div>
       <h3>Welcomeeee, {username}</h3>
-      <button
-        type="button"
-        onClick={() =>
-          props.history.push(`/yelp/${myCoords[0]}/${myCoords[1]}`)
-        }
-      >
+      <button type="button" onClick={() => props.history.push(`/yelp`)}>
         See Restaurants Near You!
       </button>
     </div>

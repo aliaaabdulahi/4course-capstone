@@ -11,15 +11,6 @@ export const setRestaurants = (restaurants) => {
   };
 };
 
-/*
-export const setCuisine = (restaurantsTerm) => {
-  return {
-    type: SET_CUISINE,
-    restaurantsTerm,
-  };
-};
-*/
-
 export const setRestaurantsThunk = (lat, long) => {
   return async (dispatch) => {
     try {

@@ -8,14 +8,18 @@ class MapView extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      lng: -73.9784895,
-      lat: 40.7850574,
+      // lng: -73.9784895,
+      // lat: 40.7850574,
       zoom: 15,
     };
+    console.log("this.props in MapView constructor--->", this.props);
     this.mapContainer = React.createRef();
+    this.loadMap = this.loadMap.bind(this);
   }
-  componentDidMount() {
-    const { lng, lat, zoom } = this.state;
+
+  loadMap() {
+    const { zoom } = this.state;
+    const { lng, lat } = this.props;
     const map = new mapboxgl.Map({
       container: this.mapContainer.current,
       style: "mapbox://styles/mapbox/streets-v11",
@@ -32,7 +36,7 @@ class MapView extends React.PureComponent {
             "</h6>"
         );
         let mark = new mapboxgl.Marker({
-          color: "#DC143C",
+          color: "#FFFFFF",
           draggable: true,
         })
           .setLngLat([
@@ -51,7 +55,21 @@ class MapView extends React.PureComponent {
       });
     });
   }
+
+  // componentDidMount () {
+  //   console.log (
+  //     'this.props in MapView componentDidMount--->',
+  //     this.props
+  //   );
+  //   this.loadMap();
+  // }
+
+  componentDidUpdate() {
+    this.loadMap();
+  }
+
   render() {
+    console.log("this.props in render--->", this.props.restaurants.length);
     return (
       <div>
         <div ref={this.mapContainer} className="map-container" />
