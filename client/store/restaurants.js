@@ -26,7 +26,7 @@ export const setRestaurantsThunk = (lat, long) => {
 export const setCuisineThunk = (cuisine, lat, long) => {
   return async (dispatch) => {
     try {
-      console.log("In set Cuisine Thunk");
+      console.log("lat and long are", lat, long);
       const response = await axios.post(`/api/yelp/${lat}/${long}`, {
         cuisine,
       });

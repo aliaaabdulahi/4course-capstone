@@ -23,7 +23,7 @@ class Searches extends React.Component {
     e.preventDefault(e);
     const newCuisine = this.state.searchTerm.toLowerCase();
     console.log("newCuisine is", newCuisine);
-    this.props.searchCuisine(newCuisine, this.props.lat, this.props.long);
+    this.props.searchCuisine(newCuisine, this.props.lat, this.props.lng);
     this.setState(initialState);
   }
   render() {

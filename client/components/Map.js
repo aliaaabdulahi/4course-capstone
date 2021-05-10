@@ -60,8 +60,8 @@ class Map extends React.Component {
           searchCuisine={(cuisine, lat, long) =>
             this.searchNewCuisine(cuisine, lat, long)
           }
-          lat={this.props.match.params.lat}
-          long={this.props.match.params.long}
+          lat={this.state.lat}
+          lng={this.state.lng}
         />
         <MapView
           restaurants={this.props.restaurants}

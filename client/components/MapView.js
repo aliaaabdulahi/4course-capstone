@@ -36,7 +36,7 @@ class MapView extends React.PureComponent {
             "</h6>"
         );
         let mark = new mapboxgl.Marker({
-          color: "#FFFFFF",
+          color: "#FF7F50",
           draggable: true,
         })
           .setLngLat([
