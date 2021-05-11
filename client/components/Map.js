@@ -7,7 +7,7 @@ import Searches from "./Searches";
 class Map extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { lng: -73.9784895, lat: 40.7850574 };
+    this.state = { lng: null, lat: null };
     this.options = {
       enableHighAccuracy: false,
       timeout: 5000,

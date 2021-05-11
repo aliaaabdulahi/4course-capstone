@@ -17,6 +17,10 @@ class MapView extends React.PureComponent {
     this.loadMap = this.loadMap.bind(this);
   }
 
+  componentDidMount() {
+    this.loadMap();
+  }
+
   loadMap() {
     const { zoom } = this.state;
     const { lng, lat } = this.props;
@@ -64,8 +68,13 @@ class MapView extends React.PureComponent {
   //   this.loadMap();
   // }
 
-  componentDidUpdate() {
-    this.loadMap();
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.restaurants[0] !== prevProps.restaurants[0] &&
+      this.props.restaurants[1] !== prevProps.restaurants[1]
+    ) {
+      this.loadMap();
+    }
   }
 
   render() {
