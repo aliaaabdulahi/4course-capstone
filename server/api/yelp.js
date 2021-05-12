@@ -1,6 +1,13 @@
 const router = require("express").Router();
 const yelp = require("yelp-fusion");
-const { apiKey } = require("../../secret.js");
+// const { apiKey } = require("../../secret.js");
+let apiKey;
+if (process.env.NODE_ENV === "production") {
+  apiKey = process.env.yelpKey;
+} else {
+  const obj = require("../../secret.js");
+  apiKey = obj.apiKey;
+}
 
 module.exports = router;
 
