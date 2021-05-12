@@ -40,6 +40,7 @@ export const Home = (props) => {
   //   navigator.geolocation.getCurrentPosition(success, error, options);
   // });
 
+
   return (
     <div>
       <h3>Welcomeeee, {username}</h3>
