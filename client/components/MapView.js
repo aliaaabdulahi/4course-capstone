@@ -1,7 +1,7 @@
 import React from "react";
 import mapboxgl from "!mapbox-gl";
-import { mapBoxKey } from "../../secret.js";
-
+// import { mapBoxKey } from "../../secret.js";
+const mapBoxKey = process.env.mapBoxKey;
 mapboxgl.accessToken = mapBoxKey;
 
 class MapView extends React.PureComponent {
