@@ -1,5 +1,7 @@
 const router = require("express").Router();
 const yelp = require("yelp-fusion");
+const { gmailPass } = require("../../secret.js");
+const nodemailer = require('nodemailer');
 // const { apiKey } = require("../../secret.js");
 let apiKey;
 if (process.env.NODE_ENV === "production") {
@@ -54,8 +56,45 @@ router.get("/:lat/:long", async (req, res, next) => {
     });
 });
 
+// full route is /api/yelp/email
+router.post('/email', async (req, res, next) => {
+  try {
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      secure: false,
+      requireTLS: true,
+      auth: {
+        user: '4coursecapstone@gmail.com',
+        pass: gmailPass // defined in secret.js file
+      }
+    });
+    const { toEmails } = req.body;
+    toEmails.forEach(toEmail => {
+      const mailOptions = {
+        from: 'ezgisirip@gmail.com',
+        to: toEmail,
+        subject: 'You got invited to a 4Course challenge!',
+        text: 'Hello there! Ezgi is inviting you to join the 4Course challenge. Here is the link: '
+      };
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+          throw error;
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
+    })
+    res.send(`Email sent to: ${toEmails}`);
+
+
+  } catch (err) {
+    next(err)
+  }
+})
+
 /*
-Blockers: 
+Blockers:
 
 -Number of search results [x]
 -Restaurants and Nightlife?? []
