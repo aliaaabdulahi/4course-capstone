@@ -81,7 +81,7 @@ router.post("/email", async (req, res, next) => {
       secure: false,
       requireTLS: true,
       auth: {
-        user: "ezgisirip@gmail.com",
+        user: "4coursecapstone@gmail.com",
         pass: gmailPass, // defined in secret.js file
       },
     });
