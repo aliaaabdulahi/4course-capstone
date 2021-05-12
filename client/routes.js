@@ -2,6 +2,8 @@ import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
 import { withRouter, Route, Switch, Redirect } from "react-router-dom";
 import { Login, Signup } from "./components/AuthForm";
+import Emails from "./components/Emails";
+import Invite from "./components/Invite";
 import Home from "./components/home";
 import Map from "./components/Map";
 import { me } from "./store";
@@ -23,6 +25,8 @@ class Routes extends Component {
           <Switch>
             <Route path="/home" component={Home} />
             <Route path="/yelp" component={Map} />
+            <Route path="/emails" component={Emails} />
+            <Route path="/invite" component={Invite} />
             <Redirect to="/home" />
           </Switch>
         ) : (
