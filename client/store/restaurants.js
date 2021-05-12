@@ -38,6 +38,20 @@ export const setCuisineThunk = (cuisine, lat, long) => {
   };
 };
 
+export const setLocationThunk = (location) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(`/api/yelp/locations`, {
+        location,
+      });
+      const data = response.data;
+      dispatch(setRestaurants(data));
+    } catch (error) {
+      console.log(e);
+    }
+  };
+};
+
 export default function restaurantReducer(state = initialState, action) {
   switch (action.type) {
     case SET_RESTAURANTS: {

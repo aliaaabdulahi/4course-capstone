@@ -3,6 +3,7 @@ import React from "react";
 
 const initialState = {
   searchTerm: "",
+  location: "",
 };
 
 class Searches extends React.Component {
@@ -12,6 +13,7 @@ class Searches extends React.Component {
     console.log("my props on search are", this.props);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleLocationSubmit = this.handleLocationSubmit.bind(this);
   }
 
   handleChange(e) {
@@ -26,16 +28,32 @@ class Searches extends React.Component {
     this.props.searchCuisine(newCuisine, this.props.lat, this.props.lng);
     this.setState(initialState);
   }
+  handleLocationSubmit(e) {
+    e.preventDefault(e);
+    const newLocation = this.state.location.toLowerCase();
+    console.log("newLocation is", newLocation);
+    this.props.searchLocation(newLocation);
+    this.setState(initialState);
+  }
   render() {
     return (
-      <form>
-        <h1>Search By</h1>
-        <h3>Cuisine: </h3>
-        <input type="text" name="searchTerm" onChange={this.handleChange} />
-        <button type="submit" onClick={this.handleSubmit}>
-          Search
-        </button>
-      </form>
+      <div>
+        <form>
+          <h1>Search By</h1>
+          <h3>Cuisine: </h3>
+          <input type="text" name="searchTerm" onChange={this.handleChange} />
+          <button type="submit" onClick={this.handleSubmit}>
+            Search
+          </button>
+        </form>
+        <form>
+          <h1>Search By Neighborhood:</h1>
+          <input type="text" name="location" onChange={this.handleChange} />
+          <button type="submit" onClick={this.handleLocationSubmit}>
+            Search
+          </button>
+        </form>
+      </div>
     );
   }
 }

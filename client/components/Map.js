@@ -1,5 +1,9 @@
 import React from "react";
-import { setRestaurantsThunk, setCuisineThunk } from "../store/restaurants";
+import {
+  setRestaurantsThunk,
+  setCuisineThunk,
+  setLocationThunk,
+} from "../store/restaurants";
 import { connect } from "react-redux";
 import MapView from "./MapView";
 import Searches from "./Searches";
@@ -7,7 +11,10 @@ import Searches from "./Searches";
 class Map extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { lng: null, lat: null };
+    this.state = {
+      lng: null,
+      lat: null,
+    };
     this.options = {
       enableHighAccuracy: false,
       timeout: 5000,
@@ -32,6 +39,9 @@ class Map extends React.Component {
   searchNewCuisine(cuisine, lat, long) {
     console.log("cuisine,long,lat", cuisine, lat, long);
     this.props._searchCuisine(cuisine, lat, long);
+  }
+  searchNewLocation(location) {
+    this.props._searchLocation(location);
   }
 
   success(pos) {
@@ -62,6 +72,7 @@ class Map extends React.Component {
           }
           lat={this.state.lat}
           lng={this.state.lng}
+          searchLocation={(location) => this.searchNewLocation(location)}
         />
         <MapView
           restaurants={this.props.restaurants}
@@ -84,6 +95,9 @@ const mapDispatch = (dispatch) => {
     },
     _searchCuisine: (cuisine, lat, long) => {
       dispatch(setCuisineThunk(cuisine, lat, long));
+    },
+    _searchLocation: (location) => {
+      dispatch(setLocationThunk(location));
     },
   };
 };
