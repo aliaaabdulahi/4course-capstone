@@ -13,12 +13,17 @@ if (process.env.NODE_ENV === "production") {
 
 module.exports = router;
 
+//https://api.yelp.com/v3/businesses/search?location=nyc&term=restaurants
+//https://api.yelp.com/v3/businesses/search?latitude=40.7425&longitude=-74.0060&term=restaurants
+//https://api.yelp.com/v3/businesses/search?latitude=40.7425&longitude=-74.0060&term=restaurants&radius=1000
+
 const client = yelp.client(apiKey);
 
 router.post("/locations", async (req, res, next) => {
   const searchRequest = {
     location: req.body.location,
     limit: 50,
+    radius: 1000,
   };
   client
     .search(searchRequest)
@@ -39,7 +44,8 @@ router.post("/:lat/:long", async (req, res, next) => {
     term: req.body.cuisine,
     latitude: req.params.lat,
     longitude: req.params.long,
-    limit: 30,
+    limit: 50,
+    radius: 1000,
   };
   client
     .search(searchRequest)
@@ -59,7 +65,8 @@ router.get("/:lat/:long", async (req, res, next) => {
     term: "restaurants",
     latitude: req.params.lat,
     longitude: req.params.long,
-    limit: 30,
+    limit: 50,
+    radius: 1000,
   };
   client
     .search(searchRequest)

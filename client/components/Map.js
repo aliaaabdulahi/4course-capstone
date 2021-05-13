@@ -20,11 +20,6 @@ class Map extends React.Component {
     console.log("cuisine,long,lat", cuisine, lat, long);
     this.props._searchCuisine(cuisine, lat, long);
   }
-  /*
-  searchNewLocation(location) {
-    this.props._searchLocation(location);
-  }
-  */
 
   render() {
     const restaurantList = this.props.restaurants.map((item) => (
@@ -57,19 +52,9 @@ const mapState = (state) => ({
 
 const mapDispatch = (dispatch) => {
   return {
-    /*
-    _getRestaurants: (lat, long) => {
-      dispatch(setRestaurantsThunk(lat, long));
-    },
-    */
     _searchCuisine: (cuisine, lat, long) => {
       dispatch(setCuisineThunk(cuisine, lat, long));
     },
-    /*
-    _searchLocation: (location) => {
-      dispatch(setLocationThunk(location));
-    },
-    */
   };
 };
 
