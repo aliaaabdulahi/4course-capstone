@@ -6,6 +6,7 @@ import Emails from "./components/Emails";
 import Invite from "./components/Invite";
 import Home from "./components/home";
 import Map from "./components/Map";
+import BeginSearch from "./components/BeginSearch";
 import { me } from "./store";
 
 /**
@@ -27,6 +28,7 @@ class Routes extends Component {
             <Route path="/yelp" component={Map} />
             <Route path="/emails" component={Emails} />
             <Route path="/invite" component={Invite} />
+            <Route path="/beginsearch" component={BeginSearch} />
             <Redirect to="/home" />
           </Switch>
         ) : (

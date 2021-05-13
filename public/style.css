@@ -22,3 +22,9 @@ form div {
 .map-container {
   height: 300px;
 }
+
+.begin-search {
+  background-color: mistyrose;
+  height: 300px;
+  width: 300px;
+}

@@ -40,12 +40,11 @@ export const Home = (props) => {
   //   navigator.geolocation.getCurrentPosition(success, error, options);
   // });
 
-
   return (
     <div>
       <h3>Welcomeeee, {username}</h3>
-      <button type="button" onClick={() => props.history.push(`/yelp`)}>
-        See Restaurants Near You!
+      <button type="button" onClick={() => props.history.push(`/beginsearch`)}>
+        Go to search page!
       </button>
     </div>
   );

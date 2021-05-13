@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  setRestaurantsThunk,
-  setCuisineThunk,
-  setLocationThunk,
-} from "../store/restaurants";
+import { setRestaurantsThunk, setCuisineThunk } from "../store/restaurants";
 import { connect } from "react-redux";
 import MapView from "./MapView";
 import Searches from "./Searches";
@@ -12,51 +8,23 @@ class Map extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      lng: null,
-      lat: null,
+      lng: this.props.lng,
+      lat: this.props.lat,
+      location: this.props.location,
     };
-    this.options = {
-      enableHighAccuracy: false,
-      timeout: 5000,
-      maximumAge: 0,
-    };
-    this.success = this.success.bind(this);
-    this.error = this.error.bind(this);
 
     console.log("props I get on Map", this.props);
   }
-  componentDidMount() {
-    navigator.geolocation.getCurrentPosition(
-      this.success,
-      this.error,
-      this.options
-    );
-    /*let lat = this.props.match.params.lat;
-    let long = this.props.match.params.long;
-    this.props._getRestaurants(lat, long);
-    */
-  }
+
   searchNewCuisine(cuisine, lat, long) {
     console.log("cuisine,long,lat", cuisine, lat, long);
     this.props._searchCuisine(cuisine, lat, long);
   }
+  /*
   searchNewLocation(location) {
     this.props._searchLocation(location);
   }
-
-  success(pos) {
-    var crd = pos.coords;
-    console.log("Your current position is:");
-    console.log(`Latitude : ${crd.latitude}`);
-    console.log(`Longitude: ${crd.longitude}`);
-    console.log(`More or less ${crd.accuracy} meters.`);
-    this.setState({ lng: crd.longitude, lat: crd.latitude });
-    this.props._getRestaurants(this.state.lat, this.state.lng);
-  }
-
-  error(err) {
-    console.warn(`ERROR(${err.code}): ${err.message}`);
-  }
+  */
 
   render() {
     const restaurantList = this.props.restaurants.map((item) => (
@@ -72,7 +40,6 @@ class Map extends React.Component {
           }
           lat={this.state.lat}
           lng={this.state.lng}
-          searchLocation={(location) => this.searchNewLocation(location)}
         />
         <MapView
           restaurants={this.props.restaurants}
@@ -90,15 +57,19 @@ const mapState = (state) => ({
 
 const mapDispatch = (dispatch) => {
   return {
+    /*
     _getRestaurants: (lat, long) => {
       dispatch(setRestaurantsThunk(lat, long));
     },
+    */
     _searchCuisine: (cuisine, lat, long) => {
       dispatch(setCuisineThunk(cuisine, lat, long));
     },
+    /*
     _searchLocation: (location) => {
       dispatch(setLocationThunk(location));
     },
+    */
   };
 };
 
