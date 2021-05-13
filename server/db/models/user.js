@@ -7,7 +7,7 @@ const axios = require("axios");
 const SALT_ROUNDS = 7;
 
 const User = db.define("user", {
-  email: {
+  username: {
     type: Sequelize.STRING,
     unique: true,
     allowNull: false,
@@ -47,8 +47,8 @@ User.prototype.generateToken = function () {
 /**
  * classMethods
  */
-User.authenticate = async function ({ email, password }) {
-  const user = await this.findOne({ where: { email } });
+User.authenticate = async function ({ username, password }) {
+  const user = await this.findOne({ where: { username } });
   if (!user || !(await user.correctPassword(password))) {
     const error = Error("Incorrect email/password");
     error.status = 401;

@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const yelp = require("yelp-fusion");
-const { gmailPass } = require("../../secret.js");
+//const { gmailPass } = require("../../secret.js");
 const nodemailer = require("nodemailer");
 // const { apiKey } = require("../../secret.js");
 let apiKey;
@@ -74,6 +74,7 @@ router.get("/:lat/:long", async (req, res, next) => {
 });
 
 // full route is /api/yelp/email
+/*
 router.post("/email", async (req, res, next) => {
   try {
     const transporter = nodemailer.createTransport({
