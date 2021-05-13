@@ -60,14 +60,6 @@ class MapView extends React.PureComponent {
     });
   }
 
-  // componentDidMount () {
-  //   console.log (
-  //     'this.props in MapView componentDidMount--->',
-  //     this.props
-  //   );
-  //   this.loadMap();
-  // }
-
   componentDidUpdate(prevProps) {
     if (
       this.props.restaurants[0] !== prevProps.restaurants[0] &&

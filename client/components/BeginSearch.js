@@ -16,7 +16,7 @@ class BeginSearch extends React.Component {
     this.state = initialState;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.searchNewLocation = this.searchNewLocation.bind(this);
+    //this.searchNewLocation = this.searchNewLocation.bind(this);
     this.handleLocationSubmit = this.handleLocationSubmit.bind(this);
     this.options = {
       enableHighAccuracy: false,
@@ -58,23 +58,38 @@ class BeginSearch extends React.Component {
       renderMode: "currentCoordinates",
     });
   }
+  /*
   searchNewLocation(location) {
     this.props._searchLocation(location);
   }
+  */
   handleLocationSubmit(e) {
     e.preventDefault(e);
     const newLocation = this.state.location.toLowerCase();
     console.log("newLocation is", newLocation);
-    this.props.searchLocation(newLocation);
-    this.setState(initialState);
+    this.props._searchLocation(newLocation);
+    console.log(
+      "length of reslist in handle location",
+      this.props.restaurants.length,
+      "first res",
+      this.props.restaurants[0].name
+    );
+    this.setState({
+      renderMode: "byLocation",
+    });
   }
-
   render() {
     if (this.state.renderMode === "currentCoordinates") {
       return <Map lng={this.state.lng} lat={this.state.lat} />;
     }
     if (this.state.renderMode === "byLocation") {
-      return <Map location={this.state.location} />;
+      return (
+        <Map
+          location={this.state.location}
+          lat={this.state.centerLocation.latitude}
+          lng={this.state.centerLocation.longitude}
+        />
+      );
     } else {
       return (
         <div className="begin-search">
@@ -100,6 +115,7 @@ class BeginSearch extends React.Component {
 
 const mapState = (state) => ({
   restaurants: state.restaurants,
+  centerLocation: state.centerLocation,
 });
 
 const mapDispatch = (dispatch) => {
