@@ -1,12 +1,14 @@
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react';
+import {connect} from 'react-redux';
+import Datetime from './Datetime';
+import {Link} from 'react-router-dom';
 
 /**
  * COMPONENT
  */
-export const Home = (props) => {
-  console.log("what are my props at home ", props);
-  const { username } = props;
+export const Home = props => {
+  console.log ('what are my props at home ', props);
+  const {username} = props;
 
   /*
   async function getBusinesses(lat, long) {
@@ -39,14 +41,61 @@ export const Home = (props) => {
   //   console.log("inside useEffect");
   //   navigator.geolocation.getCurrentPosition(success, error, options);
   // });
-
+  const upcomingEvents = [
+    {
+      name: 'Event1',
+      datetime: '2021-06-01:12:00:00PM',
+      assignedRestaurant: 'Five Guys',
+      assignedCourse: 'Main',
+    },
+    {
+      name: 'Event2',
+      datetime: '2021-06-02:12:00:00PM',
+      assignedRestaurant: "Amanda's",
+      assignedCourse: 'Desserts',
+    },
+    {
+      name: 'Event3',
+      datetime: '2021-06-15:12:00:00PM',
+      assignedRestaurant: 'Pizza Hut',
+      assignedCourse: 'Appetizers',
+    },
+  ];
 
   return (
     <div>
       <h3>Welcomeeee, {username}</h3>
-      <button type="button" onClick={() => props.history.push(`/yelp`)}>
+      {/* <Datetime/> */}
+      <button type="button" onClick={() => props.history.push (`/yelp`)}>
         See Restaurants Near You!
       </button>
+      <div className="center">
+        <form onSubmit={() => props.history.push (`/datetime`)}>
+          <input
+            className="button bigCircle"
+            type="submit"
+            value="Start New Challenge"
+          />
+        </form>
+        <div className="row">
+          <div className="column">
+            <h2>Upcoming Events</h2>
+            <div>
+              {upcomingEvents.map (event => (
+                <Link to="/event:id"><p>{event.name}</p></Link>
+              ))}
+            </div>
+          </div>
+          <div className="column">
+            <h2>Passed Events</h2>
+            <div>
+              {upcomingEvents.map (event => (
+                <Link to="/event:id"><p>{event.name}</p></Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
@@ -54,10 +103,10 @@ export const Home = (props) => {
 /**
  * CONTAINER
  */
-const mapState = (state) => {
+const mapState = state => {
   return {
     username: state.auth.username,
   };
 };
 
-export default connect(mapState)(Home);
+export default connect (mapState) (Home);

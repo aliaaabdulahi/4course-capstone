@@ -6,37 +6,34 @@ import axios from 'axios';
  * COMPONENT
  */
 class Invite extends React.Component {
-  constructor() {
-    super();
-    this.state = {emails: ""};
-
-    this.handleChange = this.handleChange.bind(this);
+  constructor(props) {
+    super(props);
     this.handleEmail = this.handleEmail.bind(this);
-  }
-
-  handleChange(e) {
-    this.setState({emails: e.target.value});
   }
 
   async handleEmail(e) {
     e.preventDefault();
-    const res = await axios.post('/api/yelp/email', {toEmails: emails.split(',')});
+    console.log(console.log("Inside Invite:", this.props.emails));
+    const res = await axios.post('/api/yelp/email', {toEmails: this.props.emails});
     console.log(res);
   }
 
   render() {
     return (
-      <div>
+      <div className="center">
+        <p>Time to fly the news to your friends!</p>
         <form onSubmit={this.handleEmail}>
-          <label>
-            Emails:
-            <input type="text" value={this.state.emails} onChange={this.handleChange}/>
-          </label>
-          <input type="submit" value="Submit" />
+          <input className="button bigCircle" type="submit" value="Send Link" />
         </form>
       </div>
     );
   }
 };
 
-export default connect(null)(Invite);
+const mapState = (state) => {
+  return {
+    emails: state.emails,
+  };
+};
+
+export default connect(mapState)(Invite);
