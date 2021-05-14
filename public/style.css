@@ -28,3 +28,11 @@ form div {
   height: 300px;
   width: 300px;
 }
+.restaurant-container {
+  display: flex;
+  flex-flow: row wrap;
+}
+.restaurant-image {
+  height: 100px;
+  width: 100px;
+}

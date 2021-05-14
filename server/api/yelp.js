@@ -21,6 +21,7 @@ const client = yelp.client(apiKey);
 
 router.post("/locations", async (req, res, next) => {
   const searchRequest = {
+    term: "restaurants",
     location: req.body.location,
     limit: 50,
     radius: 1000,
@@ -139,14 +140,4 @@ router.post("/email", async (req, res, next) => {
     next(err);
   }
 });
-
-/*
-Blockers:
-
--Number of search results [x]
--Restaurants and Nightlife?? []
--Have to wait for the coordinates to load at first []
--Move the markers on the map to represent new geolocation[]
--Search restaurant by name []
-
 */

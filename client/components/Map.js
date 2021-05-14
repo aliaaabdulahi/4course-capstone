@@ -12,6 +12,7 @@ class Map extends React.Component {
       lat: this.props.lat,
       location: this.props.location,
     };
+    this.restaurantSelection = this.restaurantSelection.bind(this);
     console.log("props I get on Map", this.props);
   }
 
@@ -22,10 +23,20 @@ class Map extends React.Component {
     console.log("price, lat,long", price, lat, long);
     this.props._searchPrice(price, lat, long);
   }
+  restaurantSelection(resId) {
+    console.log(resId, " got selected");
+  }
 
   render() {
     const restaurantList = this.props.restaurants.map((item) => (
-      <div key={item.id}>{item.name}</div>
+      <div className="restaurant-container" key={item.id}>
+        {item.name}
+        <p>{item.location.display_address}</p>
+        <img className="restaurant-image" src={item.image_url} />
+        <button type="button" onClick={() => this.restaurantSelection(item.id)}>
+          Select
+        </button>
+      </div>
     ));
     return (
       <React.Fragment>
