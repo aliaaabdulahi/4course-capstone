@@ -11,11 +11,13 @@ class Map extends React.Component {
       lng: this.props.lng,
       lat: this.props.lat,
       location: this.props.location,
+      price: null,
+      rating: null,
+      is_closed: null,
     };
     this.restaurantSelection = this.restaurantSelection.bind(this);
     console.log("props I get on Map", this.props);
   }
-
   searchNewCuisine(cuisine, lat, long) {
     this.props._searchCuisine(cuisine, lat, long);
   }
@@ -26,8 +28,30 @@ class Map extends React.Component {
   restaurantSelection(resId) {
     console.log(resId, " got selected");
   }
-
   render() {
+    //price
+    //rating
+    //is_closed
+    /*
+    let resList;
+
+    if(){
+      resList=this.props.restaurants.filter((item)=>{
+        return item.rating ===this.state.rating;
+      });
+    }
+    if(){
+      resList=this.props.restaurants.filter((item)=>{
+        return item.price===this.state.price;
+      });
+    }
+    if(){
+      resList=this.props.restauarants.filter((item)=>{
+        return item.is_closed=this.state.is_closed;
+      })
+    }
+    else{
+      */
     const restaurantList = this.props.restaurants.map((item) => (
       <div className="restaurant-container" key={item.id}>
         {item.name}

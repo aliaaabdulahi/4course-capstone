@@ -5,7 +5,6 @@ const initialState = {
   location: "",
   price: "",
 };
-
 class Searches extends React.Component {
   constructor(props) {
     super(props);
