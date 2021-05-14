@@ -46,7 +46,7 @@ router.post("/pricing/:lat/:long", async (req, res, next) => {
     latitude: req.params.lat,
     longitude: req.params.long,
     limit: 50,
-    radius: 1000,
+    radius: 5000,
     price: req.body.price,
   };
   client

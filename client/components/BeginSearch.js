@@ -8,10 +8,6 @@ const initialState = {
   lng: null,
   lat: null,
   renderMode: "ask",
-  centerLocation: {
-    latitude: null,
-    longitude: null,
-  },
 };
 
 class BeginSearch extends React.Component {
@@ -20,7 +16,7 @@ class BeginSearch extends React.Component {
     this.state = initialState;
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    //this.handleLocationSubmit = this.handleLocationSubmit.bind(this);
+    this.handleLocationSubmit = this.handleLocationSubmit.bind(this);
     this.options = {
       enableHighAccuracy: false,
       timeout: 5000,
@@ -61,27 +57,30 @@ class BeginSearch extends React.Component {
       renderMode: "currentCoordinates",
     });
   }
-  /*
   handleLocationSubmit(e) {
     e.preventDefault(e);
     const newLocation = this.state.location.toLowerCase();
     console.log("newLocation is", newLocation);
     this.props._searchLocation(newLocation);
-    this.setState({
-      renderMode: "byLocation",
-    });
+    setTimeout(() => {
+      this.setState({
+        renderMode: "byLocation",
+      });
+    }, 600);
   }
-  */
   render() {
     if (this.state.renderMode === "currentCoordinates") {
       return <Map lng={this.state.lng} lat={this.state.lat} />;
     }
-    if (this.state.renderMode === "byLocation") {
+    if (
+      this.state.renderMode === "byLocation" &&
+      this.props.restaurants.length !== 0
+    ) {
       return (
         <Map
           location={this.state.location}
-          lat={this.props.centerLocation.latitude}
-          lng={this.props.centerLocation.longitude}
+          lat={this.props.restaurants[0].coordinates.latitude}
+          lng={this.props.restaurants[0].coordinates.longitude}
         />
       );
     } else {

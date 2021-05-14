@@ -42,6 +42,7 @@ export const setCuisineThunk = (cuisine, lat, long) => {
 export const setLocationThunk = (location) => {
   return async (dispatch) => {
     try {
+      dispatch(setRestaurants([]));
       const response = await axios.post(`/api/yelp/locations`, {
         location,
       });
