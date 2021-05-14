@@ -1,5 +1,4 @@
 import React from "react";
-//import { connect } from "react-redux";
 
 const initialState = {
   searchTerm: "",
@@ -15,6 +14,7 @@ class Searches extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleInputSubmit = this.handleInputSubmit.bind(this);
   }
 
   handleChange(e) {
@@ -24,15 +24,22 @@ class Searches extends React.Component {
   }
   handleInputChange(e) {
     this.setState({
-      price: e.target.value,
+      [e.target.name]: e.target.value,
     });
     console.log("state here is ", this.state);
   }
   handleSubmit(e) {
-    e.preventDefault(e);
+    e.preventDefault();
     const newCuisine = this.state.searchTerm.toLowerCase();
     console.log("newCuisine is", newCuisine);
     this.props.searchCuisine(newCuisine, this.props.lat, this.props.lng);
+    this.setState(initialState);
+  }
+  handleInputSubmit(e) {
+    e.preventDefault();
+    const price = this.state.price;
+    console.log("price is", this.state.price);
+    this.props.searchPrice(price, this.props.lat, this.props.lng);
     this.setState(initialState);
   }
   render() {
@@ -46,15 +53,26 @@ class Searches extends React.Component {
             Search
           </button>
         </form>
+
         <form>
           <h3>Price:</h3>
+          <label>
+            $$$$
+            <input
+              type="radio"
+              name="price"
+              value="4"
+              checked={this.state.price === "4"}
+              onChange={this.handleInputChange}
+            />
+          </label>
           <label>
             $$$
             <input
               type="radio"
               name="price"
-              value="$$$"
-              checked={this.state.price === "$$$"}
+              value="3"
+              checked={this.state.price === "3"}
               onChange={this.handleInputChange}
             />
           </label>
@@ -63,8 +81,8 @@ class Searches extends React.Component {
             <input
               type="radio"
               name="price"
-              value="$$"
-              checked={this.state.price === "$$"}
+              value="2"
+              checked={this.state.price === "2"}
               onChange={this.handleInputChange}
             />
           </label>
@@ -73,12 +91,14 @@ class Searches extends React.Component {
             <input
               type="radio"
               name="price"
-              value="$"
-              checked={this.state.price === "$"}
+              value="1"
+              checked={this.state.price === "1"}
               onChange={this.handleInputChange}
             />
           </label>
-          <button type="submit">Search</button>
+          <button type="submit" onClick={this.handleInputSubmit}>
+            Search
+          </button>
         </form>
       </div>
     );

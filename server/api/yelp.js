@@ -37,7 +37,31 @@ router.post("/locations", async (req, res, next) => {
     });
 });
 
-router.post("/:lat/:long", async (req, res, next) => {
+router.post("/pricing/:lat/:long", async (req, res, next) => {
+  console.log("third route reached");
+  console.log("req.body is", req.body);
+  const searchRequest = {
+    term: "restaurants",
+    latitude: req.params.lat,
+    longitude: req.params.long,
+    limit: 50,
+    radius: 1000,
+    price: req.body.price,
+  };
+  client
+    .search(searchRequest)
+    .then((response) => {
+      const results = response.jsonBody.businesses;
+      const prettyJson = JSON.stringify(results, null, 4);
+      res.send(prettyJson);
+    })
+    .catch((e) => {
+      ß;
+      console.log(e);
+    });
+});
+
+router.post("/cuisine/:lat/:long", async (req, res, next) => {
   console.log("Second Route Reached");
   console.log("req.body is", req.body);
   const searchRequest = {

@@ -1,5 +1,5 @@
 import React from "react";
-import { setRestaurantsThunk, setCuisineThunk } from "../store/restaurants";
+import { setCuisineThunk, setPriceThunk } from "../store/restaurants";
 import { connect } from "react-redux";
 import MapView from "./MapView";
 import Searches from "./Searches";
@@ -12,13 +12,15 @@ class Map extends React.Component {
       lat: this.props.lat,
       location: this.props.location,
     };
-
     console.log("props I get on Map", this.props);
   }
 
   searchNewCuisine(cuisine, lat, long) {
-    console.log("cuisine,long,lat", cuisine, lat, long);
     this.props._searchCuisine(cuisine, lat, long);
+  }
+  searchNewPrice(price, lat, long) {
+    console.log("price, lat,long", price, lat, long);
+    this.props._searchPrice(price, lat, long);
   }
 
   render() {
@@ -33,6 +35,9 @@ class Map extends React.Component {
           searchCuisine={(cuisine, lat, long) =>
             this.searchNewCuisine(cuisine, lat, long)
           }
+          searchPrice={(price, lat, long) =>
+            this.searchNewPrice(price, lat, long)
+          }
           lat={this.state.lat}
           lng={this.state.lng}
         />
@@ -45,7 +50,6 @@ class Map extends React.Component {
     );
   }
 }
-
 const mapState = (state) => ({
   restaurants: state.restaurants,
 });
@@ -54,6 +58,9 @@ const mapDispatch = (dispatch) => {
   return {
     _searchCuisine: (cuisine, lat, long) => {
       dispatch(setCuisineThunk(cuisine, lat, long));
+    },
+    _searchPrice: (price, lat, long) => {
+      dispatch(setPriceThunk(price, lat, long));
     },
   };
 };
