@@ -7,6 +7,7 @@ import Invite from "./components/Invite";
 import Home from "./components/home";
 import Map from "./components/Map";
 import { me } from "./store";
+import Wheel from "./components/Wheel"
 
 /**
  * COMPONENT
@@ -27,6 +28,7 @@ class Routes extends Component {
             <Route path="/yelp" component={Map} />
             <Route path="/emails" component={Emails} />
             <Route path="/invite" component={Invite} />
+            <Route path="/Wheel" component={Wheel} />
             <Redirect to="/home" />
           </Switch>
         ) : (
