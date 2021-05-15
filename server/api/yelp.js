@@ -45,7 +45,7 @@ router.post("/pricing/:lat/:long", async (req, res, next) => {
     term: "restaurants",
     latitude: req.params.lat,
     longitude: req.params.long,
-    limit: 50,
+    limit: 30,
     radius: 5000,
     price: req.body.price,
   };
@@ -69,7 +69,7 @@ router.post("/cuisine/:lat/:long", async (req, res, next) => {
     term: req.body.cuisine,
     latitude: req.params.lat,
     longitude: req.params.long,
-    limit: 50,
+    limit: 30,
     radius: 1000,
   };
   client

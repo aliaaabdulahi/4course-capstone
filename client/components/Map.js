@@ -75,6 +75,9 @@ class Map extends React.Component {
           }
           lat={this.state.lat}
           lng={this.state.lng}
+          resClear={(latitude, longitude) =>
+            this.props.restaurantsList(latitude, longitude)
+          }
         />
         <MapView
           restaurants={this.props.restaurants}

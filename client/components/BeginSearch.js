@@ -70,7 +70,15 @@ class BeginSearch extends React.Component {
   }
   render() {
     if (this.state.renderMode === "currentCoordinates") {
-      return <Map lng={this.state.lng} lat={this.state.lat} />;
+      return (
+        <Map
+          lng={this.state.lng}
+          lat={this.state.lat}
+          restaurantsList={(latitude, longitude) =>
+            this.props._getRestaurants(latitude, longitude)
+          }
+        />
+      );
     }
     if (
       this.state.renderMode === "byLocation" &&
@@ -81,6 +89,9 @@ class BeginSearch extends React.Component {
           location={this.state.location}
           lat={this.props.restaurants[0].coordinates.latitude}
           lng={this.props.restaurants[0].coordinates.longitude}
+          restaurantsList={(latitude, longitude) =>
+            this.props._getRestaurants(latitude, longitude)
+          }
         />
       );
     } else {

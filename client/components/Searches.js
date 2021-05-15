@@ -14,7 +14,7 @@ class Searches extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleInputSubmit = this.handleInputSubmit.bind(this);
-    //this.clearSelections = this.clearSelections.bind(this);
+    this.clearSelections = this.clearSelections.bind(this);
   }
 
   handleChange(e) {
@@ -42,11 +42,10 @@ class Searches extends React.Component {
     this.props.searchPrice(price, this.props.lat, this.props.lng);
     this.setState(initialState);
   }
-  /*
-  clearSelections() {
-    this.props.
+
+  clearSelections(lat, long) {
+    this.props.resClear(lat, long);
   }
-  */
   render() {
     return (
       <div>
@@ -105,7 +104,12 @@ class Searches extends React.Component {
             Search
           </button>
         </form>
-        <button type="button">X</button>
+        <button
+          type="button"
+          onClick={() => this.clearSelections(this.props.lat, this.props.lng)}
+        >
+          X
+        </button>
       </div>
     );
   }
