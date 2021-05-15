@@ -1,5 +1,5 @@
 import React from "react";
-import { setCuisineThunk, setPriceThunk } from "../store/restaurants";
+import { setCuisineThunk } from "../store/restaurants";
 import { connect } from "react-redux";
 import MapView from "./MapView";
 import Searches from "./Searches";
@@ -13,65 +13,54 @@ class Map extends React.Component {
       location: this.props.location,
       price: null,
       rating: null,
-      is_closed: null,
+      is_open_now: null,
     };
     this.restaurantSelection = this.restaurantSelection.bind(this);
+    this.handleRadioChange = this.handleRadioChange.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
     console.log("props I get on Map", this.props);
   }
   searchNewCuisine(cuisine, lat, long) {
     this.props._searchCuisine(cuisine, lat, long);
   }
-  searchNewPrice(price, lat, long) {
-    console.log("price, lat,long", price, lat, long);
-    this.props._searchPrice(price, lat, long);
-  }
   restaurantSelection(resId) {
     console.log(resId, " got selected");
   }
+  handleInputChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+    console.log("state here is ", this.state);
+  }
+  handleRadioChange(e) {
+    console.log(e.target.value);
+    console.log(e.target.name);
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+    console.log(this.state);
+  }
+
   render() {
     //price
     //rating
-    //is_closed
-    /*
-    let resList;
-
-    if(){
-      resList=this.props.restaurants.filter((item)=>{
-        return item.rating ===this.state.rating;
+    let resList = this.props.restaurants;
+    if (this.state.rating !== null && this.state.rating !== "all") {
+      resList = resList.filter((item) => {
+        return item.rating === parseFloat(this.state.rating);
       });
     }
-    if(){
-      resList=this.props.restaurants.filter((item)=>{
-        return item.price===this.state.price;
+    if (this.state.price !== null && this.state.price !== "all") {
+      resList = resList.filter((item) => {
+        return item.price === this.state.price;
       });
     }
-    if(){
-      resList=this.props.restauarants.filter((item)=>{
-        return item.is_closed=this.state.is_closed;
-      })
-    }
-    else{
-      */
-    const restaurantList = this.props.restaurants.map((item) => (
-      <div className="restaurant-container" key={item.id}>
-        {item.name}
-        <p>{item.location.display_address}</p>
-        <img className="restaurant-image" src={item.image_url} />
-        <button type="button" onClick={() => this.restaurantSelection(item.id)}>
-          Select
-        </button>
-      </div>
-    ));
     return (
       <React.Fragment>
         <h1>Map Component Here:</h1>
-        <div>{restaurantList}</div>
         <Searches
           searchCuisine={(cuisine, lat, long) =>
             this.searchNewCuisine(cuisine, lat, long)
-          }
-          searchPrice={(price, lat, long) =>
-            this.searchNewPrice(price, lat, long)
           }
           lat={this.state.lat}
           lng={this.state.lng}
@@ -79,8 +68,119 @@ class Map extends React.Component {
             this.props.restaurantsList(latitude, longitude)
           }
         />
+        <form>
+          <h3>Rating:</h3>
+          <label>
+            5
+            <input
+              type="radio"
+              name="rating"
+              value="5"
+              checked={this.state.rating === "5"}
+              onChange={this.handleRadioChange}
+            />
+          </label>
+          <label>
+            4.5
+            <input
+              type="radio"
+              name="rating"
+              value="4.5"
+              checked={this.state.rating === "4.5"}
+              onChange={this.handleRadioChange}
+            />
+          </label>
+          <label>
+            4
+            <input
+              type="radio"
+              name="rating"
+              value="4"
+              checked={this.state.rating === "4"}
+              onChange={this.handleRadioChange}
+            />
+          </label>
+          <label>
+            All
+            <input
+              type="radio"
+              name="rating"
+              value="all"
+              checked={this.state.rating === "all"}
+              onChange={this.handleRadioChange}
+            />
+          </label>
+        </form>
+        <form>
+          <h3>Price:</h3>
+          <label>
+            $$$$
+            <input
+              type="radio"
+              name="price"
+              value="$$$$"
+              checked={this.state.price === "$$$$"}
+              onChange={this.handleInputChange}
+            />
+          </label>
+          <label>
+            $$$
+            <input
+              type="radio"
+              name="price"
+              value="$$$"
+              checked={this.state.price === "$$$"}
+              onChange={this.handleInputChange}
+            />
+          </label>
+          <label>
+            $$
+            <input
+              type="radio"
+              name="price"
+              value="$$"
+              checked={this.state.price === "$$"}
+              onChange={this.handleInputChange}
+            />
+          </label>
+          <label>
+            $
+            <input
+              type="radio"
+              name="price"
+              value="$"
+              checked={this.state.price === "$"}
+              onChange={this.handleInputChange}
+            />
+          </label>
+          <label>
+            All
+            <input
+              type="radio"
+              name="price"
+              value="all"
+              checked={this.state.price === "all"}
+              onChange={this.handleInputChange}
+            />
+          </label>
+        </form>
+        <div>
+          {resList.map((item) => (
+            <div className="restaurant-container" key={item.id}>
+              {item.name}
+              <p>{item.location.display_address}</p>
+              <img className="restaurant-image" src={item.image_url} />
+              <button
+                type="button"
+                onClick={() => this.restaurantSelection(item.id)}
+              >
+                Select
+              </button>
+            </div>
+          ))}
+        </div>
         <MapView
-          restaurants={this.props.restaurants}
+          restaurants={resList}
           lng={this.state.lng}
           lat={this.state.lat}
         />
@@ -96,9 +196,6 @@ const mapDispatch = (dispatch) => {
   return {
     _searchCuisine: (cuisine, lat, long) => {
       dispatch(setCuisineThunk(cuisine, lat, long));
-    },
-    _searchPrice: (price, lat, long) => {
-      dispatch(setPriceThunk(price, lat, long));
     },
   };
 };

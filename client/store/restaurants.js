@@ -54,20 +54,6 @@ export const setLocationThunk = (location) => {
   };
 };
 
-export const setPriceThunk = (price, lat, long) => {
-  return async (dispatch) => {
-    try {
-      const response = await axios.post(`/api/yelp/pricing/${lat}/${long}`, {
-        price,
-      });
-      const data = response.data;
-      dispatch(setRestaurants(data));
-    } catch (error) {
-      console.log(error);
-    }
-  };
-};
-
 export default function restaurantReducer(state = initialState, action) {
   switch (action.type) {
     case SET_RESTAURANTS: {

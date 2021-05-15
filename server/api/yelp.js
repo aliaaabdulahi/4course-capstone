@@ -38,6 +38,7 @@ router.post("/locations", async (req, res, next) => {
     });
 });
 
+/*
 router.post("/pricing/:lat/:long", async (req, res, next) => {
   console.log("third route reached");
   console.log("req.body is", req.body);
@@ -61,6 +62,7 @@ router.post("/pricing/:lat/:long", async (req, res, next) => {
       console.log(e);
     });
 });
+*/
 
 router.post("/cuisine/:lat/:long", async (req, res, next) => {
   console.log("Second Route Reached");
