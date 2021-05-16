@@ -6,6 +6,9 @@ import Invite from "./components/Invite";
 import Home from "./components/home";
 import Map from "./components/Map";
 import BeginSearch from "./components/BeginSearch";
+import { ThemeProvider } from "@material-ui/styles";
+import theme from "./theme.js";
+
 import { me } from "./store";
 import {
   withRouter,
@@ -22,7 +25,7 @@ class Routes extends React.Component {
   render() {
     const { isLoggedIn } = this.props;
     return (
-      <div>
+      <ThemeProvider theme={theme}>
         {isLoggedIn ? (
           <Switch>
             <Route path="/home" component={Home} />
@@ -49,7 +52,7 @@ class Routes extends React.Component {
             <Route path="/signup" component={Signup} />
           </Switch>
         )}
-      </div>
+      </ThemeProvider>
     );
   }
 }

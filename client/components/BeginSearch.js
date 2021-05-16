@@ -1,7 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import { setRestaurantsThunk, setLocationThunk } from "../store/restaurants";
+import Button from "@material-ui/core/Button";
 import Map from "./Map.js";
+
+import sushiPic from "../../public/sushi.png";
 
 const initialState = {
   location: "",
@@ -97,19 +100,30 @@ class BeginSearch extends React.Component {
     } else {
       return (
         <div className="begin-search">
+          <img src={sushiPic} alt="sushi" id="sushi-pic" />
           <form>
             <h1>Where are we Starting?</h1>
             <h4>Enter a city, neighborhood or zipcode: </h4>
             <input type="text" name="location" onChange={this.handleChange} />
-            <button type="submit" onClick={this.handleLocationSubmit}>
+            <Button
+              className="buttons"
+              type="submit"
+              variant="contained"
+              onClick={this.handleLocationSubmit}
+            >
               Search
-            </button>
+            </Button>
           </form>
           <form>
             <h4>Search By Current Location: </h4>
-            <button type="button" onClick={this.handleSubmit}>
+            <Button
+              className="buttons"
+              type="button"
+              variant="contained"
+              onClick={this.handleSubmit}
+            >
               Search
-            </button>
+            </Button>
           </form>
         </div>
       );

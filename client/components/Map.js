@@ -72,8 +72,6 @@ class Map extends React.Component {
   }
 
   render() {
-    //price
-    //rating
     let resList = this.props.restaurants;
     if (this.state.rating !== null && this.state.rating !== "all") {
       resList = resList.filter((item) => {

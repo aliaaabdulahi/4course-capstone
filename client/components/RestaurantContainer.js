@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 const RestaurantContainer = (props) => {
   const classes = useStyles();
   return (
-    <Grid container direction="row" justify="center" alignItems="center">
+    <Grid container direction="row" justify="flex-end" alignItems="center">
       <ul>
         {props.resSelections.map((res) => (
           <Grid container item key={res.yelpId}>
