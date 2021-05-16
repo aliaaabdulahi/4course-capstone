@@ -85,7 +85,8 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "0px",
   },
   menuItem: {
-    ...theme.typography.tab,
+    fontFamily: "Permanent Marker",
+    //...theme.typography.tab,
     opacity: 0.7,
     "&:hover": {
       opacity: 1,

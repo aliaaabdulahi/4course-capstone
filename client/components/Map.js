@@ -2,7 +2,10 @@ import React from "react";
 import { setCuisineThunk } from "../store/restaurants";
 import { connect } from "react-redux";
 import MapView from "./MapView";
+import RestaurantContainer from "./RestaurantContainer";
 import Searches from "./Searches";
+import { ThemeProvider } from "@material-ui/styles";
+import theme from "../theme.js";
 
 class Map extends React.Component {
   constructor(props) {
@@ -13,7 +16,7 @@ class Map extends React.Component {
       location: this.props.location,
       price: null,
       rating: null,
-      is_open_now: null,
+      selections: [],
     };
     this.restaurantSelection = this.restaurantSelection.bind(this);
     this.handleRadioChange = this.handleRadioChange.bind(this);
@@ -23,8 +26,21 @@ class Map extends React.Component {
   searchNewCuisine(cuisine, lat, long) {
     this.props._searchCuisine(cuisine, lat, long);
   }
-  restaurantSelection(resId) {
-    console.log(resId, " got selected");
+  restaurantSelection(resId, resName) {
+    let restaurantObject = {
+      yelpId: resId,
+      yelpName: resName,
+    };
+    this.setState({
+      selections: [...this.state.selections, restaurantObject],
+    });
+  }
+  removeSelection(resId) {
+    this.setState({
+      selections: this.state.selections.filter((item) => {
+        return item.yelpId !== resId;
+      }),
+    });
   }
   handleInputChange(e) {
     this.setState({
@@ -56,7 +72,11 @@ class Map extends React.Component {
       });
     }
     return (
-      <React.Fragment>
+      <ThemeProvider theme={theme}>
+        <RestaurantContainer
+          resSelections={this.state.selections}
+          removal={(resId) => this.removeSelection(resId)}
+        />
         <h1>Map Component Here:</h1>
         <Searches
           searchCuisine={(cuisine, lat, long) =>
@@ -172,7 +192,7 @@ class Map extends React.Component {
               <img className="restaurant-image" src={item.image_url} />
               <button
                 type="button"
-                onClick={() => this.restaurantSelection(item.id)}
+                onClick={() => this.restaurantSelection(item.id, item.name)}
               >
                 Select
               </button>
@@ -184,7 +204,7 @@ class Map extends React.Component {
           lng={this.state.lng}
           lat={this.state.lat}
         />
-      </React.Fragment>
+      </ThemeProvider>
     );
   }
 }

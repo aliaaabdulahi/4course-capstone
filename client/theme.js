@@ -16,8 +16,14 @@ export default createMuiTheme({
       main: arcCrimson,
     },
     typography: {
-      h3: {
+      button: {
+        fontFamily: "Permanent Marker",
+        color: "#fff100",
+      },
+      h5: {
         fontWeight: 300,
+        fontFamily: "Permanent Marker",
+        color: "#fff100",
       },
     },
   },
