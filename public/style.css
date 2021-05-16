@@ -1,5 +1,7 @@
 body {
   font-family: sans-serif;
+  background-image: url("./4course-background-tile.png");
+  background-repeat: repeat;
 }
 
 a {
@@ -35,4 +37,8 @@ form div {
 .restaurant-image {
   height: 100px;
   width: 100px;
+}
+#app {
+  background-image: url("./4course-background-tile.png");
+  background-repeat: repeat;
 }

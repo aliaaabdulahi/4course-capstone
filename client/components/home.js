@@ -8,9 +8,6 @@ export const Home = (props) => {
   return (
     <div>
       <h3>Welcomeeee, {username}</h3>
-      <button type="button" onClick={() => props.history.push(`/beginsearch`)}>
-        Go to search page!
-      </button>
     </div>
   );
 };
