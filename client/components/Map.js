@@ -27,13 +27,27 @@ class Map extends React.Component {
     this.props._searchCuisine(cuisine, lat, long);
   }
   restaurantSelection(resId, resName) {
-    let restaurantObject = {
-      yelpId: resId,
-      yelpName: resName,
-    };
-    this.setState({
-      selections: [...this.state.selections, restaurantObject],
-    });
+    if (this.state.selections.length === 4) {
+      window.alert("Please remove choice before continuing");
+    } else {
+      let pickedTwice = "";
+      this.state.selections.forEach((item) => {
+        if (item.yelpId === resId) {
+          pickedTwice = item.yelpId;
+        }
+      });
+      if (pickedTwice !== "") {
+        window.alert("Can't pick restaurant twice! Please pick another!");
+      } else {
+        let restaurantObject = {
+          yelpId: resId,
+          yelpName: resName,
+        };
+        this.setState({
+          selections: [...this.state.selections, restaurantObject],
+        });
+      }
+    }
   }
   removeSelection(resId) {
     this.setState({
