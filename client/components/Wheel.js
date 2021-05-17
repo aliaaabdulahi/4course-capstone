@@ -1,3 +1,4 @@
+
 import React from "react";
 
 /**
@@ -7,7 +8,7 @@ class Wheel extends React.Component {
   constructor(){
     super();
     this.state = {
-      roll: false
+      roll: true
     }
     this.handleclick = this.handleclick.bind(this)
   }
@@ -20,42 +21,42 @@ class Wheel extends React.Component {
     console.log(this.state.roll)
     return (
       <div>
-      <section>
-        {this.state.roll ? (        
-          <ul className="circel1roll">
+        {this.state.roll === true ? (       
+          <div>
+            <h1>
+              1.. 2.. 3..</h1>
+          <ul className="circel1">
             <li>
-              <p>Dinner</p>
-              </li>
-            <li></li>
-            <li></li>
-            <li></li>
-          </ul>):(
-            <ul className="circel1">
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-          </ul>)
+              <div className="text"
+                    contentEditable="true"
+                    spellcheck="false">drinks</div> 
+            </li>
+            <li>
+              <div className="text"
+                    contentEditable = "true"
+                    spellCheck="false">appetizer</div> 
+            </li>
+            <li>
+              <div className="text"
+                    contentEditable = "true"
+                    spellCheck="false">entree</div> 
+            </li>
+            <li>
+              <div className="text"
+                    contentEditable = "true"
+                    spellCheck="false">dessert</div> 
+            </li>
+          </ul>
+          <button class="spin" onClick={this.handleclick}>
+              Stop
+          </button>
+          </div>
+        ):(
+          <p>
+            Your assigned course is ...
+            </p>
+          )
         }
-        {this.state.roll ? (
-        <ul className="circel2roll">
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>          
-        ) : (
-          <ul className="circel2">
-          <li></li>
-          <li></li>
-          <li></li>
-          <li></li>
-        </ul>)   
-        }
-      </section>
-      <button onClick={this.handleclick}>
-        Start
-      </button>
     </div>
     )
   }
