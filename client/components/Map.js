@@ -1,87 +1,231 @@
 import React from "react";
-import { setRestaurantsThunk, setCuisineThunk } from "../store/restaurants";
+import { setCuisineThunk } from "../store/restaurants";
 import { connect } from "react-redux";
 import MapView from "./MapView";
+import RestaurantContainer from "./RestaurantContainer";
 import Searches from "./Searches";
+import { ThemeProvider } from "@material-ui/styles";
+import theme from "../theme.js";
 
 class Map extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { lng: null, lat: null };
-    this.options = {
-      enableHighAccuracy: false,
-      timeout: 5000,
-      maximumAge: 0,
+    this.state = {
+      lng: this.props.lng,
+      lat: this.props.lat,
+      location: this.props.location,
+      price: null,
+      rating: null,
+      selections: [],
     };
-    this.success = this.success.bind(this);
-    this.error = this.error.bind(this);
-
+    this.restaurantSelection = this.restaurantSelection.bind(this);
+    this.handleRadioChange = this.handleRadioChange.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
     console.log("props I get on Map", this.props);
   }
-  componentDidMount() {
-    navigator.geolocation.getCurrentPosition(
-      this.success,
-      this.error,
-      this.options
-    );
-    /*let lat = this.props.match.params.lat;
-    let long = this.props.match.params.long;
-    this.props._getRestaurants(lat, long);
-    */
-  }
   searchNewCuisine(cuisine, lat, long) {
-    console.log("cuisine,long,lat", cuisine, lat, long);
     this.props._searchCuisine(cuisine, lat, long);
   }
-
-  success(pos) {
-    var crd = pos.coords;
-    console.log("Your current position is:");
-    console.log(`Latitude : ${crd.latitude}`);
-    console.log(`Longitude: ${crd.longitude}`);
-    console.log(`More or less ${crd.accuracy} meters.`);
-    this.setState({ lng: crd.longitude, lat: crd.latitude });
-    this.props._getRestaurants(this.state.lat, this.state.lng);
+  restaurantSelection(resId, resName) {
+    if (this.state.selections.length === 4) {
+      window.alert("Please remove choice before continuing");
+    } else {
+      let pickedTwice = "";
+      this.state.selections.forEach((item) => {
+        if (item.yelpId === resId) {
+          pickedTwice = item.yelpId;
+        }
+      });
+      if (pickedTwice !== "") {
+        window.alert("Can't pick restaurant twice! Please pick another!");
+      } else {
+        let restaurantObject = {
+          yelpId: resId,
+          yelpName: resName,
+        };
+        this.setState({
+          selections: [...this.state.selections, restaurantObject],
+        });
+      }
+    }
   }
-
-  error(err) {
-    console.warn(`ERROR(${err.code}): ${err.message}`);
+  removeSelection(resId) {
+    this.setState({
+      selections: this.state.selections.filter((item) => {
+        return item.yelpId !== resId;
+      }),
+    });
+  }
+  handleInputChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+    console.log("state here is ", this.state);
+  }
+  handleRadioChange(e) {
+    console.log(e.target.value);
+    console.log(e.target.name);
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+    console.log(this.state);
   }
 
   render() {
-    const restaurantList = this.props.restaurants.map((item) => (
-      <div key={item.id}>{item.name}</div>
-    ));
+    let resList = this.props.restaurants;
+    if (this.state.rating !== null && this.state.rating !== "all") {
+      resList = resList.filter((item) => {
+        return item.rating === parseFloat(this.state.rating);
+      });
+    }
+    if (this.state.price !== null && this.state.price !== "all") {
+      resList = resList.filter((item) => {
+        return item.price === this.state.price;
+      });
+    }
     return (
-      <React.Fragment>
+      <ThemeProvider theme={theme}>
+        <RestaurantContainer
+          resSelections={this.state.selections}
+          removal={(resId) => this.removeSelection(resId)}
+        />
         <h1>Map Component Here:</h1>
-        <div>{restaurantList}</div>
         <Searches
           searchCuisine={(cuisine, lat, long) =>
             this.searchNewCuisine(cuisine, lat, long)
           }
           lat={this.state.lat}
           lng={this.state.lng}
+          resClear={(latitude, longitude) =>
+            this.props.restaurantsList(latitude, longitude)
+          }
         />
+        <form>
+          <h3>Rating:</h3>
+          <label>
+            5
+            <input
+              type="radio"
+              name="rating"
+              value="5"
+              checked={this.state.rating === "5"}
+              onChange={this.handleRadioChange}
+            />
+          </label>
+          <label>
+            4.5
+            <input
+              type="radio"
+              name="rating"
+              value="4.5"
+              checked={this.state.rating === "4.5"}
+              onChange={this.handleRadioChange}
+            />
+          </label>
+          <label>
+            4
+            <input
+              type="radio"
+              name="rating"
+              value="4"
+              checked={this.state.rating === "4"}
+              onChange={this.handleRadioChange}
+            />
+          </label>
+          <label>
+            All
+            <input
+              type="radio"
+              name="rating"
+              value="all"
+              checked={this.state.rating === "all"}
+              onChange={this.handleRadioChange}
+            />
+          </label>
+        </form>
+        <form>
+          <h3>Price:</h3>
+          <label>
+            $$$$
+            <input
+              type="radio"
+              name="price"
+              value="$$$$"
+              checked={this.state.price === "$$$$"}
+              onChange={this.handleInputChange}
+            />
+          </label>
+          <label>
+            $$$
+            <input
+              type="radio"
+              name="price"
+              value="$$$"
+              checked={this.state.price === "$$$"}
+              onChange={this.handleInputChange}
+            />
+          </label>
+          <label>
+            $$
+            <input
+              type="radio"
+              name="price"
+              value="$$"
+              checked={this.state.price === "$$"}
+              onChange={this.handleInputChange}
+            />
+          </label>
+          <label>
+            $
+            <input
+              type="radio"
+              name="price"
+              value="$"
+              checked={this.state.price === "$"}
+              onChange={this.handleInputChange}
+            />
+          </label>
+          <label>
+            All
+            <input
+              type="radio"
+              name="price"
+              value="all"
+              checked={this.state.price === "all"}
+              onChange={this.handleInputChange}
+            />
+          </label>
+        </form>
+        <div>
+          {resList.map((item) => (
+            <div className="restaurant-container" key={item.id}>
+              {item.name}
+              <p>{item.location.display_address}</p>
+              <img className="restaurant-image" src={item.image_url} />
+              <button
+                type="button"
+                onClick={() => this.restaurantSelection(item.id, item.name)}
+              >
+                Select
+              </button>
+            </div>
+          ))}
+        </div>
         <MapView
-          restaurants={this.props.restaurants}
+          restaurants={resList}
           lng={this.state.lng}
           lat={this.state.lat}
         />
-      </React.Fragment>
+      </ThemeProvider>
     );
   }
 }
-
 const mapState = (state) => ({
   restaurants: state.restaurants,
 });
 
 const mapDispatch = (dispatch) => {
   return {
-    _getRestaurants: (lat, long) => {
-      dispatch(setRestaurantsThunk(lat, long));
-    },
     _searchCuisine: (cuisine, lat, long) => {
       dispatch(setCuisineThunk(cuisine, lat, long));
     },

@@ -10,7 +10,7 @@ class MapView extends React.PureComponent {
     this.state = {
       // lng: -73.9784895,
       // lat: 40.7850574,
-      zoom: 15,
+      zoom: 12,
     };
     console.log("this.props in MapView constructor--->", this.props);
     this.mapContainer = React.createRef();
@@ -59,14 +59,6 @@ class MapView extends React.PureComponent {
       });
     });
   }
-
-  // componentDidMount () {
-  //   console.log (
-  //     'this.props in MapView componentDidMount--->',
-  //     this.props
-  //   );
-  //   this.loadMap();
-  // }
 
   componentDidUpdate(prevProps) {
     if (

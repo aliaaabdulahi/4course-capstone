@@ -1,10 +1,10 @@
 import React from "react";
-//import { connect } from "react-redux";
 
 const initialState = {
   searchTerm: "",
+  location: "",
+  price: "",
 };
-
 class Searches extends React.Component {
   constructor(props) {
     super(props);
@@ -12,6 +12,7 @@ class Searches extends React.Component {
     console.log("my props on search are", this.props);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.clearSelections = this.clearSelections.bind(this);
   }
 
   handleChange(e) {
@@ -20,22 +21,32 @@ class Searches extends React.Component {
     });
   }
   handleSubmit(e) {
-    e.preventDefault(e);
+    e.preventDefault();
     const newCuisine = this.state.searchTerm.toLowerCase();
     console.log("newCuisine is", newCuisine);
     this.props.searchCuisine(newCuisine, this.props.lat, this.props.lng);
-    this.setState(initialState);
+  }
+  clearSelections(lat, long) {
+    this.props.resClear(lat, long);
   }
   render() {
     return (
-      <form>
-        <h1>Search By</h1>
-        <h3>Cuisine: </h3>
-        <input type="text" name="searchTerm" onChange={this.handleChange} />
-        <button type="submit" onClick={this.handleSubmit}>
-          Search
+      <div>
+        <form>
+          <h1>Search By</h1>
+          <h3>Cuisine: </h3>
+          <input type="text" name="searchTerm" onChange={this.handleChange} />
+          <button type="submit" onClick={this.handleSubmit}>
+            Search
+          </button>
+        </form>
+        <button
+          type="button"
+          onClick={() => this.clearSelections(this.props.lat, this.props.lng)}
+        >
+          X
         </button>
-      </form>
+      </div>
     );
   }
 }

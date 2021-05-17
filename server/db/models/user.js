@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const axios = require("axios");
 
-const SALT_ROUNDS = 5;
+const SALT_ROUNDS = 7;
 
 const User = db.define("user", {
   username: {
@@ -15,6 +15,19 @@ const User = db.define("user", {
   password: {
     type: Sequelize.STRING,
   },
+  /*
+  firstName: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  lastName: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  phoneNumber: {
+    type: Sequelize.STRING,
+  },
+  */
 });
 
 module.exports = User;
@@ -37,7 +50,7 @@ User.prototype.generateToken = function () {
 User.authenticate = async function ({ username, password }) {
   const user = await this.findOne({ where: { username } });
   if (!user || !(await user.correctPassword(password))) {
-    const error = Error("Incorrect username/password");
+    const error = Error("Incorrect email/password");
     error.status = 401;
     throw error;
   }
