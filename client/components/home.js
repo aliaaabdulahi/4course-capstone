@@ -66,9 +66,6 @@ export const Home = (props) => {
     <div>
       <h3>Welcomeeee, {username}</h3>
       {/* <Datetime/> */}
-      <button type="button" onClick={() => props.history.push(`/yelp`)}>
-        See Restaurants Near You!
-      </button>
       <div className="center">
         <form onSubmit={() => props.history.push(`/datetime`)}>
           <input
