@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const yelp = require("yelp-fusion");
-// const { gmailPass } = require("../../secret.js");
+const { gmailPass } = require("../../secret.js");
 const nodemailer = require('nodemailer');
 // const { apiKey } = require("../../secret.js");
 let apiKey;
