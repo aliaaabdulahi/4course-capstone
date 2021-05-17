@@ -64,11 +64,9 @@ export const Home = (props) => {
 
   return (
     <div>
-      <h3>Welcomeeee, {username}</h3>
+      <h3>Welcome, {username}</h3>
       {/* <Datetime/> */}
-      <button type="button" onClick={() => props.history.push(`/yelp`)}>
-        See Restaurants Near You!
-      </button>
+
       <div className="center">
         <form onSubmit={() => props.history.push(`/datetime`)}>
           <input
@@ -89,7 +87,7 @@ export const Home = (props) => {
             </div>
           </div>
           <div className="column">
-            <h2>Passed Events</h2>
+            <h2>Past Events</h2>
             <div>
               {upcomingEvents.map((event) => (
                 <Link to="/event:id">

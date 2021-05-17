@@ -157,7 +157,7 @@ function Header(props) {
   const menuOptions = [
     {
       name: "Start Challenge",
-      link: "/startchallenge",
+      link: "/datetime",
       activeIndex: 1,
       selectedIndex: 0,
     },
@@ -179,7 +179,7 @@ function Header(props) {
     { name: "Home", link: "/", activeIndex: 0 },
     {
       name: "Start Challenge",
-      link: "/startchallenge",
+      link: "/datetime",
       activeIndex: 1,
       ariaOwns: anchorEl ? "simple-menu" : undefined,
       ariaPopup: anchorEl ? "true" : undefined,

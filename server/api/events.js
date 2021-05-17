@@ -44,3 +44,24 @@ router.get("/upcoming/userId/eventId/users", async (req, res, next) => {
     next(err);
   }
 });
+
+router.post('/', async (req, res, next) => {
+  try {
+    const event = await Event.create({date: req.body.date});
+    res.send(event)
+  } catch (err) {
+      next(err)
+  }
+})
+
+router.put('/', async (req, res, next) => {
+  try {
+    const event = await Event.update(
+      { date: req.body.date },
+      { where: { _id: req.body.id } }
+    );
+    res.send(event);
+  } catch (err) {
+      next(err);
+  }
+})
