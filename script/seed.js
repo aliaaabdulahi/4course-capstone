@@ -2,7 +2,7 @@
 
 const {
   db,
-  models: { User, Course, Event, User_Event },
+  models: { User, Course, Event, User_Events },
 } = require("../server/db");
 
 /**
@@ -19,6 +19,7 @@ async function seed() {
     User.create({ email: "murphy@m.com", username: "murphy", password: "123" }),
   ]);
 
+  
   console.log(`seeded ${users.length} users`);
   console.log(`seeded successfully`);
   return {
