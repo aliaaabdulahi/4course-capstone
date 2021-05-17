@@ -8,6 +8,7 @@ import Home from "./components/home";
 import Map from "./components/Map";
 import Datetime from "./components/Datetime";
 import { me } from "./store";
+import Wheel from "./components/Wheel";
 
 /**
  * COMPONENT
@@ -29,6 +30,7 @@ class Routes extends Component {
             <Route path="/emails" component={Emails} />
             <Route path="/invite" component={Invite} />
             <Route path="/datetime" component={Datetime} />
+            <Route path="/Wheel" component={Wheel} />
             <Redirect to="/home" />
           </Switch>
         ) : (
