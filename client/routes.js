@@ -5,12 +5,9 @@ import Emails from "./components/Emails";
 import Invite from "./components/Invite";
 import Home from "./components/home";
 import Map from "./components/Map";
-<<<<<<< HEAD
 import BeginSearch from "./components/BeginSearch";
 import { ThemeProvider } from "@material-ui/styles";
 import theme from "./theme.js";
-
-import { me } from "./store";
 import {
   withRouter,
   Redirect,
@@ -18,11 +15,9 @@ import {
   Route,
   Switch,
 } from "react-router-dom";
-=======
 import Datetime from "./components/Datetime";
 import { me } from "./store";
 import Wheel from "./components/Wheel";
->>>>>>> ezgi/start
 
 class Routes extends React.Component {
   componentDidMount() {
