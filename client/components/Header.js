@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Tabs from "@material-ui/core/Tabs";
@@ -17,6 +18,7 @@ import useScrollTrigger from "@material-ui/core/useScrollTrigger";
 import { makeStyles } from "@material-ui/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { useTheme } from "@material-ui/core/styles";
+import { logout } from "../store";
 
 import logo from "../../public/Crimson-4Course-Logo.png";
 
@@ -122,7 +124,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Header(props) {
+function Header(props) {
   const classes = useStyles();
   const theme = useTheme(); //media queries
   //const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
@@ -183,7 +185,14 @@ export default function Header(props) {
       ariaPopup: anchorEl ? "true" : undefined,
       mouseOver: (event) => handleClick(event),
     },
-    { name: "Logout", link: "/login", activeIndex: 2 },
+    /*
+    {
+      name: "Logout",
+      link: '/login',
+      onClick: () => props.handleLogout(),
+      activeIndex: 2,
+    },
+    */
   ];
 
   useEffect(() => {
@@ -226,6 +235,11 @@ export default function Header(props) {
             onMouseOver={route.mouseOver}
           />
         ))}
+        <Tab
+          className={classes.tab}
+          onClick={() => props.handleLogout()}
+          label="Logout"
+        ></Tab>
       </Tabs>
       <Menu
         id="simple-menu"
@@ -321,6 +335,16 @@ export default function Header(props) {
     </React.Fragment>
   );
 }
+
+const mapDispatch = (dispatch) => {
+  return {
+    handleLogout() {
+      dispatch(logout());
+    },
+  };
+};
+
+export default connect(null, mapDispatch)(Header);
 
 /*
   Was in Swipeable Drawer
