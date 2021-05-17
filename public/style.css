@@ -67,3 +67,169 @@ form div {
   width: 250px;
   border-radius: 2em;
 }
+.center {
+  text-align: center;
+}
+
+.button {
+  background-color: purple;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border: none;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.bigCircle {
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+  box-shadow: 2px 2px 2px 2px darkgray;
+  white-space: normal;
+}
+
+.normal {
+  padding: 10px;
+  width: 100px;
+}
+
+.disabled {
+  cursor: not-allowed;
+  background-color: darkgray;
+  color: black;
+  opacity: 0.9;
+}
+
+.normal:hover {
+  opacity: 0.9;
+}
+
+.normal:hover {
+  opacity: 0.9;
+}
+
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 50%;
+}
+
+.spin {
+  position: absolute;
+  top: 70%;
+  left: 75%;
+  transform:translate(-50%, -50%);
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  background-color: #ff5722;
+  color: #fff;
+  box-shadow: 0 5px 20px #000;
+  font-weight: bold;
+  font-size: 22px;
+  cursor: pointer;
+}
+.spin:active{
+  width: 70px;
+  height: 70px;
+  font-size: 20px;
+}
+
+.circel1{
+  width: 25em;
+  height: 25em;
+  position: absolute;
+  padding: 0;
+  margin: 1em auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 10px solid #ccc;
+  border-top: 10px solid #f39c12;
+  border-left: 10px solid #d35400;
+  border-bottom: 10px solid #f39c12;
+  border-right: 10px solid #d35400;
+  border-width: 15px;
+  box-shadow:  0 0 30px rgba(0,0,0,.7);
+  overflow: hidden;
+}
+
+li{
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 50%;
+  transform-origin: 0% 100%;
+  /* list-style: none;
+  z-index: -1; */
+}
+li:first-child .text{
+  background-color: #f1c40f;
+}
+li:nth-child(2) .text{
+  background-color: #e67e22;
+}
+li:nth-child(3) .text{
+  background-color: #e74c3c;
+}
+li:nth-child(4) .text{
+  background-color: #c0392b;
+}
+
+li:first-child{
+  transform: rotate(90deg)
+}
+li:nth-child(2){
+  transform: rotate(180deg)
+}
+li:nth-child(3){
+  transform: rotate(270deg)
+}
+li:nth-child(4){
+  transform: rotate(360deg)
+}
+
+.text{
+  position: absolute;
+  left: -100%;
+  width: 200%;
+  height: 200%;
+  text-align:  center;
+  display: block;
+  transform: rotate(35deg);
+  padding-top: 50px;
+  font-family:monospace;
+  font-size: 30px;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  text-shadow: 1px 1px #dbdbdb;
+}
+
+ ul.circel1{
+  animation: animateOne linear .4s infinite;
+  animation-delay: .7s;
+  z-index: 2;
+}
+
+@keyframes animateOne {
+  0%
+  {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100%
+  {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+
+

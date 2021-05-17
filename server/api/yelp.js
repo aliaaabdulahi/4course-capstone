@@ -108,7 +108,7 @@ router.get("/:lat/:long", async (req, res, next) => {
 });
 
 // full route is /api/yelp/email
-/*
+
 router.post("/email", async (req, res, next) => {
   try {
     const transporter = nodemailer.createTransport({
@@ -123,7 +123,7 @@ router.post("/email", async (req, res, next) => {
     const { toEmails } = req.body;
     toEmails.forEach((toEmail) => {
       const mailOptions = {
-        from: "ezgisirip@gmail.com",
+        from: "4coursecapstone@gmail.com",
         to: toEmail,
         subject: "You got invited to a 4Course challenge!",
         text: "Hello there! Ezgi is inviting you to join the 4Course challenge. Here is the link: ",
@@ -142,4 +142,3 @@ router.post("/email", async (req, res, next) => {
     next(err);
   }
 });
-*/
