@@ -30,9 +30,9 @@ class Routes extends React.Component {
         {isLoggedIn ? (
           <Switch>
             <Route path="/home" component={Home} />
-            <Route path="/:eventId/yelp" component={Map} />
-            <Route path="/:eventId/emails" component={Emails} />
-            <Route path="/:eventId/invite" component={Invite} />
+            <Route path="/yelp" component={Map} />
+            <Route path="/emails" component={Emails} />
+            <Route path="/invite" component={Invite} />
             <Route exact path="/startchallenge" component={BeginSearch} />
             <Route
               exact
