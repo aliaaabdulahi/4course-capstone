@@ -48,6 +48,7 @@ router.get("/upcoming/userId/eventId/users", async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     const event = await Event.create(req.body);
+    console.log("post", req.body)
     res.send(event)
   } catch (err) {
       next(err)

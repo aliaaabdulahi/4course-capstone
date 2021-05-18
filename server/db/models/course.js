@@ -4,7 +4,7 @@ const db = require("../db");
 const Course = db.define("courses", {
   restaurant: {
     type: Sequelize.STRING,
-    allowNull: false,
+    //allowNull: false,
   },
   courseType: {
     type: Sequelize.ENUM("drinks", "appetizer", "entree", "dessert"),
