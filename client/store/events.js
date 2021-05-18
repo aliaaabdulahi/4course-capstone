@@ -108,3 +108,40 @@ export default function eventsReducer(state = initialState, action) {
       return state;
   }
 }
+
+const GET_EVENT = "GET_EVENT";
+
+export const getEvent = (event) => ({
+  type: GET_EVENT,
+  event,
+});
+
+export const fetchEvent = (eventId) => {
+  return async (dispatch) => {
+    try {
+      const { data } = await axios.get(`/api/events/${eventId}`);
+      dispatch(getEvent(data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const SUBMIT_EVENT = "SUBMIT_EVENT";
+
+export const submitEvent = (event) => ({
+  type: SUBMIT_EVENT,
+  event,
+});
+export const eventThunk = (userId, eventId, history) => {
+  return async (dispatch) => {
+    try {
+      let response;
+      response = await axios.put(`/api/events/${eventId}${userId}`);
+      dispatch(submitEvent(response.data));
+      // history.push('/thankyou');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};

@@ -2,7 +2,7 @@
 
 const {
   db,
-  models: { User, Course, Event, User_Event },
+  models: { User, Course, Event },
 } = require("../server/db");
 
 /**
@@ -17,10 +17,33 @@ async function seed() {
   const users = await Promise.all([
     User.create({ email: "cody@cody.com", username: "cody", password: "123" }),
     User.create({ email: "murphy@m.com", username: "murphy", password: "123" }),
+    User.create({ email: "abc@mail.com", username: "acb", password: "123" }),
+    User.create({ email: "edc@mail.com", username: "edc", password: "123" }),
   ]);
 
+  // Creating course
+  const courses = await Promise.all([
+    Course.create({ invitee: "cody@cody.com", courseType: "appetizer"}),
+    Course.create({ invitee: "murphy@m.com", courseType: "entree" }),
+    Course.create({ invitee: "abc@mail.com", courseType: "dessert"}),
+    Course.create({ invitee: "edc@mail.com", courseType: "drinks"}),
+  ]);
+
+    // Creating event
+    const events = await Promise.all([
+      Event.create({ date: "2021-05-10 03:09:19-04"}),
+    ]);
+  
   console.log(`seeded ${users.length} users`);
   console.log(`seeded successfully`);
+
+  await events[0].setCourses([courses[0], courses[1], courses[2], courses[3]]);
+  await events[0].setUser(users[3])
+  await courses[0].setUser(users[3])
+  await courses[1].setUser(users[1])
+  await courses[2].setUser(users[2])
+  await courses[3].setUser(users[0])
+
   return {
     users: {
       cody: users[0],

@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {setEmailsThunk} from '../store/emails';
+import { Link } from "react-router-dom";
 
 class Emails extends React.Component {
   constructor (props) {
@@ -32,7 +33,7 @@ class Emails extends React.Component {
   }
 
   handleNext() {
-    this.state.enableNext ? this.props.history.push(`/invite`) : null;
+    this.state.enableNext ? this.props.history.push('/wheel') : null;
   }
 
   render () {
@@ -79,7 +80,9 @@ class Emails extends React.Component {
           <div style={{padding: "5px"}}>
             <input className="button normal" type="submit" value="Submit" />
             <button className={`button normal ${this.state.enableNext ? null : 'disabled'}`} onClick={this.handleNext}>
+              <Link to='/wheel'>
               Next
+              </Link>
             </button>
           </div>
         </form>

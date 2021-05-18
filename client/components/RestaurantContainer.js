@@ -2,6 +2,7 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/styles";
 import Grid from "@material-ui/core/Grid";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   resListButton: {
@@ -44,6 +45,7 @@ const RestaurantContainer = (props) => {
           </Grid>
         ))}
       </ul>
+      <Link to='/emails'> 
       <Button
         className={classes.inviteButton}
         variant="contained"
@@ -52,7 +54,7 @@ const RestaurantContainer = (props) => {
         onClick={() => props.addSelectionsToStore()}
       >
         INVITE FRIENDS
-      </Button>
+      </Button></Link>
     </Grid>
   );
 };
