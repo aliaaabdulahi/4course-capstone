@@ -74,11 +74,11 @@ export const usersInUpcomingEventThunk = (eventId, userId) => {
   };
 };
 
-export const createNewEventThunk = (date) => {
+export const createNewEventThunk = (date, id) => {
   return async (dispatch) => {
     try {
-      console.log("creating event", date);
-      const { data } = await axios.post(`/api/events`, {date});
+      console.log("creating event", date, id);
+      const { data } = await axios.post(`/api/events/${id}`, { date, id });
       console.log("event created", data);
       dispatch(setNewEvent(data));
     } catch (err) {
@@ -90,10 +90,21 @@ export const createNewEventThunk = (date) => {
 export const updateEventThunk = (id, date) => {
   return async (dispatch) => {
     try {
-      const { data } = await axios.put(`/api/events`, {id, date});
+      const { data } = await axios.put(`/api/events/${id}`, { id, date });
       dispatch(setUpdateEvent(data));
     } catch (err) {
       console.log(err);
     }
   };
 };
+
+const initialState = {};
+
+export default function eventsReducer(state = initialState, action) {
+  switch (action.type) {
+    case SET_NEW_EVENT:
+      return action.event;
+    default:
+      return state;
+  }
+}
