@@ -1,42 +1,42 @@
-import React from 'react';
-import {connect} from 'react-redux';
-import {setEmailsThunk} from '../store/emails';
+import React from "react";
+import { connect } from "react-redux";
+import { setEmailsThunk } from "../store/emails";
 import { Link } from "react-router-dom";
 
 class Emails extends React.Component {
-  constructor (props) {
-    super (props);
+  constructor(props) {
+    super(props);
     this.state = {
-      email1: '',
-      email2: '',
-      email3: '',
-      email4: '',
-      message: '',
+      email1: "",
+      email2: "",
+      email3: "",
+      email4: "",
+      message: "",
       enableNext: false,
     };
 
-    this.handleChange = this.handleChange.bind (this);
-    this.handleSubmit = this.handleSubmit.bind (this);
-    this.handleNext = this.handleNext.bind (this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleNext = this.handleNext.bind(this);
   }
 
-  handleChange (e) {
+  handleChange(e) {
     let name = e.target.name;
     let value = e.target.value;
-    this.setState ({[name]: value});
+    this.setState({ [name]: value });
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.handleEmails(e);
-    this.setState({enableNext: true});
+    this.props.handleEmails(e, this.props.eventId);
+    this.setState({ enableNext: true });
   }
 
   handleNext() {
-    this.state.enableNext ? this.props.history.push('/wheel') : null;
+    this.state.enableNext ? this.props.history.push("/wheel") : null;
   }
 
-  render () {
+  render() {
     return (
       <div className="center">
         <form onSubmit={this.handleSubmit}>
@@ -77,12 +77,15 @@ class Emails extends React.Component {
             />
           </label>
           <p>{this.state.message}</p>
-          <div style={{padding: "5px"}}>
+          <div style={{ padding: "5px" }}>
             <input className="button normal" type="submit" value="Submit" />
-            <button className={`button normal ${this.state.enableNext ? null : 'disabled'}`} onClick={this.handleNext}>
-              <Link to='/wheel'>
-              Next
-              </Link>
+            <button
+              className={`button normal ${
+                this.state.enableNext ? null : "disabled"
+              }`}
+              onClick={this.handleNext}
+            >
+              <Link to="/wheel">Next</Link>
             </button>
           </div>
         </form>
@@ -90,18 +93,22 @@ class Emails extends React.Component {
     );
   }
 }
-
-const mapDispatch = dispatch => {
+const mapState = (state) => {
   return {
-    handleEmails (e) {
+    eventId: state.events.id,
+  };
+};
+const mapDispatch = (dispatch) => {
+  return {
+    handleEmails(e, id) {
       const email1 = e.target.email1.value;
       const email2 = e.target.email2.value;
       const email3 = e.target.email3.value;
       const email4 = e.target.email4.value;
       let emails = [email1, email2, email3, email4];
-      dispatch(setEmailsThunk(emails));
+      dispatch(setEmailsThunk(emails, id));
     },
   };
 };
 
-export default connect (null, mapDispatch) (Emails);
+export default connect(mapState, mapDispatch)(Emails);

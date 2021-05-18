@@ -95,17 +95,28 @@ router.put("/:id/restaurants", async (req, res, next) => {
   }
 });
 
+router.put("/:id/invitees", async (req, res, next) => {
+  try {
+    console.log("reqbody invitees", req.body);
+    const [numberOfAffectedRows, affectedEvents] = await Event.update(
+      {
+        invitees: req.body,
+      },
+      { where: { id: req.params.id } }
+    );
+    const eventInvitees = await Event.findByPk(req.params.id);
+    res.send(eventInvitees.invitees);
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.get("/:eventId", async (req, res, next) => {
   try {
     let event = await Event.findOne({
       where: {
         id: req.params.eventId,
       },
-      include: [
-        {
-          model: User,
-        },
-      ],
     });
     res.send(event);
   } catch (error) {

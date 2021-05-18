@@ -126,22 +126,3 @@ export const fetchEvent = (eventId) => {
     }
   };
 };
-
-export const SUBMIT_EVENT = "SUBMIT_EVENT";
-
-export const submitEvent = (event) => ({
-  type: SUBMIT_EVENT,
-  event,
-});
-export const eventThunk = (userId, eventId, history) => {
-  return async (dispatch) => {
-    try {
-      let response;
-      response = await axios.put(`/api/events/${eventId}${userId}`);
-      dispatch(submitEvent(response.data));
-      // history.push('/thankyou');
-    } catch (error) {
-      console.log(error);
-    }
-  };
-};

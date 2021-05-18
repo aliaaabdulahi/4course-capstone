@@ -9,6 +9,6 @@ const Event = db.define("events", {
   },
   restaurants: Sequelize.ARRAY(Sequelize.TEXT),
   invitees: Sequelize.ARRAY(Sequelize.TEXT),
-  host: Sequelize.BOOLEAN,
+  host: Sequelize.INTEGER,
 });
 module.exports = Event;
