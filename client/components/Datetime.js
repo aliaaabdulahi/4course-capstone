@@ -1,9 +1,38 @@
 import React, { useState } from "react";
 import DateTimePicker from "react-datetime-picker";
 import { createNewEventThunk } from "../store/events";
+import { makeStyles } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
+import Button from "@material-ui/core/Button";
 import { connect } from "react-redux";
 
+const useStyles = makeStyles((theme) => ({
+  dateTimeButton: {
+    ...theme.typography.button,
+    fontFamily: "Permanent Marker",
+    color: "#fff100",
+    marginTop: "1em",
+    "&:hover": {
+      color: "#DC143C",
+      backgroundColor: "fff100",
+    },
+  },
+  text: {
+    color: "#fff100",
+    fontFamily: "Permanent Marker",
+    backgroundColor: "#DC143C",
+    borderRadius: 10,
+  },
+  picker: {
+    color: "#fff100",
+  },
+  container: {
+    backgroundColor: "#fff100",
+  },
+}));
+
 function Datetime({ handleSave, history, id }) {
+  const classes = useStyles();
   const [value, onChange] = useState(new Date());
 
   const onSave = (e) => {
@@ -35,15 +64,33 @@ function Datetime({ handleSave, history, id }) {
   };
 
   return (
-    <div className="center">
-      <h1>Choose Date & Time</h1>
-      <div className="center">
-        <DateTimePicker onChange={onChange} value={value} />
-      </div>
-      <button className="button bigCircle" onClick={onSave}>
-        Save
-      </button>
-    </div>
+    <Grid container direction="column" className={classes.container}>
+      <Grid container justify="center" alignItems="stretch" direction="row">
+        <Grid item>
+          <h1 className={classes.text}>Choose Date & Time</h1>
+          <div className="center">
+            <DateTimePicker
+              className={classes.picker}
+              onChange={onChange}
+              value={value}
+            />
+          </div>
+          <Grid container item direction="row" justify="center">
+            <Grid item>
+              <Button
+                variant="contained"
+                className={classes.dateTimeButton}
+                onClick={onSave}
+                color="secondary"
+                size="large"
+              >
+                Save
+              </Button>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
+    </Grid>
   );
 }
 

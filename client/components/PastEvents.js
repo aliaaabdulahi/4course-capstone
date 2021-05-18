@@ -2,8 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 
-export const UpcomingEvents = props => {
-  const upcomingEvents = [
+export const PastEvents = props => {
+  const pastEvents = [
     {
       name: 'Event1',
       datetime: '2021-06-01:12:00:00PM',
@@ -26,9 +26,9 @@ export const UpcomingEvents = props => {
 
   return (
     <div className="center shape">
-      <h2>Upcoming Events</h2>
+      <h2>Past Events</h2>
       <div>
-        {upcomingEvents.map (event => (
+        {pastEvents.map (event => (
           <Link to="/:eventid">
             <p>{event.name}</p>
           </Link>
@@ -38,4 +38,5 @@ export const UpcomingEvents = props => {
   );
 };
 
-export default connect (null) (UpcomingEvents);
+export default connect (null) (PastEvents);
+

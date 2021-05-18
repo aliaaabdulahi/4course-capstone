@@ -36,6 +36,7 @@
     "nodemailer": "^6.6.0",
     "pg": "^8.5.1",
     "react-datetime-picker": "^3.2.1",
+    "react-loader-spinner": "^4.0.0",
     "sequelize": "^6.3.5",
     "style-loader": "^2.0.0",
     "yelp-fusion": "^3.0.0"

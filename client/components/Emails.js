@@ -38,7 +38,7 @@ class Emails extends React.Component {
 
   render() {
     return (
-      <div className="center">
+      <div className="center shape">
         <form onSubmit={this.handleSubmit}>
           <label>
             Email1:

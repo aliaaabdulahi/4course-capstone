@@ -1,46 +1,44 @@
 import React from "react";
 import { connect } from "react-redux";
 import Datetime from "./Datetime";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
 import { Link } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
 
-/**
- * COMPONENT
- */
+const useStyles = makeStyles((theme) => ({
+  headers: {
+    fontFamily: "Permanent Marker",
+    color: "#DC143C",
+    marginTop: 25,
+  },
+  upcomingTitle: {
+    fontFamily: "Permanent Marker",
+    color: "#DC143C",
+  },
+  pastTitle: {
+    fontFamily: "Permanent Marker",
+    color: "#DC143C",
+  },
+  newChallengeButton: {
+    ...theme.typography.button,
+    fontFamily: "Permanent Marker",
+    color: "#fff100",
+    marginTop: "1em",
+    "&:hover": {
+      color: "#DC143C",
+      backgroundColor: "fff100",
+    },
+    fontSize: 30,
+    borderRadius: 20,
+  },
+}));
+
 export const Home = (props) => {
+  const classes = useStyles();
   console.log("what are my props at home ", props);
   const { username } = props;
 
-  /*
-  async function getBusinesses(lat, long) {
-    //https://api.yelp.com/v3/businesses/search?term=restaurant&latitude=40.778900199999995&longitude=-73.948848
-    try {
-      console.log(lat, long);
-
-      const response = await fetch(
-        `https://cors-anywhere.herokuapp.com/
-        https://api.yelp.com/v3/businesses/search?term=restaurant&latitude=${lat}&longitude=${long}`,
-        {
-          headers: {
-            Authorization: `Bearer ${apiKey}`,
-            Origin: "localhost:8080",
-            withCredentials: true,
-          },
-        }
-      );
-      console.log("response ", response);
-      const resJson = await response.json();
-      console.log("reJson is ", resJson);
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
-  */
-
-  // useEffect(() => {
-  //   console.log("inside useEffect");
-  //   navigator.geolocation.getCurrentPosition(success, error, options);
-  // });
   const upcomingEvents = [
     {
       name: "Event1",
@@ -64,47 +62,58 @@ export const Home = (props) => {
 
   return (
     <div>
-      <h3>Welcome, {username}</h3>
-      {/* <Datetime/> */}
+      <Typography className={classes.headers} variant="h4">
+        Welcome, {username}
+      </Typography>
+
+      <div className="shape">
 
       <div className="center">
         <form onSubmit={() => props.history.push(`/datetime`)}>
-          <input
-            className="button bigCircle"
+          <Button
+            className={classes.newChallengeButton}
             type="submit"
-            value="Start New Challenge"
-          />
+            size="medium"
+            color="secondary"
+            variant="contained"
+          >
+            Start New Challenge
+          </Button>
         </form>
         <div className="row">
           <div className="column">
-            <h2>Upcoming Events</h2>
+            <Typography variant="h5" className={classes.upcomingTitle}>
+              <Link to='/upcomingevents'>Upcoming Events</Link>
+            </Typography>
+            {/* those need to move to the new componet
             <div>
               {upcomingEvents.map((event) => (
                 <Link to="/event:id">
-                  <p>{event.name}</p>
+                  <p key={event.name}>{event.name}</p>
                 </Link>
               ))}
-            </div>
+            </div> */}
           </div>
           <div className="column">
-            <h2>Past Events</h2>
+            <Typography variant="h5" className={classes.pastTitle}>
+            <Link to='/pastevents'>Past Events</Link>
+            </Typography>
+            {/* those need to move to the new componet
             <div>
               {upcomingEvents.map((event) => (
                 <Link to="/event:id">
-                  <p>{event.name}</p>
+                  <p key={event.name}>{event.name}</p>
                 </Link>
               ))}
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
     </div>
+    </div>
   );
 };
 
-/**
- * CONTAINER
- */
 const mapState = (state) => {
   return {
     username: state.auth.username,

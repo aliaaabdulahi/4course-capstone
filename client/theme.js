@@ -25,6 +25,11 @@ export default createMuiTheme({
         fontFamily: "Permanent Marker",
         color: "#fff100",
       },
+      h4: {
+        fontWeight: 200,
+        fontFamily: "Permanent Marker",
+        color: "#DC143C",
+      },
     },
   },
 });
