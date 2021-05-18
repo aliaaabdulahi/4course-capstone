@@ -21,10 +21,10 @@ const useStyles = makeStyles((theme) => ({
 const RestaurantContainer = (props) => {
   const classes = useStyles();
   return (
-    <Grid container direction="row" justify="flex-end" alignItems="center">
+    <Grid container direction="row" justify="flex-end">
       <ul>
         {props.resSelections.map((res) => (
-          <Grid container item key={res.yelpId}>
+          <Grid item key={res.yelpId}>
             <li className={classes.listItem}>{res.yelpName}</li>
             <Button
               className={classes.resListButton}
