@@ -41,31 +41,13 @@ export const Home = (props) => {
   //   console.log("inside useEffect");
   //   navigator.geolocation.getCurrentPosition(success, error, options);
   // });
-  const upcomingEvents = [
-    {
-      name: "Event1",
-      datetime: "2021-06-01:12:00:00PM",
-      assignedRestaurant: "Five Guys",
-      assignedCourse: "Main",
-    },
-    {
-      name: "Event2",
-      datetime: "2021-06-02:12:00:00PM",
-      assignedRestaurant: "Amanda's",
-      assignedCourse: "Desserts",
-    },
-    {
-      name: "Event3",
-      datetime: "2021-06-15:12:00:00PM",
-      assignedRestaurant: "Pizza Hut",
-      assignedCourse: "Appetizers",
-    },
-  ];
 
   return (
     <div>
       <h3>Welcome, {username}</h3>
       {/* <Datetime/> */}
+
+      <div className="shape">
 
       <div className="center">
         <form onSubmit={() => props.history.push(`/datetime`)}>
@@ -77,27 +59,14 @@ export const Home = (props) => {
         </form>
         <div className="row">
           <div className="column">
-            <h2>Upcoming Events</h2>
-            <div>
-              {upcomingEvents.map((event) => (
-                <Link to="/event:id">
-                  <p>{event.name}</p>
-                </Link>
-              ))}
-            </div>
+            <Link to='/upcomingevents'>Upcoming Events</Link>
           </div>
           <div className="column">
-            <h2>Past Events</h2>
-            <div>
-              {upcomingEvents.map((event) => (
-                <Link to="/event:id">
-                  <p>{event.name}</p>
-                </Link>
-              ))}
-            </div>
+          <Link to='/pastevents'>Past Events</Link>
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };
