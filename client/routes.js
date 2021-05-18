@@ -29,6 +29,7 @@ class Routes extends React.Component {
       <ThemeProvider theme={theme}>
         {isLoggedIn ? (
           <Switch>
+
             <Route path="/home" component={Home} />
             <Route path="/yelp" component={Map} />
             <Route path="/emails" component={Emails} />
@@ -45,8 +46,9 @@ class Routes extends React.Component {
               component={() => <div>Upcoming Events</div>}
             />
             <Route path="/datetime" component={Datetime} />
-
+            <Route exact path="/wheel" component={Wheel} />
             <Redirect to="/home" />
+
           </Switch>
         ) : (
           <Switch>
