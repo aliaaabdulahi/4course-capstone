@@ -57,17 +57,11 @@ router.get("/upcoming/userId/eventId/users", async (req, res, next) => {
 
 router.post("/:id", async (req, res, next) => {
   try {
-<<<<<<< HEAD
     const event = await Event.create({
       date: req.body.date,
       host: req.body.id,
     });
     res.send(event);
-=======
-    const event = await Event.create(req.body);
-    console.log("post", req.body)
-    res.send(event)
->>>>>>> origin/models_and_tables
   } catch (err) {
     next(err);
   }
@@ -100,9 +94,8 @@ router.put("/:id/restaurants", async (req, res, next) => {
     next(err);
   }
 });
-})
 
-router.get('/:eventId', async (req, res, next) => {
+router.get("/:eventId", async (req, res, next) => {
   try {
     let event = await Event.findOne({
       where: {
