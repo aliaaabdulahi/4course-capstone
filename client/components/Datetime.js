@@ -63,6 +63,8 @@ function Datetime({ handleSave, history, id }) {
     );
   };
 
+  console.log(props);
+
   return (
     <Grid container direction="column" className={classes.container}>
       <Grid container justify="center" alignItems="stretch" direction="row">
