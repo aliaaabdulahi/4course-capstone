@@ -4,18 +4,16 @@ const db = require("./db");
 const User = require("./models/user");
 const Event = require("./models/event");
 const Course = require("./models/course");
-const Course_Event = require("./models/course_event")
+const Course_Event = require("./models/course_event");
 //associations could go here!
 
-User.hasMany(Event)
-Event.belongsTo(User)
+User.belongsToMany(Event, { through: "User_Events" });
+Course.belongsTo(User);
+Course.belongsTo(Event);
 
-User.hasMany(Course)
-Course.belongsTo(User)
-
-Course.belongsToMany(Event, { through: Course_Event });
-Event.belongsToMany(Course, { through: Course_Event });
-
+Event.belongsToMany(User, { through: "User_Events" });
+Event.hasMany(Course);
+User.hasOne(Course);
 
 module.exports = {
   db,

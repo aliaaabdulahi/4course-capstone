@@ -8,5 +8,7 @@ const Event = db.define("events", {
     defaultValue: false,
   },
   restaurants: Sequelize.ARRAY(Sequelize.TEXT),
+  invitees: Sequelize.ARRAY(Sequelize.TEXT),
+  host: Sequelize.BOOLEAN,
 });
 module.exports = Event;
