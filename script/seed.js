@@ -39,6 +39,10 @@ async function seed() {
 
   await events[0].setCourses([courses[0], courses[1], courses[2], courses[3]]);
   await events[0].setUser(users[3])
+  await courses[0].setUser(users[3])
+  await courses[1].setUser(users[1])
+  await courses[2].setUser(users[2])
+  await courses[3].setUser(users[0])
 
   return {
     users: {

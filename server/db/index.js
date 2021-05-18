@@ -10,6 +10,9 @@ const Course_Event = require("./models/course_event")
 User.hasMany(Event)
 Event.belongsTo(User)
 
+User.hasMany(Course)
+Course.belongsTo(User)
+
 Course.belongsToMany(Event, { through: Course_Event });
 Event.belongsToMany(Course, { through: Course_Event });
 

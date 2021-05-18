@@ -14,9 +14,6 @@ const Course = db.define("courses", {
   //   type: Sequelize.STRING,
   //   allowNull: false,
   // },
-  invitee: {
-    type: Sequelize.STRING,
-  },
 });
 
 module.exports = Course;
