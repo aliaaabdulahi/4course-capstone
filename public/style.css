@@ -58,10 +58,6 @@ form div {
   height: 100px;
   width: 100px;
 }
-#app {
-  background-image: url("./4course-background-tile.png");
-  background-repeat: repeat;
-}
 #sushi-pic {
   height: 200px;
   width: 250px;

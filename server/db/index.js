@@ -4,7 +4,9 @@ const db = require("./db");
 const User = require("./models/user");
 const Event = require("./models/event");
 const Course = require("./models/course");
+const Course_Event = require("./models/course_event");
 //associations could go here!
+
 User.belongsToMany(Event, { through: "User_Events" });
 Course.belongsTo(User);
 Course.belongsTo(Event);

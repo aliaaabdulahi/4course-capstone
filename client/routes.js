@@ -1,62 +1,64 @@
-import React, {useState, useEffect} from 'react';
-import {connect} from 'react-redux';
-import {Login, Signup} from './components/AuthForm';
-import Emails from './components/Emails';
-import Invite from './components/Invite';
-import Home from './components/home';
-import Map from './components/Map';
-import BeginSearch from './components/BeginSearch';
-import {ThemeProvider} from '@material-ui/styles';
-import theme from './theme.js';
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import { Login, Signup } from "./components/AuthForm";
+import Emails from "./components/Emails";
+import Invite from "./components/Invite";
+import Home from "./components/home";
+import Map from "./components/Map";
+import BeginSearch from "./components/BeginSearch";
+import { ThemeProvider } from "@material-ui/styles";
+import theme from "./theme.js";
 import {
   withRouter,
   Redirect,
   BrowserRouter,
   Route,
   Switch,
-} from 'react-router-dom';
-import Datetime from './components/Datetime';
-import {me} from './store';
-import Wheel from './components/Wheel';
-import {UpcomingEvents} from './components/UpcomingEvents';
-import {PastEvents} from './components/PastEvents';
+} from "react-router-dom";
+import Datetime from "./components/Datetime";
+import { me } from "./store";
+import Wheel from "./components/Wheel";
+import { UpcomingEvents } from "./components/UpcomingEvents";
+import { PastEvents } from "./components/PastEvents";
 
 class Routes extends React.Component {
-  componentDidMount () {
-    this.props.loadInitialData ();
+  componentDidMount() {
+    this.props.loadInitialData();
   }
-  render () {
-    const {isLoggedIn} = this.props;
+  render() {
+    const { isLoggedIn } = this.props;
     return (
       <ThemeProvider theme={theme}>
-        {isLoggedIn
-          ? <Switch>
-              <Route path="/home" component={Home} />
-              <Route path="/yelp" component={Map} />
-              <Route path="/emails" component={Emails} />
-              <Route path="/invite" component={Invite} />
-              <Route exact path="/startchallenge" component={BeginSearch} />
-              {/* <Route
+        {isLoggedIn ? (
+          <Switch>
+            <Route path="/home" component={Home} />
+            <Route path="/yelp" component={Map} />
+            <Route path="/emails" component={Emails} />
+            <Route path="/invite" component={Invite} />
+            <Route exact path="/startchallenge" component={BeginSearch} />
+            {/* <Route
                 exact
                 path="/:eventid"
                 component={() => <div>Single Event</div>}
               /> */}
-              <Route path="/datetime" component={Datetime} />
-              <Route exact path="/upcomingevents" component={UpcomingEvents} />
-              <Route exact path="/pastevents" component={PastEvents} />
-              <Route path="/Wheel" component={Wheel} />
-              <Redirect to="/home" />
-            </Switch>
-          : <Switch>
-              <Route path="/" exact component={Login} />
-              <Route path="/login" component={Login} />
-              <Route path="/signup" component={Signup} />
-            </Switch>}
+            <Route path="/datetime" component={Datetime} />
+            <Route exact path="/upcomingevents" component={UpcomingEvents} />
+            <Route exact path="/pastevents" component={PastEvents} />
+            <Route path="/Wheel" component={Wheel} />
+            <Redirect to="/home" />
+          </Switch>
+        ) : (
+          <Switch>
+            <Route path="/" exact component={Login} />
+            <Route path="/login" component={Login} />
+            <Route path="/signup" component={Signup} />
+          </Switch>
+        )}
       </ThemeProvider>
     );
   }
 }
-const mapState = state => {
+const mapState = (state) => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.auth that has a truthy id.
     // Otherwise, state.auth will be an empty object, and state.auth.id will be falsey
@@ -64,17 +66,17 @@ const mapState = state => {
   };
 };
 
-const mapDispatch = dispatch => {
+const mapDispatch = (dispatch) => {
   return {
-    loadInitialData () {
-      dispatch (me ());
+    loadInitialData() {
+      dispatch(me());
     },
   };
 };
 
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes
-export default withRouter (connect (mapState, mapDispatch) (Routes));
+export default withRouter(connect(mapState, mapDispatch)(Routes));
 
 /*
 function Routes(props) {

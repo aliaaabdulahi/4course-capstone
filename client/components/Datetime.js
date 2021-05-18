@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
-import DateTimePicker from 'react-datetime-picker';
-import {createNewEventThunk} from '../store/events';
+import React, { useState } from "react";
+import DateTimePicker from "react-datetime-picker";
+import { createNewEventThunk } from "../store/events";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Button from "@material-ui/core/Button";
@@ -31,13 +31,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Datetime({ handleSave, history }) {
+function Datetime({ handleSave, history, id }) {
   const classes = useStyles();
   const [value, onChange] = useState(new Date());
 
   const onSave = (e) => {
     console.log("saved datetime", formatDate(value));
-    handleSave(e, formatDate(value));
+    handleSave(e, formatDate(value), id);
     history.push(`/startchallenge`);
   };
 
@@ -94,13 +94,19 @@ function Datetime({ handleSave, history }) {
   );
 }
 
+const mapState = (state) => {
+  return {
+    id: state.auth.id,
+  };
+};
+
 const mapDispatch = (dispatch) => {
   return {
-    handleSave (evt, date) {
-      evt.preventDefault ();
-      dispatch (createNewEventThunk (date));
+    handleSave(evt, date, id) {
+      evt.preventDefault();
+      dispatch(createNewEventThunk(date, id));
     },
   };
 };
 
-export default connect (null, mapDispatch) (Datetime);
+export default connect(mapState, mapDispatch)(Datetime);

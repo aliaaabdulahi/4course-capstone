@@ -6,7 +6,7 @@ const axios = require("axios");
 
 const SALT_ROUNDS = 7;
 
-const User = db.define("user", {
+const User = db.define("users", {
   username: {
     type: Sequelize.STRING,
     unique: true,
