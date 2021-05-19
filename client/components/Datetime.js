@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   text: {
-    color: "#fff100",
+    color: "#ffffff",
     fontFamily: "Permanent Marker",
     backgroundColor: "#DC143C",
     borderRadius: 10,
