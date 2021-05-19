@@ -1,14 +1,17 @@
 const router = require("express").Router();
 const yelp = require("yelp-fusion");
-const { gmailPass } = require("../../secret.js");
+//const { gmailPass } = require("../../secret.js");
 const nodemailer = require("nodemailer");
 // const { apiKey } = require("../../secret.js");
 let apiKey;
+let gmailPass;
 if (process.env.NODE_ENV === "production") {
   apiKey = process.env.yelpKey;
+  gmailPass = process.env.gmailPass;
 } else {
   const obj = require("../../secret.js");
   apiKey = obj.apiKey;
+  gmailPass = obj.gmailPass;
 }
 
 module.exports = router;
