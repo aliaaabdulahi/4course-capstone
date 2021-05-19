@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { setEmailsThunk } from "../store/emails";
 import { Link } from "react-router-dom";
+import Anime2 from "./Anime2.js";
 
 class Emails extends React.Component {
   constructor(props) {
@@ -89,6 +90,9 @@ class Emails extends React.Component {
             </button>
           </div>
         </form>
+        <div>
+          <Anime2 />
+        </div>
       </div>
     );
   }

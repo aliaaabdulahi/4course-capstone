@@ -3,15 +3,18 @@ import DateTimePicker from "react-datetime-picker";
 import { createNewEventThunk } from "../store/events";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
+import Anime1 from "./Anime1";
 import Button from "@material-ui/core/Button";
+import Paper from "@material-ui/core/Paper";
 import { connect } from "react-redux";
+import theme from "../theme.js";
 
 const useStyles = makeStyles((theme) => ({
   dateTimeButton: {
     ...theme.typography.button,
     fontFamily: "Permanent Marker",
     color: "#fff100",
-    marginTop: "1em",
+    marginTop: "5.5em",
     "&:hover": {
       color: "#DC143C",
       backgroundColor: "fff100",
@@ -26,8 +29,21 @@ const useStyles = makeStyles((theme) => ({
   picker: {
     color: "#fff100",
   },
-  container: {
-    backgroundColor: "#fff100",
+  grid: {
+    width: "100%",
+    marginTop: "8em",
+    [theme.breakpoints.down("sm")]: {
+      marginTop: "3em",
+    },
+    [theme.breakpoints.down("xs")]: {
+      marginTop: "2em",
+    },
+  },
+  paper: {
+    padding: theme.spacing(3),
+    textAlign: "center",
+    color: "#fff100",
+    backgroundColor: theme.palette.common.hotPink,
   },
 }));
 
@@ -63,34 +79,31 @@ function Datetime({ handleSave, history, id }) {
     );
   };
 
-  console.log(props);
-
   return (
-    <Grid container direction="column" className={classes.container}>
-      <Grid container justify="center" alignItems="stretch" direction="row">
-        <Grid item>
+    <Grid container spacing={10} className={classes.grid}>
+      <Grid item xs={4}>
+        <Anime1 />
+      </Grid>
+      <Grid item xs={4}>
+        <Paper className={classes.paper}>
           <h1 className={classes.text}>Choose Date & Time</h1>
-          <div className="center">
-            <DateTimePicker
-              className={classes.picker}
-              onChange={onChange}
-              value={value}
-            />
-          </div>
-          <Grid container item direction="row" justify="center">
-            <Grid item>
-              <Button
-                variant="contained"
-                className={classes.dateTimeButton}
-                onClick={onSave}
-                color="secondary"
-                size="large"
-              >
-                Save
-              </Button>
-            </Grid>
-          </Grid>
-        </Grid>
+          <DateTimePicker
+            className={classes.picker}
+            onChange={onChange}
+            value={value}
+          />
+        </Paper>
+      </Grid>
+      <Grid item xs={4}>
+        <Button
+          variant="contained"
+          className={classes.dateTimeButton}
+          onClick={onSave}
+          color="secondary"
+          size="large"
+        >
+          Save
+        </Button>
       </Grid>
     </Grid>
   );
