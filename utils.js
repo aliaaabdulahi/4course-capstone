@@ -10,6 +10,6 @@ function randomizer(users) {
   return usersWithCourse;
 }
 
-console.log(randomizer(["alia", "ezgi", "annie", "shiyang"]));
+// console.log(randomizer(["alia", "ezgi", "annie", "shiyang"]));
 
 module.exports = { randomizer };

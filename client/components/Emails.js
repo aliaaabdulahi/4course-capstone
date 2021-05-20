@@ -2,7 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { setEmailsThunk } from "../store/emails";
 import { Link } from "react-router-dom";
-
+import { randomizer } from "../../utils.js";
+import { setAssignments } from "../store/courses";
 class Emails extends React.Component {
   constructor(props) {
     super(props);
@@ -28,7 +29,14 @@ class Emails extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.handleEmails(e, this.props.eventId);
+    const email1 = e.target.email1.value;
+    const email2 = e.target.email2.value;
+    const email3 = e.target.email3.value;
+    const email4 = e.target.email4.value;
+    let emails = [email1, email2, email3, email4];
+    this.props.handleEmails(emails, this.props.eventId);
+    const assignments = randomizer(emails);
+    this.props.setCourse(assignments);
     this.setState({ enableNext: true });
   }
 
@@ -100,14 +108,10 @@ const mapState = (state) => {
 };
 const mapDispatch = (dispatch) => {
   return {
-    handleEmails(e, id) {
-      const email1 = e.target.email1.value;
-      const email2 = e.target.email2.value;
-      const email3 = e.target.email3.value;
-      const email4 = e.target.email4.value;
-      let emails = [email1, email2, email3, email4];
+    handleEmails(emails, id) {
       dispatch(setEmailsThunk(emails, id));
     },
+    setCourse: (assignments) => dispatch(setAssignments(assignments)),
   };
 };
 
