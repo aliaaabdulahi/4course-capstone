@@ -39,27 +39,6 @@ export const Home = (props) => {
   console.log("what are my props at home ", props);
   const { username } = props;
 
-  const upcomingEvents = [
-    {
-      name: "Event1",
-      datetime: "2021-06-01:12:00:00PM",
-      assignedRestaurant: "Five Guys",
-      assignedCourse: "Main",
-    },
-    {
-      name: "Event2",
-      datetime: "2021-06-02:12:00:00PM",
-      assignedRestaurant: "Amanda's",
-      assignedCourse: "Desserts",
-    },
-    {
-      name: "Event3",
-      datetime: "2021-06-15:12:00:00PM",
-      assignedRestaurant: "Pizza Hut",
-      assignedCourse: "Appetizers",
-    },
-  ];
-
   return (
     <div>
       <Typography className={classes.headers} variant="h4">

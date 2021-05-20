@@ -99,7 +99,7 @@ class Emails extends React.Component {
 }
 const mapState = (state) => {
   return {
-    eventId: state.events.id,
+    eventId: state.events.event.id,
   };
 };
 const mapDispatch = (dispatch) => {

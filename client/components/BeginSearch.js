@@ -30,7 +30,7 @@ class BeginSearch extends React.Component {
     this.success = this.success.bind(this);
     this.error = this.error.bind(this);
 
-    console.log("props I get on Map", this.props);
+    console.log("props I get on BeginSearch", this.props);
   }
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(
@@ -57,13 +57,13 @@ class BeginSearch extends React.Component {
     });
   }
   handleSubmit(e) {
-    e.preventDefault(e);
+    e.preventDefault();
     this.setState({
       renderMode: "currentCoordinates",
     });
   }
   handleLocationSubmit(e) {
-    e.preventDefault(e);
+    e.preventDefault();
     const newLocation = this.state.location.toLowerCase();
     console.log("newLocation is", newLocation);
     this.props._searchLocation(newLocation);
@@ -73,13 +73,14 @@ class BeginSearch extends React.Component {
       });
     }, 600);
   }
+
   render() {
     if (this.state.lng === null) {
       return (
         <div className="center shape">
           <div>
             <div className="lds-heart">
-              <div></div>
+              <div />
             </div>
           </div>
         </div>

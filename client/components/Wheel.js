@@ -22,7 +22,7 @@ class Wheel extends React.Component {
     console.log(this.state.roll)
     return (
       <div>
-        {this.state.roll === true ? (       
+        {this.state.roll === true ? (
           <div>
             <h1>
               1.. 2.. 3..</h1>
@@ -30,25 +30,25 @@ class Wheel extends React.Component {
             <li>
               <div className="text"
                     contentEditable="true"
-                    spellcheck="false">drinks</div> 
+                    spellCheck="false">drinks</div>
             </li>
             <li>
               <div className="text"
                     contentEditable = "true"
-                    spellCheck="false">appetizer</div> 
+                    spellCheck="false">appetizer</div>
             </li>
             <li>
               <div className="text"
                     contentEditable = "true"
-                    spellCheck="false">entree</div> 
+                    spellCheck="false">entree</div>
             </li>
             <li>
               <div className="text"
                     contentEditable = "true"
-                    spellCheck="false">dessert</div> 
+                    spellCheck="false">dessert</div>
             </li>
           </ul>
-          <button class="spin" onClick={this.handleclick}>
+          <button className="spin" onClick={this.handleclick}>
               Stop
           </button>
           </div>
