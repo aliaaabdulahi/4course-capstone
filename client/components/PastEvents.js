@@ -1,42 +1,54 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
+import {pastEventsThunk} from '../store/events';
 
-export const PastEvents = props => {
-  const pastEvents = [
-    {
-      name: 'Event1',
-      datetime: '2021-06-01:12:00:00PM',
-      assignedRestaurant: 'Five Guys',
-      assignedCourse: 'Main',
-    },
-    {
-      name: 'Event2',
-      datetime: '2021-06-02:12:00:00PM',
-      assignedRestaurant: "Amanda's",
-      assignedCourse: 'Desserts',
-    },
-    {
-      name: 'Event3',
-      datetime: '2021-06-15:12:00:00PM',
-      assignedRestaurant: 'Pizza Hut',
-      assignedCourse: 'Appetizers',
-    },
-  ];
+class PastEvents extends React.Component {
+  constructor (props) {
+    super (props);
+  }
 
-  return (
-    <div className="center shape">
-      <h2>Past Events</h2>
-      <div>
-        {pastEvents.map (event => (
-          <Link to="/:eventid">
-            <p>{event.name}</p>
-          </Link>
-        ))}
+  async componentDidMount () {
+    await this.props.pastEventsThunk (this.props.id);
+  }
+
+  render () {
+    return (
+      <div className="center shape">
+        <h2 className="font">
+          Past Events
+        </h2>
+        <div className="flex-center">
+          {this.props.events !== undefined && this.props.events.length > 0
+            ? this.props.events.map (event => (
+              <Link key={event.id} to={`/${event.id}`}>
+                <div className="event">
+                  <p>{event.date}</p>
+                  <h2>Restaurants</h2>
+                  <div>
+                    {event.restaurants.map (
+                      (restaurant, i) => <p key={i}>{JSON.parse (restaurant).yelpName}</p>
+                    )}
+                  </div>
+                  <h2>Invitees</h2>
+                  <div>
+                    {event.invitees.map ((invitee, i) => <p key={i}>{invitee}</p>)}
+                  </div>
+                </div>
+                </Link>
+              ))
+            : null}
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
+}
+
+const mapState = state => {
+  return {
+    id: state.auth.id,
+    events: state.events.events,
+  };
 };
 
-export default connect (null) (PastEvents);
-
+export default connect (mapState, {pastEventsThunk}) (PastEvents);

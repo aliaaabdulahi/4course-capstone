@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const { Op } = require("sequelize");
 const {
   models: { User, Event, Course },
 } = require("../db");
@@ -14,12 +15,18 @@ module.exports = router;
 //this information will be a post request to courses, and then we will have to set the course
 // to the respective event in the route.
 
-router.get("/upcoming/userId", async (req, res, next) => {
+router.get("/upcoming/:userId", async (req, res, next) => {
   try {
+
+    const user = await User.findByPk(req.params.userId);
     const events = await Event.findAll({
       where: {
-        userId: req.params.userId,
-        past: false,
+        date: {
+          [Op.gt]: new Date(),
+        },
+        invitees: {
+          [Op.contains]: [user.email]
+        }
       },
     });
     res.send(events);
@@ -28,12 +35,17 @@ router.get("/upcoming/userId", async (req, res, next) => {
   }
 });
 
-router.get("/past/userId", async (req, res, next) => {
+router.get("/past/:userId", async (req, res, next) => {
   try {
+    const user = await User.findByPk(req.params.userId);
     const events = await Event.findAll({
       where: {
-        userId: req.params.userId,
-        past: true,
+        date: {
+          [Op.lt]: new Date(),
+        },
+        invitees: {
+          [Op.contains]: [user.email]
+        }
       },
     });
     res.send(events);
