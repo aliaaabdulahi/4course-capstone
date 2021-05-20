@@ -18,8 +18,8 @@ import {
 import Datetime from "./components/Datetime";
 import { me } from "./store";
 import Wheel from "./components/Wheel";
-import { UpcomingEvents } from "./components/UpcomingEvents";
-import { PastEvents } from "./components/PastEvents";
+import UpcomingEvents from "./components/UpcomingEvents";
+import PastEvents from "./components/PastEvents";
 
 class Routes extends React.Component {
   componentDidMount() {
@@ -36,14 +36,14 @@ class Routes extends React.Component {
             <Route path="/emails" component={Emails} />
             <Route path="/invite" component={Invite} />
             <Route exact path="/startchallenge" component={BeginSearch} />
-            {/* <Route
-                exact
-                path="/:eventid"
-                component={() => <div>Single Event</div>}
-              /> */}
             <Route path="/datetime" component={Datetime} />
             <Route exact path="/upcomingevents" component={UpcomingEvents} />
             <Route exact path="/pastevents" component={PastEvents} />
+            <Route
+                exact
+                path="/:eventid"
+                component={() => <div>Single Event</div>}
+              />
             <Route path="/Wheel" component={Wheel} />
             <Redirect to="/home" />
           </Switch>

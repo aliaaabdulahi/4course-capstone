@@ -129,7 +129,7 @@ router.post("/email", async (req, res, next) => {
         from: "4coursecapstone@gmail.com",
         to: toEmail,
         subject: "You got invited to a 4Course challenge!",
-        text: "Hello there! Ezgi is inviting you to join the 4Course challenge. Here is the link: ",
+        text: "Hello there! You have been invited to join the 4Course challenge. Join here with this link: https://fourcourse-capstone.herokuapp.com/login",
       };
       transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
