@@ -35,7 +35,7 @@ class Emails extends React.Component {
     const email4 = e.target.email4.value;
     let emails = [email1, email2, email3, email4];
     this.props.handleEmails(emails, this.props.eventId);
-    const assignments = randomizer(emails);
+    const assignments = randomizer(emails, this.props.restaurantSelections);
     this.props.setCourse(assignments);
     this.setState({ enableNext: true });
   }
@@ -104,6 +104,7 @@ class Emails extends React.Component {
 const mapState = (state) => {
   return {
     eventId: state.events.id,
+    restaurantSelections: state.restaurantSelections,
   };
 };
 const mapDispatch = (dispatch) => {
