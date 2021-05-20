@@ -30,10 +30,10 @@ const RestaurantContainer = (props) => {
   const classes = useStyles();
   return (
     <Grid container direction="row" justify="flex-end">
-      <ul>
+      <div>
         {props.resSelections.map((res) => (
           <Grid item key={res.yelpId}>
-            <li className={classes.listItem}>{res.yelpName}</li>
+            <p className={classes.listItem}>{res.yelpName}</p>
             <Button
               className={classes.resListButton}
               variant="contained"
@@ -44,17 +44,18 @@ const RestaurantContainer = (props) => {
             </Button>
           </Grid>
         ))}
-      </ul>
-      <Link to='/emails'> 
-      <Button
-        className={classes.inviteButton}
-        variant="contained"
-        color="secondary"
-        size="large"
-        onClick={() => props.addSelectionsToStore()}
-      >
-        INVITE FRIENDS
-      </Button></Link>
+      </div>
+      <Link to="/emails">
+        <Button
+          className={classes.inviteButton}
+          variant="contained"
+          color="secondary"
+          size="large"
+          onClick={() => props.addSelectionsToStore()}
+        >
+          INVITE FRIENDS
+        </Button>
+      </Link>
     </Grid>
   );
 };

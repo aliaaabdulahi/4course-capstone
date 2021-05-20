@@ -46,33 +46,48 @@ export const Home = (props) => {
       </Typography>
 
       <div className="shape">
-
-      <div className="center">
-        <form onSubmit={() => props.history.push(`/datetime`)}>
-          <Button
-            className={classes.newChallengeButton}
-            type="submit"
-            size="medium"
-            color="secondary"
-            variant="contained"
-          >
-            Start New Challenge
-          </Button>
-        </form>
-        <div className="row">
-          <div className="column">
-            <Typography variant="h5" className={classes.upcomingTitle}>
-              <Link to='/upcomingevents'>Upcoming Events</Link>
-            </Typography>
-          </div>
-          <div className="column">
-            <Typography variant="h5" className={classes.pastTitle}>
-            <Link to='/pastevents'>Past Events</Link>
-            </Typography>
+        <div className="center">
+          <form onSubmit={() => props.history.push(`/datetime`)}>
+            <Button
+              className={classes.newChallengeButton}
+              type="submit"
+              size="medium"
+              color="secondary"
+              variant="contained"
+            >
+              Start New Challenge
+            </Button>
+          </form>
+          <div className="row">
+            <div className="column">
+              <Typography variant="h5" className={classes.upcomingTitle}>
+                <Link to="/upcomingevents">Upcoming Events</Link>
+              </Typography>
+              {/* those need to move to the new componet
+            <div>
+              {upcomingEvents.map((event) => (
+                <Link to="/event:id">
+                  <p key={event.name}>{event.name}</p>
+                </Link>
+              ))}
+            </div> */}
+            </div>
+            <div className="column">
+              <Typography variant="h5" className={classes.pastTitle}>
+                <Link to="/pastevents">Past Events</Link>
+              </Typography>
+              {/* those need to move to the new componet
+            <div>
+              {upcomingEvents.map((event) => (
+                <Link to="/event:id">
+                  <p key={event.name}>{event.name}</p>
+                </Link>
+              ))}
+            </div> */}
+            </div>
           </div>
         </div>
       </div>
-    </div>
     </div>
   );
 };
