@@ -23,7 +23,6 @@ class Map extends React.Component {
     this.handleRadioChange = this.handleRadioChange.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.addSelectionsToStore = this.addSelectionsToStore.bind(this);
-    console.log("props I get on Map", this.props);
   }
   searchNewCuisine(cuisine, lat, long) {
     this.props._searchCuisine(cuisine, lat, long);
@@ -71,15 +70,11 @@ class Map extends React.Component {
     this.setState({
       [e.target.name]: e.target.value,
     });
-    console.log("state here is ", this.state);
   }
   handleRadioChange(e) {
-    console.log(e.target.value);
-    console.log(e.target.name);
     this.setState({
       [e.target.name]: e.target.value,
     });
-    console.log(this.state);
   }
 
   render() {
@@ -145,7 +140,7 @@ class Map extends React.Component {
             />
           </label>
           <label>
-            All
+            Clear
             <input
               type="radio"
               name="rating"
@@ -198,7 +193,7 @@ class Map extends React.Component {
             />
           </label>
           <label>
-            All
+            Clear
             <input
               type="radio"
               name="price"

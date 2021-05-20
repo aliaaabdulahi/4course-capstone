@@ -144,7 +144,7 @@ class BeginSearch extends React.Component {
                 </Button>
               </form>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={6} className="restaurant-animation">
               <Anime3 />
             </Grid>
           </Grid>

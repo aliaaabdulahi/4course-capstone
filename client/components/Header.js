@@ -27,22 +27,16 @@ import logo from "../../public/Crimson-4Course-Logo.png";
 
 function ElevationScroll(props) {
   const { children, window } = props;
-  // Note that you normally won't need to set the window ref as useScrollTrigger
-  // will default to window.
-  // This is only being set here because the demo is in an iframe.
+
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 0,
-    //target: window ? window() : undefined,
   });
 
   return React.cloneElement(children, {
     elevation: trigger ? 4 : 0,
   });
 }
-
-//The syntax below is slightly different from the documentation,
-//because it gives us access to the styles
 
 const useStyles = makeStyles((theme) => ({
   toolbarMargin: {
@@ -184,14 +178,6 @@ function Header(props) {
       ariaPopup: anchorEl ? "true" : undefined,
       mouseOver: (event) => handleClick(event),
     },
-    /*
-    {
-      name: "Logout",
-      link: '/login',
-      onClick: () => props.handleLogout(),
-      activeIndex: 2,
-    },
-    */
   ];
 
   useEffect(() => {
@@ -300,6 +286,17 @@ function Header(props) {
               </ListItemText>
             </ListItem>
           ))}
+          <ListItem
+            className={{ selected: classes.drawerItemSelected }}
+            divider
+            button
+            onClick={() => props.handleLogout()}
+            label="Logout"
+          >
+            <ListItemText className={classes.drawerItem} disableTypography>
+              Logout
+            </ListItemText>
+          </ListItem>
         </List>
       </SwipeableDrawer>
       <IconButton
