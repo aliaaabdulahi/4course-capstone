@@ -2,7 +2,7 @@ import React from "react";
 import mapboxgl from "!mapbox-gl";
 // import { mapBoxKey } from "../../secret.js";
 const mapBoxKey = process.env.mapBoxKey;
-mapboxgl.accessToken = mapBoxKey;
+mapboxgl.accessToken = "pk.eyJ1IjoiYW5uaWVzMzUwIiwiYSI6ImNrbWFzbGdlMTFibmsyb251MGprMXloaGIifQ.xnTT819L778pLilvPUXKVw"//mapBoxKey;
 
 class MapView extends React.PureComponent {
   constructor(props) {
@@ -12,6 +12,7 @@ class MapView extends React.PureComponent {
       // lat: 40.7850574,
       zoom: 12,
     };
+    console.log("mapBoxKey",mapBoxKey);
     console.log("this.props in MapView constructor--->", this.props);
     this.mapContainer = React.createRef();
     this.loadMap = this.loadMap.bind(this);

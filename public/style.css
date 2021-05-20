@@ -302,3 +302,34 @@ li:nth-child(4){
 .input {
   margin-top: 10px;
 }
+
+.flex-center {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.event {
+  background-color: #dc143c;
+  color: #fff100;
+  height: 550px;
+  width: 300px;
+  font-family: "Permanent Marker";
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #dc143c;
+  border-radius: 2em;
+  -webkit-box-shadow: 5px 5px 15px #dc143c;
+  -moz-box-shadow: 5px 5px 15px #dc143c;
+  margin-top: 15px;
+  margin-right: 20px;
+  margin-left: 15px;
+}
+
+.font {
+  font-family: "Permanent Marker";
+  color: purple;
+}

@@ -27,7 +27,7 @@ class BeginSearch extends React.Component {
     this.success = this.success.bind (this);
     this.error = this.error.bind (this);
 
-    console.log ('props I get on Map', this.props);
+    console.log ('props I get on BeginSearch', this.props);
   }
   componentDidMount () {
     navigator.geolocation.getCurrentPosition (
@@ -54,13 +54,13 @@ class BeginSearch extends React.Component {
     });
   }
   handleSubmit (e) {
-    e.preventDefault (e);
+    e.preventDefault();
     this.setState ({
       renderMode: 'currentCoordinates',
     });
   }
   handleLocationSubmit (e) {
-    e.preventDefault (e);
+    e.preventDefault();
     const newLocation = this.state.location.toLowerCase ();
     console.log ('newLocation is', newLocation);
     this.props._searchLocation (newLocation);
@@ -70,13 +70,16 @@ class BeginSearch extends React.Component {
       });
     }, 600);
   }
+
   render () {
     if (this.state.lng === null) {
-      return <div className="center shape">
-        <div>
-        <div className="lds-heart"><div></div></div>
+      return (
+        <div className="center shape">
+          <div>
+            <div className="lds-heart"><div /></div>
+          </div>
         </div>
-      </div>
+      );
     } else {
       if (this.state.renderMode === 'currentCoordinates') {
         return (
@@ -103,32 +106,38 @@ class BeginSearch extends React.Component {
         );
       } else {
         return (
-          <div className="begin-search">
-            <img src={sushiPic} alt="sushi" id="sushi-pic" />
-            <form>
-              <h1>Where are we Starting?</h1>
-              <h4>Enter a city, neighborhood or zipcode: </h4>
-              <input type="text" name="location" onChange={this.handleChange} />
-              <Button
-                className="buttons"
-                type="submit"
-                variant="contained"
-                onClick={this.handleLocationSubmit}
-              >
-                Search
-              </Button>
-            </form>
-            <form>
-              <h4>Search By Current Location: </h4>
-              <Button
-                className="buttons"
-                type="button"
-                variant="contained"
-                onClick={this.handleSubmit}
-              >
-                Search
-              </Button>
-            </form>
+          <div className="flex-center">
+            <div className="begin-search">
+              <img src={sushiPic} alt="sushi" id="sushi-pic" />
+              <form>
+                <h1>Where are we Starting?</h1>
+                <h4>Enter a city, neighborhood or zipcode: </h4>
+                <input
+                  type="text"
+                  name="location"
+                  onChange={this.handleChange}
+                />
+                <Button
+                  className="buttons"
+                  type="submit"
+                  variant="contained"
+                  onClick={this.handleLocationSubmit}
+                >
+                  Search
+                </Button>
+              </form>
+              <form>
+                <h4>Search By Current Location: </h4>
+                <Button
+                  className="buttons"
+                  type="button"
+                  variant="contained"
+                  onClick={this.handleSubmit}
+                >
+                  Search
+                </Button>
+              </form>
+            </div>
           </div>
         );
       }

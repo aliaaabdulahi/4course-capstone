@@ -234,7 +234,7 @@ class Map extends React.Component {
 }
 const mapState = (state) => ({
   restaurants: state.restaurants,
-  eventId: state.events.id,
+  eventId: state.events.event.id,
 });
 
 const mapDispatch = (dispatch) => {
