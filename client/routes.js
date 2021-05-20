@@ -39,12 +39,12 @@ class Routes extends React.Component {
             <Route path="/datetime" component={Datetime} />
             <Route exact path="/upcomingevents" component={UpcomingEvents} />
             <Route exact path="/pastevents" component={PastEvents} />
+            <Route path="/wheel" component={Wheel} />
             <Route
-                exact
-                path="/:eventid"
-                component={() => <div>Single Event</div>}
-              />
-            <Route path="/Wheel" component={Wheel} />
+              exact
+              path="/:eventid"
+              component={() => <div>Single Event</div>}
+            />
             <Redirect to="/home" />
           </Switch>
         ) : (
