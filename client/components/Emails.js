@@ -39,6 +39,7 @@ class Emails extends React.Component {
     const assignments = randomizer(emails, this.props.restaurantSelections);
     this.props.setCourse(this.props.eventId, assignments);
     this.setState({ enableNext: true });
+    this.props.history.push("/wheel");
   }
 
   handleNext() {
