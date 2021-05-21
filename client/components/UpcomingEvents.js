@@ -2,14 +2,15 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {upcomingEventsThunk} from '../store/events';
+import SingleEvent from './SingleEvent'
 
 class UpcomingEvents extends React.Component {
   constructor (props) {
     super (props);
   }
 
-  async componentDidMount () {
-    await this.props.upcomingEventsThunk (this.props.id);
+   componentDidMount () {
+     this.props.upcomingEventsThunk (this.props.id);
   }
 
   formatDate(timestamp) {
@@ -23,6 +24,7 @@ class UpcomingEvents extends React.Component {
   }
 
   render () {
+    console.log(this.props.events)
     return (
       <div className="center shape">
         <h2 className="font">
@@ -31,7 +33,8 @@ class UpcomingEvents extends React.Component {
         <div className="flex-center">
           {this.props.events !== undefined && this.props.events.length > 0
             ? this.props.events.map (event => (
-              <Link key={event.id} to={`/${event.id}`}>
+              <div>
+                <Link to={`/events/${event.id}`}>
                 <div className="event">
                   <p>{event.name}</p>
                   <img style={{width: '100px'}} src={JSON.parse(event.restaurants[0]).yelpImageUrl}></img>
@@ -39,6 +42,7 @@ class UpcomingEvents extends React.Component {
                   <p>{this.formatTime(event.date)}</p>
                 </div>
                 </Link>
+                </div>
               ))
             : null}
         </div>

@@ -7,6 +7,7 @@ import restaurantReducer from "./restaurants";
 import emails from "./emails";
 import restaurantSelectionReducer from "./restaurantSelections";
 import eventsReducer from "./events";
+import singleEventReducer from "./currentEvent"
 import coursesReducer from "./courses";
 
 const reducer = combineReducers({
@@ -15,6 +16,7 @@ const reducer = combineReducers({
   emails,
   restaurantSelections: restaurantSelectionReducer,
   events: eventsReducer,
+  singleEvent: singleEventReducer,
   courses: coursesReducer,
 });
 const middleware = composeWithDevTools(

@@ -115,20 +115,3 @@ export default function eventsReducer (state = initialState, action) {
   }
 }
 
-const GET_EVENT = 'GET_EVENT';
-
-export const getEvent = event => ({
-  type: GET_EVENT,
-  event,
-});
-
-export const fetchEvent = eventId => {
-  return async dispatch => {
-    try {
-      const {data} = await axios.get (`/api/events/${eventId}`);
-      dispatch (getEvent (data));
-    } catch (error) {
-      console.log (error);
-    }
-  };
-};
