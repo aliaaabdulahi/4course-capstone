@@ -41,6 +41,10 @@ async function seed() {
     users: {
       cody: users[0],
       murphy: users[1],
+      alia: users[2],
+      ezgi: users[3],
+      shiyang: users[4],
+      annie: users[5],
     },
   };
 }
