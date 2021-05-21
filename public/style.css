@@ -31,9 +31,14 @@ form div {
 
 #main-selection-container {
   background-color: plum;
-  diplay: flex;
+  display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
+  align-items: flex-start;
+  height: 85px;
+  width: 700px;
+  margin: 10px;
+  padding: 5px;
 }
 
 #main-search-container {
