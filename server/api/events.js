@@ -70,6 +70,7 @@ router.get("/upcoming/:userId/:eventId/users", async (req, res, next) => {
 router.post("/:id", async (req, res, next) => {
   try {
     const event = await Event.create({
+      name: req.body.name,
       date: req.body.date,
       host: req.body.id,
     });

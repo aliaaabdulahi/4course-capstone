@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import Typography from '@material-ui/core/Typography';
 import {upcomingEventsThunk} from '../store/events';
 import SingleEvent from './SingleEvent'
 
@@ -12,6 +11,16 @@ class UpcomingEvents extends React.Component {
 
    componentDidMount () {
      this.props.upcomingEventsThunk (this.props.id);
+  }
+
+  formatDate(timestamp) {
+    const date = new Date(timestamp);
+    return date.getMonth()+1 + "-" + (date.getDate()+1) + "-" + date.getFullYear();
+  }
+
+  formatTime(timestamp) {
+    const date = new Date(timestamp);
+    return ('0' + date.getUTCHours()).slice(-2) + ":" + ('0' + date.getUTCMinutes()).slice(-2) + ":" + ('0' + date.getSeconds()).slice(-2);
   }
 
   render () {
@@ -26,7 +35,12 @@ class UpcomingEvents extends React.Component {
             ? this.props.events.map (event => (
               <div>
                 <Link to={`/events/${event.id}`}>
-                <button>Event</button>
+                <div className="event">
+                  <p>{event.name}</p>
+                  <img style={{width: '100px'}} src={JSON.parse(event.restaurants[0]).yelpImageUrl}></img>
+                  <p>{this.formatDate(event.date)}</p>
+                  <p>{this.formatTime(event.date)}</p>
+                </div>
                 </Link>
                 </div>
               ))

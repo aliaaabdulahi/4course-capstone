@@ -27,7 +27,7 @@ class Map extends React.Component {
   searchNewCuisine(cuisine, lat, long) {
     this.props._searchCuisine(cuisine, lat, long);
   }
-  restaurantSelection(resId, resName) {
+  restaurantSelection(resId, resName, resImageUrl) {
     if (this.state.selections.length === 4) {
       window.alert("Please remove choice before continuing");
     } else {
@@ -43,6 +43,7 @@ class Map extends React.Component {
         let restaurantObject = {
           yelpId: resId,
           yelpName: resName,
+          yelpImageUrl: resImageUrl
         };
         this.setState({
           selections: [...this.state.selections, restaurantObject],
@@ -211,7 +212,7 @@ class Map extends React.Component {
               <img className="restaurant-image" src={item.image_url} />
               <button
                 type="button"
-                onClick={() => this.restaurantSelection(item.id, item.name)}
+                onClick={() => this.restaurantSelection(item.id, item.name, item.image_url)}
               >
                 Select
               </button>

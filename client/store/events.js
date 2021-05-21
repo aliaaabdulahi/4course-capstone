@@ -75,11 +75,11 @@ export const usersInUpcomingEventThunk = (eventId, userId) => {
   };
 };
 
-export const createNewEventThunk = (date, id) => {
+export const createNewEventThunk = (name, date, id) => {
   return async dispatch => {
     try {
-      console.log ('creating event', date, id);
-      const {data} = await axios.post (`/api/events/${id}`, {date, id});
+      console.log ('creating event', name, date, id);
+      const {data} = await axios.post (`/api/events/${id}`, {name, date, id});
       console.log ('event created', data);
       dispatch (setNewEvent (data));
     } catch (err) {
