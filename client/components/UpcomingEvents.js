@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import Typography from '@material-ui/core/Typography';
 import {upcomingEventsThunk} from '../store/events';
 
 class UpcomingEvents extends React.Component {
@@ -11,6 +10,16 @@ class UpcomingEvents extends React.Component {
 
   async componentDidMount () {
     await this.props.upcomingEventsThunk (this.props.id);
+  }
+
+  formatDate(timestamp) {
+    const date = new Date(timestamp);
+    return date.getMonth()+1 + "-" + (date.getDate()+1) + "-" + date.getFullYear();
+  }
+
+  formatTime(timestamp) {
+    const date = new Date(timestamp);
+    return ('0' + date.getUTCHours()).slice(-2) + ":" + ('0' + date.getUTCMinutes()).slice(-2) + ":" + ('0' + date.getSeconds()).slice(-2);
   }
 
   render () {
@@ -24,25 +33,10 @@ class UpcomingEvents extends React.Component {
             ? this.props.events.map (event => (
               <Link key={event.id} to={`/${event.id}`}>
                 <div className="event">
-                  <p>{event.date}</p>
-                  <h2>Restaurants</h2>
-                  {event.restaurants !== null
-                    ? <div>
-                        {event.restaurants.map ((restaurant, i) => (
-                          <p key={i}>{JSON.parse (restaurant).yelpName}</p>
-                        ))}
-                      </div>
-                    : null}
-
-                  <h2>Invitees</h2>
-                  {event.invitees !== null
-                    ? <div>
-                        {event.invitees.map ((invitee, i) => (
-                          <p key={i}>{invitee}</p>
-                        ))}
-                      </div>
-                    : null}
-
+                  <p>{event.name}</p>
+                  <img style={{width: '100px'}} src={JSON.parse(event.restaurants[0]).yelpImageUrl}></img>
+                  <p>{this.formatDate(event.date)}</p>
+                  <p>{this.formatTime(event.date)}</p>
                 </div>
                 </Link>
               ))
