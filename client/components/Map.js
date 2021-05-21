@@ -5,8 +5,20 @@ import MapView from "./MapView";
 import RestaurantContainer from "./RestaurantContainer";
 import Searches from "./Searches";
 import { ThemeProvider } from "@material-ui/styles";
+import AliceCarousel from "react-alice-carousel";
+import "react-alice-carousel/lib/alice-carousel.css";
 import theme from "../theme.js";
 import { restaurantSelectionThunk } from "../store/restaurantSelections";
+
+const handleDragStart = (e) => e.preventDefault();
+const responsive = {
+  0: {
+    items: 8,
+  },
+  1024: {
+    items: 3,
+  },
+};
 
 class Map extends React.Component {
   constructor(props) {
@@ -216,27 +228,34 @@ class Map extends React.Component {
           </div>
           <div id="body-container">
             <div className="restaurant-container">
-              {resList.map((item) => (
-                <div className="res-card" key={item.id}>
-                  {item.name}
-                  <div>
-                    <p>{item.location.display_address}</p>
-                    <img className="restaurant-image" src={item.image_url} />
-                    <button
-                      type="button"
-                      onClick={() =>
-                        this.restaurantSelection(
-                          item.id,
-                          item.name,
-                          item.image_url
-                        )
-                      }
-                    >
-                      Select
-                    </button>
+              <AliceCarousel mouseTracking responsive={responsive}>
+                {resList.map((item) => (
+                  <div
+                    className="res-card"
+                    key={item.id}
+                    onDragStart={handleDragStart}
+                  >
+                    {item.name}
+                    <div>
+                      <p>{item.location.display_address}</p>
+                      <img className="restaurant-image" src={item.image_url} />
+                      <p>{item.url}</p>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          this.restaurantSelection(
+                            item.id,
+                            item.name,
+                            item.image_url
+                          )
+                        }
+                      >
+                        Select
+                      </button>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </AliceCarousel>
             </div>
           </div>
         </div>

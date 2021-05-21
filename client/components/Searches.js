@@ -31,8 +31,10 @@ class Searches extends React.Component {
     return (
       <div id="main-search-container">
         <form>
-          <h1 className="yellow-font">Search By</h1>
-          <h3 className="yellow-font">Cuisine: </h3>
+          <h1 className="yellow-font">
+            Search By
+            <span id="smaller"> Cuisine</span>{" "}
+          </h1>
           <input type="text" name="searchTerm" onChange={this.handleChange} />
           <button type="submit" onClick={this.handleSubmit}>
             Search

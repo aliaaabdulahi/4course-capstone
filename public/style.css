@@ -26,7 +26,7 @@ form div {
 #main-map-container {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
 }
 
 #main-selection-container {
@@ -38,7 +38,7 @@ form div {
   height: 85px;
   width: 700px;
   margin: 10px;
-  padding: 5px;
+  padding: 3px;
 }
 
 #main-search-container {
@@ -52,8 +52,6 @@ form div {
 }
 #body-container {
   background-color: lightsteelblue;
-}
-.restaurant-container {
 }
 
 .map-container {
@@ -71,6 +69,9 @@ form div {
   font-family: "Permanent Marker";
   color: #fff100;
 }
+#smaller {
+  font-size: 18.72px;
+}
 
 .begin-search .buttons {
   font-family: "Permanent Marker";
@@ -79,6 +80,10 @@ form div {
   padding: 5px;
 }
 .restaurant-container {
+  /*height: 300px;
+  width: 600px;*/
+  top: 60px;
+  left: calc(50% - 300px);
   display: flex;
   flex-flow: row wrap;
 }
