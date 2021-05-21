@@ -19,6 +19,7 @@ class Map extends React.Component {
       rating: null,
       selections: [],
     };
+    console.log("My props on Map component are", this.props);
     this.restaurantSelection = this.restaurantSelection.bind(this);
     this.handleRadioChange = this.handleRadioChange.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -50,15 +51,17 @@ class Map extends React.Component {
       }
     }
   }
-
   addSelectionsToStore() {
-    console.log(this.state.selections);
-    this.props.setRestaurantSelections(
-      this.props.eventId,
-      this.state.selections
-    );
+    if (this.state.selections.length === 4) {
+      this.props.setRestaurantSelections(
+        this.props.eventId,
+        this.state.selections
+      );
+      this.props.history.push("/emails");
+    } else {
+      window.alert("Please make four selections!");
+    }
   }
-
   removeSelection(resId) {
     this.setState({
       selections: this.state.selections.filter((item) => {
@@ -97,132 +100,142 @@ class Map extends React.Component {
           addSelectionsToStore={this.addSelectionsToStore}
         />
         <h1>Map Component Here:</h1>
-        <Searches
-          searchCuisine={(cuisine, lat, long) =>
-            this.searchNewCuisine(cuisine, lat, long)
-          }
-          lat={this.state.lat}
-          lng={this.state.lng}
-          resClear={(latitude, longitude) =>
-            this.props.restaurantsList(latitude, longitude)
-          }
-        />
-        <form>
-          <h3>Rating:</h3>
-          <label>
-            5
-            <input
-              type="radio"
-              name="rating"
-              value="5"
-              checked={this.state.rating === "5"}
-              onChange={this.handleRadioChange}
+        <div id="main-map-container">
+          <Searches
+            searchCuisine={(cuisine, lat, long) =>
+              this.searchNewCuisine(cuisine, lat, long)
+            }
+            lat={this.state.lat}
+            lng={this.state.lng}
+            resClear={(latitude, longitude) =>
+              this.props.restaurantsList(latitude, longitude)
+            }
+          />
+          <div id="main-rating-container">
+            <form className="yellow-font">
+              <h3>Rating:</h3>
+              <label>
+                5
+                <input
+                  type="radio"
+                  name="rating"
+                  value="5"
+                  checked={this.state.rating === "5"}
+                  onChange={this.handleRadioChange}
+                />
+              </label>
+              <label>
+                4.5
+                <input
+                  type="radio"
+                  name="rating"
+                  value="4.5"
+                  checked={this.state.rating === "4.5"}
+                  onChange={this.handleRadioChange}
+                />
+              </label>
+              <label>
+                4
+                <input
+                  type="radio"
+                  name="rating"
+                  value="4"
+                  checked={this.state.rating === "4"}
+                  onChange={this.handleRadioChange}
+                />
+              </label>
+              <label>
+                Clear
+                <input
+                  type="radio"
+                  name="rating"
+                  value="all"
+                  checked={this.state.rating === "all"}
+                  onChange={this.handleRadioChange}
+                />
+              </label>
+            </form>
+            <form className="yellow-font">
+              <h3>Price:</h3>
+              <label>
+                $$$$
+                <input
+                  type="radio"
+                  name="price"
+                  value="$$$$"
+                  checked={this.state.price === "$$$$"}
+                  onChange={this.handleInputChange}
+                />
+              </label>
+              <label>
+                $$$
+                <input
+                  type="radio"
+                  name="price"
+                  value="$$$"
+                  checked={this.state.price === "$$$"}
+                  onChange={this.handleInputChange}
+                />
+              </label>
+              <label>
+                $$
+                <input
+                  type="radio"
+                  name="price"
+                  value="$$"
+                  checked={this.state.price === "$$"}
+                  onChange={this.handleInputChange}
+                />
+              </label>
+              <label>
+                $
+                <input
+                  type="radio"
+                  name="price"
+                  value="$"
+                  checked={this.state.price === "$"}
+                  onChange={this.handleInputChange}
+                />
+              </label>
+              <label>
+                Clear
+                <input
+                  type="radio"
+                  name="price"
+                  value="all"
+                  checked={this.state.price === "all"}
+                  onChange={this.handleInputChange}
+                />
+              </label>
+            </form>
+            <MapView
+              restaurants={resList}
+              lng={this.state.lng}
+              lat={this.state.lat}
             />
-          </label>
-          <label>
-            4.5
-            <input
-              type="radio"
-              name="rating"
-              value="4.5"
-              checked={this.state.rating === "4.5"}
-              onChange={this.handleRadioChange}
-            />
-          </label>
-          <label>
-            4
-            <input
-              type="radio"
-              name="rating"
-              value="4"
-              checked={this.state.rating === "4"}
-              onChange={this.handleRadioChange}
-            />
-          </label>
-          <label>
-            Clear
-            <input
-              type="radio"
-              name="rating"
-              value="all"
-              checked={this.state.rating === "all"}
-              onChange={this.handleRadioChange}
-            />
-          </label>
-        </form>
-        <form>
-          <h3>Price:</h3>
-          <label>
-            $$$$
-            <input
-              type="radio"
-              name="price"
-              value="$$$$"
-              checked={this.state.price === "$$$$"}
-              onChange={this.handleInputChange}
-            />
-          </label>
-          <label>
-            $$$
-            <input
-              type="radio"
-              name="price"
-              value="$$$"
-              checked={this.state.price === "$$$"}
-              onChange={this.handleInputChange}
-            />
-          </label>
-          <label>
-            $$
-            <input
-              type="radio"
-              name="price"
-              value="$$"
-              checked={this.state.price === "$$"}
-              onChange={this.handleInputChange}
-            />
-          </label>
-          <label>
-            $
-            <input
-              type="radio"
-              name="price"
-              value="$"
-              checked={this.state.price === "$"}
-              onChange={this.handleInputChange}
-            />
-          </label>
-          <label>
-            Clear
-            <input
-              type="radio"
-              name="price"
-              value="all"
-              checked={this.state.price === "all"}
-              onChange={this.handleInputChange}
-            />
-          </label>
-        </form>
-        <div>
-          {resList.map((item) => (
-            <div className="restaurant-container" key={item.id}>
-              {item.name}
-              <p>{item.location.display_address}</p>
-              <img className="restaurant-image" src={item.image_url} />
-              <button
-                type="button"
-                onClick={() => this.restaurantSelection(item.id, item.name)}
-              >
-                Select
-              </button>
+          </div>
+          <div id="body-container">
+            <div className="restaurant-container">
+              {resList.map((item) => (
+                <div className="res-card" key={item.id}>
+                  {item.name}
+                  <div>
+                    <p>{item.location.display_address}</p>
+                    <img className="restaurant-image" src={item.image_url} />
+                    <button
+                      type="button"
+                      onClick={() =>
+                        this.restaurantSelection(item.id, item.name)
+                      }
+                    >
+                      Select
+                    </button>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
-        <MapView
-          restaurants={resList}
-          lng={this.state.lng}
-          lat={this.state.lat}
-        />
       </ThemeProvider>
     );
   }

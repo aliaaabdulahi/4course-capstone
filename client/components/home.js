@@ -44,7 +44,6 @@ export const Home = (props) => {
       <Typography className={classes.headers} variant="h4">
         Welcome, {username}
       </Typography>
-
       <div className="shape">
         <div className="center">
           <form onSubmit={() => props.history.push(`/datetime`)}>
@@ -63,27 +62,11 @@ export const Home = (props) => {
               <Typography variant="h5" className={classes.upcomingTitle}>
                 <Link to="/upcomingevents">Upcoming Events</Link>
               </Typography>
-              {/* those need to move to the new componet
-            <div>
-              {upcomingEvents.map((event) => (
-                <Link to="/event:id">
-                  <p key={event.name}>{event.name}</p>
-                </Link>
-              ))}
-            </div> */}
             </div>
             <div className="column">
               <Typography variant="h5" className={classes.pastTitle}>
                 <Link to="/pastevents">Past Events</Link>
               </Typography>
-              {/* those need to move to the new componet
-            <div>
-              {upcomingEvents.map((event) => (
-                <Link to="/event:id">
-                  <p key={event.name}>{event.name}</p>
-                </Link>
-              ))}
-            </div> */}
             </div>
           </div>
         </div>
