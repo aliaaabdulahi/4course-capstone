@@ -1,9 +1,9 @@
-import axios from 'axios';
-import restaurantReducer from './restaurants';
+import axios from "axios";
+import restaurantReducer from "./restaurants";
 
-export const SET_RESTAURANT_SELECTIONS = 'SET_RESTAURANT_SELECTIONS';
+export const SET_RESTAURANT_SELECTIONS = "SET_RESTAURANT_SELECTIONS";
 
-export const setRestaurantSelections = restaurantSelections => {
+export const setRestaurantSelections = (restaurantSelections) => {
   return {
     type: SET_RESTAURANT_SELECTIONS,
     restaurantSelections,
@@ -11,23 +11,23 @@ export const setRestaurantSelections = restaurantSelections => {
 };
 
 export const restaurantSelectionThunk = (id, array) => {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
-      console.log (
-        'inside restaurantSelectionThunk..., id=' + id + ' and array:' + array
+      console.log(
+        "inside restaurantSelectionThunk..., id=" + id + " and array:" + array
       );
-      const {data} = await axios.put (`/api/events/${id}/restaurants`, array);
-      console.log ('datainthunk', data);
-      dispatch (setRestaurantSelections (data));
+      const { data } = await axios.put(`/api/events/${id}/restaurants`, array);
+      console.log("datainthunk", data);
+      dispatch(setRestaurantSelections(data));
     } catch (err) {
-      console.log (err);
+      console.log(err);
     }
   };
 };
 
 const initialState = [];
 
-export default function restaurantSelectionReducer (
+export default function restaurantSelectionReducer(
   state = initialState,
   action
 ) {
