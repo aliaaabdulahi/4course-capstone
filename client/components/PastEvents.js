@@ -12,7 +12,18 @@ class PastEvents extends React.Component {
     this.props.pastEventsThunk (this.props.id);
   }
 
+  formatDate(timestamp) {
+    const date = new Date(timestamp);
+    return date.getMonth()+1 + "-" + (date.getDate()+1) + "-" + date.getFullYear();
+  }
+
+  formatTime(timestamp) {
+    const date = new Date(timestamp);
+    return ('0' + date.getUTCHours()).slice(-2) + ":" + ('0' + date.getUTCMinutes()).slice(-2) + ":" + ('0' + date.getSeconds()).slice(-2);
+  }
+
   render () {
+    console.log(this.props.events)
     return (
       <div className="center shape">
         <h2 className="font">
@@ -23,7 +34,12 @@ class PastEvents extends React.Component {
             ? this.props.events.map (event => (
               <div>
                 <Link to={`/events/${event.id}`}>
-                <button>Event</button>
+                <div className="event">
+                  <p>{event.name}</p>
+                  <img style={{width: '100px'}} src={JSON.parse(event.restaurants[0]).yelpImageUrl}></img>
+                  <p>{this.formatDate(event.date)}</p>
+                  <p>{this.formatTime(event.date)}</p>
+                </div>
                 </Link>
                 </div>
               ))
