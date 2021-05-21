@@ -1,5 +1,4 @@
 import axios from "axios";
-const initialState = [];
 
 export const SET_RESTAURANTS = "SET_RESTAURANTS";
 export const SET_CUISINE = "SET_CUISINE";
@@ -53,6 +52,8 @@ export const setLocationThunk = (location) => {
     }
   };
 };
+
+const initialState = [];
 
 export default function restaurantReducer(state = initialState, action) {
   switch (action.type) {

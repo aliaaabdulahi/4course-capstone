@@ -15,12 +15,10 @@ class Emails extends React.Component {
       email3: "",
       email4: "",
       message: "",
-      enableNext: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleNext = this.handleNext.bind(this);
   }
 
   handleChange(e) {
@@ -51,53 +49,54 @@ class Emails extends React.Component {
     return (
       <div className="center shape">
         <form onSubmit={this.handleSubmit}>
+          <h2 className="font">Add Friends</h2>
           <label>
             Email1:
             <input
+              className="email"
               type="text"
-              value={this.state.email1}
+              value={this.props.myEmail}
               name="email1"
               onChange={this.handleChange}
+              readOnly
             />
           </label>
           <label>
             Email2:
             <input
+              className="email"
               type="text"
               value={this.state.email2}
               name="email2"
               onChange={this.handleChange}
+              required
             />
           </label>
           <label>
             Email3:
             <input
+              className="email"
               type="text"
               value={this.state.email3}
               name="email3"
               onChange={this.handleChange}
+              required
             />
           </label>
           <label>
             Email4:
             <input
+              className="email"
               type="text"
               value={this.state.email4}
               name="email4"
               onChange={this.handleChange}
+              required
             />
           </label>
           <p>{this.state.message}</p>
           <div style={{ padding: "5px" }}>
             <input className="button normal" type="submit" value="Submit" />
-            <button
-              className={`button normal ${
-                this.state.enableNext ? null : "disabled"
-              }`}
-              onClick={this.handleNext}
-            >
-              <Link to="/wheel">Next</Link>
-            </button>
           </div>
         </form>
         <div>
@@ -110,6 +109,7 @@ class Emails extends React.Component {
 const mapState = (state) => {
   return {
     eventId: state.events.event.id,
+    myEmail: state.auth.email,
     restaurantSelections: state.restaurantSelections,
   };
 };
