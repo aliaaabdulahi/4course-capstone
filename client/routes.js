@@ -20,6 +20,7 @@ import { me } from "./store";
 import Wheel from "./components/Wheel";
 import UpcomingEvents from "./components/UpcomingEvents";
 import PastEvents from "./components/PastEvents";
+import SingleEvent from "./components/SingleEvent";
 
 class Routes extends React.Component {
   componentDidMount() {
@@ -40,11 +41,10 @@ class Routes extends React.Component {
             <Route exact path="/upcomingevents" component={UpcomingEvents} />
             <Route exact path="/pastevents" component={PastEvents} />
             <Route path="/wheel" component={Wheel} />
-            <Redirect to="/home" />
             <Route
               exact
-              path="/:eventid"
-              component={() => <div>Single Event</div>}
+              path="/events/:eventId"
+              component={SingleEvent}
             />
           </Switch>
         ) : (
@@ -60,93 +60,6 @@ class Routes extends React.Component {
 }
 const mapState = (state) => {
   return {
-    // Being 'logged in' for our purposes will be defined has having a state.auth that has a truthy id.
-    // Otherwise, state.auth will be an empty object, and state.auth.id will be falsey
-    isLoggedIn: !!state.auth.id,
-  };
-};
-
-const mapDispatch = (dispatch) => {
-  return {
-    loadInitialData() {
-      dispatch(me());
-    },
-  };
-};
-
-// The `withRouter` wrapper makes sure that updates are not blocked
-// when the url changes
-export default withRouter(connect(mapState, mapDispatch)(Routes));
-
-/*
-function Routes(props) {
-  const [selectedIndex, setSelectedIndex] = useState(0);
-  const [value, setValue] = useState(0);
-
-  useEffect = () => {
-    props.loadInitialData();
-  };
-  const { isLoggedIn } = props;
-
-  return (
-    <ThemeProvider theme={theme}>
-      <BrowserRouter>
-        <Header
-          value={value}
-          setValue={setValue}
-          selectedIndex={selectedIndex}
-          setSelectedIndex={setSelectedIndex}
-        />
-        {isLoggedIn ? (
-          <Switch>
-            <Route
-              exact
-              path="/"
-              component={() => <div style={{ height: "2000px" }}>Home</div>}
-            />
-            <Route
-              exact
-              path="/startchallenge"
-              component={() => <div>Start Challenge</div>}
-            />
-            <Route
-              exact
-              path="/pastevents"
-              component={() => <div>Past Events</div>}
-            />
-            <Route
-              exact
-              path="/upcomingevents"
-              component={() => <div>Upcoming Events</div>}
-            />
-            <Route path="/yelp" component={Map} />
-            <Route path="/emails" component={Emails} />
-            <Route path="/invite" component={Invite} />
-            <Route path="/beginsearch" component={BeginSearch} />
-            <Redirect to="/home" />
-          </Switch>
-        ) : (
-          <Switch>
-            <Route exact path="/login" component={() => <div>Login</div>} />
-            <Route exact path="/signup" component={() => <div>Signup</div>} />
-          </Switch>
-        )}
-        {/*
-        <Footer
-          value={value}
-          setValue={setValue}
-          selectedIndex={selectedIndex}
-          setSelectedIndex={setSelectedIndex}
-        />
-       }
-      </BrowserRouter>
-    </ThemeProvider>
-  );
-}
-const mapState = (state) => {
-  return {
-    // Being 'logged in' for our purposes will be defined has having a state.auth that has a truthy id.
-    // Otherwise, state.auth will be an empty object, and state.auth.id will be falsey
     isLoggedIn: !!state.auth.id,
   };
 };
@@ -160,4 +73,3 @@ const mapDispatch = (dispatch) => {
 };
 
 export default withRouter(connect(mapState, mapDispatch)(Routes));
-*/

@@ -54,7 +54,7 @@ router.get("/past/:userId", async (req, res, next) => {
   }
 });
 
-router.get("/upcoming/userId/eventId/users", async (req, res, next) => {
+router.get("/upcoming/:userId/:eventId/users", async (req, res, next) => {
   try {
     const usersThatBelongToEvent = await Event.findAll({
       include: {
