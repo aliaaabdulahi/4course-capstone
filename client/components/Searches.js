@@ -9,7 +9,6 @@ class Searches extends React.Component {
   constructor(props) {
     super(props);
     this.state = initialState;
-    console.log("my props on search are", this.props);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.clearSelections = this.clearSelections.bind(this);
@@ -23,7 +22,6 @@ class Searches extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     const newCuisine = this.state.searchTerm.toLowerCase();
-    console.log("newCuisine is", newCuisine);
     this.props.searchCuisine(newCuisine, this.props.lat, this.props.lng);
   }
   clearSelections(lat, long) {
@@ -31,10 +29,10 @@ class Searches extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div id="main-search-container">
         <form>
-          <h1>Search By</h1>
-          <h3>Cuisine: </h3>
+          <h1 className="yellow-font">Search By</h1>
+          <h3 className="yellow-font">Cuisine: </h3>
           <input type="text" name="searchTerm" onChange={this.handleChange} />
           <button type="submit" onClick={this.handleSubmit}>
             Search
@@ -44,7 +42,7 @@ class Searches extends React.Component {
           type="button"
           onClick={() => this.clearSelections(this.props.lat, this.props.lng)}
         >
-          X
+          Clear
         </button>
       </div>
     );

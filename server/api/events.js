@@ -17,7 +17,6 @@ module.exports = router;
 
 router.get("/upcoming/:userId", async (req, res, next) => {
   try {
-
     const user = await User.findByPk(req.params.userId);
     const events = await Event.findAll({
       where: {
@@ -25,8 +24,8 @@ router.get("/upcoming/:userId", async (req, res, next) => {
           [Op.gt]: new Date(),
         },
         invitees: {
-          [Op.contains]: [user.email]
-        }
+          [Op.contains]: [user.email],
+        },
       },
     });
     res.send(events);
@@ -44,8 +43,8 @@ router.get("/past/:userId", async (req, res, next) => {
           [Op.lt]: new Date(),
         },
         invitees: {
-          [Op.contains]: [user.email]
-        }
+          [Op.contains]: [user.email],
+        },
       },
     });
     res.send(events);

@@ -51,10 +51,18 @@ function Datetime({handleSave, history, id}) {
   const [value, onChange] = useState (new Date ());
   const [eventName, setEventName] = useState ('');
 
+<<<<<<< HEAD
+  const onSave = (e) => {
+    console.log("what is id?", id);
+    console.log("saved datetime", formatDate(value));
+    handleSave(e, formatDate(value), id);
+    history.push(`/startchallenge`);
+=======
   const onSave = e => {
     console.log ('saved datetime', formatDate (value));
     handleSave (e, eventName, formatDate (value), id);
     history.push (`/startchallenge`);
+>>>>>>> main
   };
 
   const formatDate = date => {

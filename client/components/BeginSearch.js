@@ -2,10 +2,10 @@ import React from "react";
 import { connect } from "react-redux";
 import { setRestaurantsThunk, setLocationThunk } from "../store/restaurants";
 import Button from "@material-ui/core/Button";
+// import Paper from "@material-ui/core/Paper";
 import Map from "./Map.js";
 import Anime3 from "./Anime3";
 import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
 import sushiPic from "../../public/sushi.png";
 
 const initialState = {
@@ -94,6 +94,7 @@ class BeginSearch extends React.Component {
             restaurantsList={(latitude, longitude) =>
               this.props._getRestaurants(latitude, longitude)
             }
+            history={this.props.history}
           />
         );
       }
@@ -109,46 +110,52 @@ class BeginSearch extends React.Component {
             restaurantsList={(latitude, longitude) =>
               this.props._getRestaurants(latitude, longitude)
             }
+            history={this.props.history}
           />
         );
       } else {
         return (
-          <Grid container spacing={10} className="begin-search">
-            <Grid item xs={6} id="search-text">
-              <img src={sushiPic} alt="sushi" id="sushi-pic" />
-              <form>
-                <h1>Where are we Starting?</h1>
-                <h4>Enter a city, neighborhood or zipcode: </h4>
-                <input
-                  type="text"
-                  name="location"
-                  onChange={this.handleChange}
-                />
-                <Button
-                  className="buttons"
-                  type="submit"
-                  variant="contained"
-                  onClick={this.handleLocationSubmit}
-                >
-                  Search
-                </Button>
-              </form>
-              <form>
-                <h4>Search By Current Location: </h4>
-                <Button
-                  className="buttons"
-                  type="button"
-                  variant="contained"
-                  onClick={this.handleSubmit}
-                >
-                  Search
-                </Button>
-              </form>
-            </Grid>
-            <Grid item xs={6} className="restaurant-animation">
-              <Anime3 />
-            </Grid>
-          </Grid>
+          <React.Fragment>
+            <div className="begin-search">
+              <div id="search-text">
+                <img src={sushiPic} alt="sushi" id="sushi-pic" />
+                <form className="begin-search-form">
+                  <h1 className="yellow-font">Where are we Starting?</h1>
+                  <h3 className="yellow-font">
+                    Enter a city, neighborhood(i.e."Chelsea,NY") or zipcode:{" "}
+                  </h3>
+                  <input
+                    placeholder="city, neighborhood, zipcode"
+                    type="text"
+                    name="location"
+                    onChange={this.handleChange}
+                  />
+                  <Button
+                    className="buttons"
+                    type="submit"
+                    variant="contained"
+                    onClick={this.handleLocationSubmit}
+                  >
+                    Search
+                  </Button>
+                </form>
+                <form className="begin-search-form">
+                  <h3 className="yellow-font">Search By Current Location: </h3>
+                  <Button
+                    className="buttons"
+                    type="button"
+                    variant="contained"
+                    onClick={this.handleSubmit}
+                  >
+                    Search
+                  </Button>
+                </form>
+              </div>
+              <div id="restaurant-animation">
+                <Anime3 />
+              </div>
+            </div>
+          </React.Fragment>
         );
       }
     }
