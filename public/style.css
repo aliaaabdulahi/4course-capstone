@@ -359,7 +359,7 @@ ul.circel1 {
 .event {
   background-color: #dc143c;
   color: #fff100;
-  height: 550px;
+  height: 300px;
   width: 300px;
   font-family: "Permanent Marker";
   display: flex;
@@ -378,4 +378,8 @@ ul.circel1 {
 .font {
   font-family: "Permanent Marker";
   color: purple;
+}
+
+.email {
+  margin-bottom: 10px;
 }

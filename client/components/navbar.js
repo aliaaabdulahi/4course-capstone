@@ -88,8 +88,6 @@ const Navbar = ({ handleClick, isLoggedIn }) => {
                 >
                   Signup
                 </Button>
-                <Link to="/login">Login</Link>
-                <Link to="/signup">Sign Up</Link>
               </div>
             </Grid>
           </Grid>
