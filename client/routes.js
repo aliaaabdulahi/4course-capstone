@@ -32,7 +32,7 @@ class Routes extends React.Component {
       <ThemeProvider theme={theme}>
         {isLoggedIn ? (
           <Switch>
-            <Route path="/home" component={Home} />
+            <Route exact path="/" component={Home} />
             <Route path="/yelp" component={Map} />
             <Route path="/emails" component={Emails} />
             <Route path="/invite" component={Invite} />
@@ -41,11 +41,8 @@ class Routes extends React.Component {
             <Route exact path="/upcomingevents" component={UpcomingEvents} />
             <Route exact path="/pastevents" component={PastEvents} />
             <Route path="/wheel" component={Wheel} />
-            <Route
-              exact
-              path="/events/:eventId"
-              component={SingleEvent}
-            />
+            <Route exact path="/events/:eventId" component={SingleEvent} />
+            <Redirect to="/" />
           </Switch>
         ) : (
           <Switch>
