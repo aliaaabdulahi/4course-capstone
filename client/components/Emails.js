@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { setEmailsThunk } from "../store/emails";
 import { Link } from "react-router-dom";
 import Anime2 from "./Anime2.js";
+import { randomizer } from "../../utils.js";
+import { setAssignmentsThunk } from "../store/courses";
 
 class Emails extends React.Component {
   constructor(props) {
@@ -28,7 +30,19 @@ class Emails extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.handleEmails(e, this.props.eventId);
-    this.props.history.push("/wheel")
+    const email1 = e.target.email1.value;
+    const email2 = e.target.email2.value;
+    const email3 = e.target.email3.value;
+    const email4 = e.target.email4.value;
+    let emails = [email1, email2, email3, email4];
+    this.props.handleEmails(emails, this.props.eventId);
+    const assignments = randomizer(emails, this.props.restaurantSelections);
+    this.props.setCourse(this.props.eventId, assignments);
+    this.setState({ enableNext: true });
+  }
+
+  handleNext() {
+    this.state.enableNext ? this.props.history.push("/wheel") : null;
   }
 
   render() {
@@ -95,19 +109,17 @@ class Emails extends React.Component {
 const mapState = (state) => {
   return {
     eventId: state.events.event.id,
-    myEmail: state.auth.email
+    myEmail: state.auth.email,
+    restaurantSelections: state.restaurantSelections,
   };
 };
 const mapDispatch = (dispatch) => {
   return {
-    handleEmails(e, id) {
-      const email1 = e.target.email1.value;
-      const email2 = e.target.email2.value;
-      const email3 = e.target.email3.value;
-      const email4 = e.target.email4.value;
-      let emails = [email1, email2, email3, email4];
+    handleEmails(emails, id) {
       dispatch(setEmailsThunk(emails, id));
     },
+    setCourse: (id, assignments) =>
+      dispatch(setAssignmentsThunk(id, assignments)),
   };
 };
 
