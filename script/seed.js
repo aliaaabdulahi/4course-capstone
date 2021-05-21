@@ -21,6 +21,18 @@ async function seed() {
       username: "murphy",
       password: "123",
     }),
+    User.create({ email: "alia@mail.com", username: "alia", password: "123" }),
+    User.create({ email: "ezgi@mail.com", username: "ezgi", password: "123" }),
+    User.create({
+      email: "shiyang@mail.com",
+      username: "shiyang",
+      password: "123",
+    }),
+    User.create({
+      email: "annie@mail.com",
+      username: "annie",
+      password: "123",
+    }),
   ]);
 
   console.log(`seeded ${users.length} users`);
