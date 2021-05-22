@@ -44,7 +44,7 @@ class Map extends React.Component {
         let restaurantObject = {
           yelpId: resId,
           yelpName: resName,
-          yelpImageUrl: resImageUrl
+          yelpImageUrl: resImageUrl,
         };
         this.setState({
           selections: [...this.state.selections, restaurantObject],
@@ -226,7 +226,11 @@ class Map extends React.Component {
                     <button
                       type="button"
                       onClick={() =>
-                        this.restaurantSelection(item.id, item.name, item.image_url)
+                        this.restaurantSelection(
+                          item.id,
+                          item.name,
+                          item.image_url
+                        )
                       }
                     >
                       Select
