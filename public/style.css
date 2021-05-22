@@ -23,9 +23,14 @@ form div {
   display: inline-block;
 }
 
-#main-map-container {
+#main-container {
   display: flex;
   flex-direction: column;
+}
+
+#main-map-container {
+  display: flex;
+  flex-direction: row;
   justify-content: space-between;
 }
 
@@ -34,11 +39,19 @@ form div {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  align-items: flex-start;
+  align-items: center;
+  /*
   height: 85px;
-  width: 700px;
-  margin: 10px;
+  width: 800px;*/
   padding: 3px;
+}
+
+/*This is where the names of the restaurants you have picked will go: */
+#res-selections {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 #main-search-container {
@@ -50,13 +63,17 @@ form div {
   flex-direction: row;
   justify-content: space-between;
 }
-#body-container {
+#search-and-select {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#restaurant-container {
   background-color: lightsteelblue;
 }
-
 .map-container {
-  height: 300px;
-  width: 400px;
+  height: 350px;
+  width: 600px;
 }
 .begin-search {
   font-family: "Permanent Marker";
@@ -78,14 +95,6 @@ form div {
   color: #fff100;
   background-color: coral;
   padding: 5px;
-}
-.restaurant-container {
-  /*height: 300px;
-  width: 600px;*/
-  top: 60px;
-  left: calc(50% - 300px);
-  display: flex;
-  flex-flow: row wrap;
 }
 
 .begin-search-form {
@@ -219,6 +228,7 @@ form div {
   overflow: hidden;
 }
 
+/*
 li {
   overflow: hidden;
   position: absolute;
@@ -228,7 +238,7 @@ li {
   height: 50%;
   transform-origin: 0% 100%;
   /* list-style: none;
-  z-index: -1; */
+  z-index: -1;
 }
 li:first-child .text {
   background-color: #f1c40f;
@@ -277,6 +287,7 @@ ul.circel1 {
   animation-delay: 0.7s;
   z-index: 2;
 }
+*/
 
 @keyframes animateOne {
   0% {

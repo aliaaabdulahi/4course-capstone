@@ -13,7 +13,7 @@ import { restaurantSelectionThunk } from "../store/restaurantSelections";
 const handleDragStart = (e) => e.preventDefault();
 const responsive = {
   0: {
-    items: 8,
+    items: 3,
   },
   1024: {
     items: 3,
@@ -107,156 +107,163 @@ class Map extends React.Component {
     }
     return (
       <ThemeProvider theme={theme}>
-        <RestaurantContainer
-          resSelections={this.state.selections}
-          removal={(resId) => this.removeSelection(resId)}
-          addSelectionsToStore={this.addSelectionsToStore}
-        />
-        <div id="main-map-container">
-          <Searches
-            searchCuisine={(cuisine, lat, long) =>
-              this.searchNewCuisine(cuisine, lat, long)
-            }
-            lat={this.state.lat}
-            lng={this.state.lng}
-            resClear={(latitude, longitude) =>
-              this.props.restaurantsList(latitude, longitude)
-            }
-          />
-          <div id="main-rating-container">
-            <form className="yellow-font">
-              <h3>Rating:</h3>
-              <label>
-                5
-                <input
-                  type="radio"
-                  name="rating"
-                  value="5"
-                  checked={this.state.rating === "5"}
-                  onChange={this.handleRadioChange}
+        <div id="main-container">
+          <div id="main-map-container">
+            <div id="search-and-select">
+              <RestaurantContainer
+                resSelections={this.state.selections}
+                removal={(resId) => this.removeSelection(resId)}
+                addSelectionsToStore={this.addSelectionsToStore}
+              />
+              <div id="main-rating-container">
+                <Searches
+                  searchCuisine={(cuisine, lat, long) =>
+                    this.searchNewCuisine(cuisine, lat, long)
+                  }
+                  lat={this.state.lat}
+                  lng={this.state.lng}
+                  resClear={(latitude, longitude) =>
+                    this.props.restaurantsList(latitude, longitude)
+                  }
                 />
-              </label>
-              <label>
-                4.5
-                <input
-                  type="radio"
-                  name="rating"
-                  value="4.5"
-                  checked={this.state.rating === "4.5"}
-                  onChange={this.handleRadioChange}
-                />
-              </label>
-              <label>
-                4
-                <input
-                  type="radio"
-                  name="rating"
-                  value="4"
-                  checked={this.state.rating === "4"}
-                  onChange={this.handleRadioChange}
-                />
-              </label>
-              <label>
-                Clear
-                <input
-                  type="radio"
-                  name="rating"
-                  value="all"
-                  checked={this.state.rating === "all"}
-                  onChange={this.handleRadioChange}
-                />
-              </label>
-            </form>
-            <form className="yellow-font">
-              <h3>Price:</h3>
-              <label>
-                $$$$
-                <input
-                  type="radio"
-                  name="price"
-                  value="$$$$"
-                  checked={this.state.price === "$$$$"}
-                  onChange={this.handleInputChange}
-                />
-              </label>
-              <label>
-                $$$
-                <input
-                  type="radio"
-                  name="price"
-                  value="$$$"
-                  checked={this.state.price === "$$$"}
-                  onChange={this.handleInputChange}
-                />
-              </label>
-              <label>
-                $$
-                <input
-                  type="radio"
-                  name="price"
-                  value="$$"
-                  checked={this.state.price === "$$"}
-                  onChange={this.handleInputChange}
-                />
-              </label>
-              <label>
-                $
-                <input
-                  type="radio"
-                  name="price"
-                  value="$"
-                  checked={this.state.price === "$"}
-                  onChange={this.handleInputChange}
-                />
-              </label>
-              <label>
-                Clear
-                <input
-                  type="radio"
-                  name="price"
-                  value="all"
-                  checked={this.state.price === "all"}
-                  onChange={this.handleInputChange}
-                />
-              </label>
-            </form>
-            <MapView
-              restaurants={resList}
-              lng={this.state.lng}
-              lat={this.state.lat}
-            />
-          </div>
-          <div id="body-container">
-            <div className="restaurant-container">
-              <AliceCarousel mouseTracking responsive={responsive}>
-                {resList.map((item) => (
-                  <div
-                    className="res-card"
-                    key={item.id}
-                    onDragStart={handleDragStart}
-                  >
-                    {item.name}
-                    <div>
-                      <p>{item.location.display_address}</p>
-                      <img className="restaurant-image" src={item.image_url} />
-                      <p>{item.url}</p>
-                      <button
-                        type="button"
-                        onClick={() =>
-                          this.restaurantSelection(
-                            item.id,
-                            item.name,
-                            item.image_url
-                          )
-                        }
-                      >
-                        Select
-                      </button>
-                    </div>
-                  </div>
-                ))}
-              </AliceCarousel>
+                <form className="yellow-font">
+                  <h3>Rating:</h3>
+                  <label>
+                    5
+                    <input
+                      type="radio"
+                      name="rating"
+                      value="5"
+                      checked={this.state.rating === "5"}
+                      onChange={this.handleRadioChange}
+                    />
+                  </label>
+                  <label>
+                    4.5
+                    <input
+                      type="radio"
+                      name="rating"
+                      value="4.5"
+                      checked={this.state.rating === "4.5"}
+                      onChange={this.handleRadioChange}
+                    />
+                  </label>
+                  <label>
+                    4
+                    <input
+                      type="radio"
+                      name="rating"
+                      value="4"
+                      checked={this.state.rating === "4"}
+                      onChange={this.handleRadioChange}
+                    />
+                  </label>
+                  <label>
+                    Clear
+                    <input
+                      type="radio"
+                      name="rating"
+                      value="all"
+                      checked={this.state.rating === "all"}
+                      onChange={this.handleRadioChange}
+                    />
+                  </label>
+                </form>
+                <form className="yellow-font">
+                  <h3>Price:</h3>
+                  <label>
+                    $$$$
+                    <input
+                      type="radio"
+                      name="price"
+                      value="$$$$"
+                      checked={this.state.price === "$$$$"}
+                      onChange={this.handleInputChange}
+                    />
+                  </label>
+                  <label>
+                    $$$
+                    <input
+                      type="radio"
+                      name="price"
+                      value="$$$"
+                      checked={this.state.price === "$$$"}
+                      onChange={this.handleInputChange}
+                    />
+                  </label>
+                  <label>
+                    $$
+                    <input
+                      type="radio"
+                      name="price"
+                      value="$$"
+                      checked={this.state.price === "$$"}
+                      onChange={this.handleInputChange}
+                    />
+                  </label>
+                  <label>
+                    $
+                    <input
+                      type="radio"
+                      name="price"
+                      value="$"
+                      checked={this.state.price === "$"}
+                      onChange={this.handleInputChange}
+                    />
+                  </label>
+                  <label>
+                    Clear
+                    <input
+                      type="radio"
+                      name="price"
+                      value="all"
+                      checked={this.state.price === "all"}
+                      onChange={this.handleInputChange}
+                    />
+                  </label>
+                </form>
+              </div>
             </div>
+            <div id="mapbox-container">
+              <MapView
+                restaurants={resList}
+                lng={this.state.lng}
+                lat={this.state.lat}
+              />
+            </div>
+          </div>
+          <div id="restaurant-container">
+            <AliceCarousel
+              disableDotsControls={true}
+              mouseTracking
+              responsive={responsive}
+            >
+              {resList.map((item) => (
+                <div
+                  className="res-card"
+                  key={item.id}
+                  onDragStart={handleDragStart}
+                >
+                  {item.name}
+                  <div>
+                    <p>{item.location.display_address}</p>
+                    <img className="restaurant-image" src={item.image_url} />
+                    <button
+                      type="button"
+                      onClick={() =>
+                        this.restaurantSelection(
+                          item.id,
+                          item.name,
+                          item.image_url
+                        )
+                      }
+                    >
+                      Select
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </AliceCarousel>
           </div>
         </div>
       </ThemeProvider>

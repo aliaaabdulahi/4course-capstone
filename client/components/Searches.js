@@ -29,7 +29,7 @@ class Searches extends React.Component {
   }
   render() {
     return (
-      <div id="main-search-container">
+      <div>
         <form>
           <h1 className="yellow-font">
             Search By

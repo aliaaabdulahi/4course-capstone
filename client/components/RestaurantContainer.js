@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
   inviteButton: {
     fontFamily: "Permanent Marker",
     color: "#ff99bb",
+    alignSelf: "flex-end",
   },
 }));
 
@@ -33,31 +34,34 @@ const RestaurantContainer = (props) => {
   const classes = useStyles();
   return (
     <div id="main-selection-container">
-      {props.resSelections.map((res) => (
-        <div item key={res.yelpId}>
-          <Paper elevation={5} className={classes.listItem}>
-            <p className="yellow-font">{res.yelpName}</p>
-          </Paper>
-          <Button
-            className={classes.resListButton}
-            variant="contained"
-            color="secondary"
-            onClick={() => props.removal(res.yelpId)}
-          >
-            remove
-          </Button>
-        </div>
-      ))}
-
-      <Button
-        className={classes.inviteButton}
-        variant="contained"
-        color="secondary"
-        size="large"
-        onClick={() => props.addSelectionsToStore()}
-      >
-        INVITE FRIENDS
-      </Button>
+      <div id="res-selections">
+        {props.resSelections.map((res) => (
+          <div key={res.yelpId}>
+            <Paper elevation={5} className={classes.listItem}>
+              <p className="yellow-font">{res.yelpName}</p>
+            </Paper>
+            <Button
+              className={classes.resListButton}
+              variant="contained"
+              color="secondary"
+              onClick={() => props.removal(res.yelpId)}
+            >
+              remove
+            </Button>
+          </div>
+        ))}
+      </div>
+      <div id="invite-button">
+        <Button
+          className={classes.inviteButton}
+          variant="contained"
+          color="secondary"
+          size="large"
+          onClick={() => props.addSelectionsToStore()}
+        >
+          INVITE FRIENDS
+        </Button>
+      </div>
     </div>
   );
 };
