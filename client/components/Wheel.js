@@ -1,6 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider';
+import { Button } from "@material-ui/core";
+import Container from '@material-ui/core/Container';
 /**
  * COMPONENT
  */
@@ -19,13 +25,22 @@ class Wheel extends React.Component {
   }
   render() {
     console.log(this.state.roll);
-
+    console.log(this.props)
     return (
       <div>
         {this.state.roll === true ? (
           <div>
-            <h1>1.. 2.. 3..</h1>
-            <ul className="circel1">
+        <React.Fragment>
+      {/* <CssBaseline /> */}
+      <Container 
+        bgcolor="background.paper"
+        p={2}
+        position="absolute"
+        top={0}
+        left="43%"
+        zIndex="modal">
+
+          <ul className="circel1">
               <li>
                 <div className="text" contentEditable="true" spellCheck="false">
                   drinks
@@ -47,23 +62,33 @@ class Wheel extends React.Component {
                 </div>
               </li>
             </ul>
-            <button className="spin" onClick={this.handleclick}>
+            <Button 
+              position="absolute"
+              zIndex="modal"
+              className="spin"
+              onClick={this.handleclick}>
               Stop
-            </button>
+            </Button>
+      </Container>
+    </React.Fragment>
           </div>
         ) : (
           <div>
-            <p>Your assigned course is ...</p>
-            <p>
-              {Object.keys(this.props.courses).map((keyName, keyIndex) => (
-                <p>
-                  {keyName}: {this.props.courses[keyName].restaurant} -
-                  {this.props.courses[keyName].course}
-                </p>
-              ))}
-            </p>
-            <Link to="/invite">
-              <button>Next</button>
+       <List width='10%' aria-label="assigned courses">
+       {Object.keys(this.props.courses).map((keyName) => (
+         <div>
+          <ListItem button>
+          <ListItemText primary={`${keyName}:  ${this.props.courses[keyName].restaurant} -  ${this.props.courses[keyName].course}`} />          
+          </ListItem>
+          <Divider />
+           </div>
+          )
+          )}
+      </List>
+      <Link to="/invite">
+              <Button
+              className="spin"
+              >Next</Button>
             </Link>
           </div>
         )}

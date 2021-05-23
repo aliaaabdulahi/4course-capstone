@@ -3,6 +3,31 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {upcomingEventsThunk} from '../store/events';
 import SingleEvent from './SingleEvent'
+import { makeStyles } from '@material-ui/core/styles';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import IconButton from '@material-ui/core/IconButton';
+import InfoIcon from '@material-ui/icons/Info';
+
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    overflow: 'hidden',
+    backgroundColor: theme.palette.background.paper,
+  },
+  gridList: {
+    width: 500,
+    height: 450,
+  },
+  icon: {
+    color: 'rgba(255, 255, 255, 0.54)',
+  },
+}));
 
 class UpcomingEvents extends React.Component {
   constructor (props) {
@@ -25,28 +50,55 @@ class UpcomingEvents extends React.Component {
 
   render () {
     console.log(this.props.events)
+    const classes = useStyles();
     return (
-      <div className="center shape">
-        <h2 className="font">
-          Upcoming Events
-        </h2>
-        <div className="flex-center">
-          {this.props.events !== undefined && this.props.events.length > 0
-            ? this.props.events.map (event => (
-              <div>
-                <Link to={`/events/${event.id}`}>
-                <div className="event">
-                  <p>{event.name}</p>
-                  <img style={{width: '100px'}} src={JSON.parse(event.restaurants[0]).yelpImageUrl}></img>
-                  <p>{this.formatDate(event.date)}</p>
-                  <p>{this.formatTime(event.date)}</p>
-                </div>
-                </Link>
-                </div>
-              ))
-            : null}
-        </div>
-      </div>
+
+      <div className={classes.root}>
+      <h2 className="font">Upcoming Events</h2>
+      <GridList cellHeight={180} className={classes.gridList}>
+        {/* <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
+          <ListSubheader component="div">December</ListSubheader>
+        </GridListTile> */}
+       {/* {this.props.events !== undefined && this.props.events.length > 0 ? (
+         this.props.events.map (event => (
+                   <GridListTile key={event.name}>
+                   <img style={{width: '100px'}} src={JSON.parse(event.restaurants[0]).yelpImageUrl}></img>
+                   <GridListTileBar
+                     title={event.name}
+                     subtitle={<span>by: {event.name}</span>}
+                     actionIcon={
+                       <IconButton aria-label={`info about ${event.name}`} className={classes.icon}>
+                         <InfoIcon />
+                       </IconButton>
+                     }
+                   />
+                 </GridListTile>))
+       ) : null
+       } */}
+      </GridList>
+    </div>
+
+      // <div className="center shape">
+      //   <h2 className="font">
+      //     Upcoming Events
+      //   </h2>
+      //   <div className="flex-center">
+      //     {this.props.events !== undefined && this.props.events.length > 0
+      //       ? this.props.events.map (event => (
+      //         <div>
+      //           <Link to={`/events/${event.id}`}>
+      //           <div className="event">
+      //             <p>{event.name}</p>
+      //             <img style={{width: '100px'}} src={JSON.parse(event.restaurants[0]).yelpImageUrl}></img>
+      //             <p>{this.formatDate(event.date)}</p>
+      //             <p>{this.formatTime(event.date)}</p>
+      //           </div>
+      //           </Link>
+      //           </div>
+      //         ))
+      //       : null}
+      //   </div>
+      // </div>
     );
   }
 }
