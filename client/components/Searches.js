@@ -1,4 +1,6 @@
 import React from "react";
+import Button from "@material-ui/core/Button";
+import Input from "@material-ui/core/Input";
 
 const initialState = {
   searchTerm: "",
@@ -29,23 +31,43 @@ class Searches extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div id="searches">
         <form>
-          <h1 className="yellow-font">
+          <h1 className="centered-text">
             Search By
-            <span id="smaller"> Cuisine</span>{" "}
+            <span className="centered-text" id="smaller">
+              {" "}
+              Cuisine:
+            </span>{" "}
           </h1>
-          <input type="text" name="searchTerm" onChange={this.handleChange} />
-          <button type="submit" onClick={this.handleSubmit}>
-            Search
-          </button>
+          <Input
+            color="secondary"
+            type="text"
+            defaultValue='"Pizza" or "Italian"'
+            name="searchTerm"
+            onChange={this.handleChange}
+          />
+          <div id="search-cuisine-buttons">
+            <Button
+              className="buttons"
+              type="submit"
+              variant="contained"
+              onClick={this.handleSubmit}
+            >
+              Search
+            </Button>
+            <Button
+              className="buttons"
+              type="button"
+              variant="contained"
+              onClick={() =>
+                this.clearSelections(this.props.lat, this.props.lng)
+              }
+            >
+              Clear
+            </Button>
+          </div>
         </form>
-        <button
-          type="button"
-          onClick={() => this.clearSelections(this.props.lat, this.props.lng)}
-        >
-          Clear
-        </button>
       </div>
     );
   }

@@ -31,19 +31,24 @@ form div {
 #main-map-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  align-items: stretch;
+}
+
+#mapbox-container {
+  background-color: pink;
+  border: 5px solid white;
 }
 
 #main-selection-container {
-  background-color: plum;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  border: 2px solid pink;
   /*
   height: 85px;
   width: 800px;*/
-  padding: 3px;
+  /*padding: 3px;*/
 }
 
 /*This is where the names of the restaurants you have picked will go: */
@@ -54,25 +59,109 @@ form div {
   align-items: center;
 }
 
-#main-search-container {
-  background-color: #f3e6ff;
-}
 #main-rating-container {
-  background-color: lightpink;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
+.rating-forms {
+  background-color: pink;
+  font-family: "Permanent Marker";
+  color: #fff100;
+  display: flex;
+  flex-direction: column;
+  border: 5px solid white;
+}
+.rateLabels {
+  display: flex;
+  flex-direction: column;
+}
+.rateButtons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.rateContainer {
+  display: flex;
+  flex-direction: row;
+  width: 200px;
+}
+
+.priceLabels {
+  display: flex;
+  flex-direction: column;
+}
+.priceButtons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.priceContainer {
+  display: flex;
+  flex-direction: row;
+  width: 200px;
+}
+
 #search-and-select {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 #restaurant-container {
-  background-color: lightsteelblue;
+  background-color: pink;
 }
+
+.res-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: "Lora", serif;
+}
+
+#res-card-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  line-height: 0.65cm;
+}
+
+.capitalize-me {
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+}
+
+.select-me {
+  font-family: "Lora", serif;
+  background-color: black;
+  color: white;
+}
+
+#buttons-layout {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+}
+
+#yelp-button {
+  align-self: flex-end;
+  margin: 15px;
+  background-color: black;
+  color: white;
+  font-family: "Lora", serif;
+}
+
+#select-res-button {
+  align-self: flex-start;
+  margin: 15px;
+  background-color: black;
+  color: white;
+  font-family: "Lora", serif;
+}
+
 .map-container {
-  height: 350px;
+  height: 300px;
   width: 600px;
 }
 .begin-search {
@@ -80,20 +169,44 @@ form div {
   margin-top: 55px;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .yellow-font {
+  font-family: "Permanent Marker";
+  color: #fff100;
+}
+.centered-text {
+  text-align: center;
   font-family: "Permanent Marker";
   color: #fff100;
 }
 #smaller {
   font-size: 18.72px;
 }
+#searches {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: pink;
+  border: 5px solid white;
+}
+#search-cuisine-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
 
 .begin-search .buttons {
   font-family: "Permanent Marker";
   color: #fff100;
-  background-color: coral;
+  background-color: #dc143c;
+  padding: 5px;
+}
+
+#searches .buttons {
+  font-family: "Permanent Marker";
+  color: #fff100;
+  background-color: #dc143c;
   padding: 5px;
 }
 
@@ -103,13 +216,16 @@ form div {
   align-items: center;
 }
 
+.paper-color {
+  color: pink;
+}
+
 #search-text {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
   justify-content: center;
-  margin-left: 20px;
-  margin-top: 30px;
+  /*margin-left: 20px;
+  margin-top: 30px;*/
   height: max-content;
   background-color: #dc143c;
   align-items: center;
@@ -123,7 +239,7 @@ form div {
   margin-right: 30px;
 }
 .restaurant-image {
-  height: 100px;
+  height: 105px;
   width: 100px;
 }
 #sushi-pic {

@@ -2,10 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import { setRestaurantsThunk, setLocationThunk } from "../store/restaurants";
 import Button from "@material-ui/core/Button";
-// import Paper from "@material-ui/core/Paper";
 import Map from "./Map.js";
 import Anime3 from "./Anime3";
-import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
 import sushiPic from "../../public/sushi.png";
 
 const initialState = {
@@ -29,8 +28,6 @@ class BeginSearch extends React.Component {
     };
     this.success = this.success.bind(this);
     this.error = this.error.bind(this);
-
-    console.log("props I get on BeginSearch", this.props);
   }
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(
@@ -65,7 +62,6 @@ class BeginSearch extends React.Component {
   handleLocationSubmit(e) {
     e.preventDefault();
     const newLocation = this.state.location.toLowerCase();
-    console.log("newLocation is", newLocation);
     this.props._searchLocation(newLocation);
     setTimeout(() => {
       this.setState({
@@ -118,38 +114,42 @@ class BeginSearch extends React.Component {
           <React.Fragment>
             <div className="begin-search">
               <div id="search-text">
-                <img src={sushiPic} alt="sushi" id="sushi-pic" />
-                <form className="begin-search-form">
-                  <h1 className="yellow-font">Where are we Starting?</h1>
-                  <h3 className="yellow-font">
-                    Enter a city, neighborhood(i.e."Chelsea,NY") or zipcode:{" "}
-                  </h3>
-                  <input
-                    placeholder="city, neighborhood, zipcode"
-                    type="text"
-                    name="location"
-                    onChange={this.handleChange}
-                  />
-                  <Button
-                    className="buttons"
-                    type="submit"
-                    variant="contained"
-                    onClick={this.handleLocationSubmit}
-                  >
-                    Search
-                  </Button>
-                </form>
-                <form className="begin-search-form">
-                  <h3 className="yellow-font">Search By Current Location: </h3>
-                  <Button
-                    className="buttons"
-                    type="button"
-                    variant="contained"
-                    onClick={this.handleSubmit}
-                  >
-                    Search
-                  </Button>
-                </form>
+                <Paper elevation={6} className="paper-color">
+                  <img src={sushiPic} alt="sushi" id="sushi-pic" />
+                  <form className="begin-search-form">
+                    <h1 className="yellow-font">Where are we Starting?</h1>
+                    <h3 className="yellow-font">
+                      Enter a city, neighborhood(i.e."Chelsea,NY") or zipcode:{" "}
+                    </h3>
+                    <input
+                      placeholder="city, neighborhood, zipcode"
+                      type="text"
+                      name="location"
+                      onChange={this.handleChange}
+                    />
+                    <Button
+                      className="buttons"
+                      type="submit"
+                      variant="contained"
+                      onClick={this.handleLocationSubmit}
+                    >
+                      Search
+                    </Button>
+                  </form>
+                  <form className="begin-search-form">
+                    <h3 className="yellow-font">
+                      Search By Current Location:{" "}
+                    </h3>
+                    <Button
+                      className="buttons"
+                      type="button"
+                      variant="contained"
+                      onClick={this.handleSubmit}
+                    >
+                      Search
+                    </Button>
+                  </form>
+                </Paper>
               </div>
               <div id="restaurant-animation">
                 <Anime3 />

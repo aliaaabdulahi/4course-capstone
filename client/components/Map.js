@@ -4,8 +4,10 @@ import { connect } from "react-redux";
 import MapView from "./MapView";
 import RestaurantContainer from "./RestaurantContainer";
 import Searches from "./Searches";
+import Paper from "@material-ui/core/Paper";
 import { ThemeProvider } from "@material-ui/styles";
 import AliceCarousel from "react-alice-carousel";
+import Button from "@material-ui/core/Button";
 import "react-alice-carousel/lib/alice-carousel.css";
 import theme from "../theme.js";
 import { restaurantSelectionThunk } from "../store/restaurantSelections";
@@ -16,7 +18,7 @@ const responsive = {
     items: 3,
   },
   1024: {
-    items: 3,
+    items: 4,
   },
 };
 
@@ -105,6 +107,66 @@ class Map extends React.Component {
         return item.price === this.state.price;
       });
     }
+    const ratingValues = ["5", "4.5", "4", "all"];
+    const ratingLabels = (
+      <div className="rateLabels">
+        {ratingValues.map((item) => (
+          <label key={item}>{item}</label>
+        ))}
+      </div>
+    );
+    const rateButtons = (
+      <div className="rateButtons">
+        {ratingValues.map((item) => (
+          <input
+            key={item}
+            type="radio"
+            name="rating"
+            value={item}
+            checked={this.state.rating === item}
+            onChange={this.handleRadioChange}
+          />
+        ))}
+      </div>
+    );
+    const rateContainer = (
+      <div className="rateContainer">
+        {ratingLabels}
+        {rateButtons}
+      </div>
+    );
+
+    const priceValues = ["$$$$", "$$$", "$$", "$", "all"];
+    const priceLabels = (
+      <div className="priceLabels">
+        {priceValues.map((item) => (
+          <label key={item}>{item}</label>
+        ))}
+      </div>
+    );
+
+    const priceButtons = (
+      <div className="priceButtons">
+        {" "}
+        {priceValues.map((item) => (
+          <input
+            key={item}
+            type="radio"
+            name="price"
+            value={item}
+            checked={this.state.price === item}
+            onChange={this.handleInputChange}
+          />
+        ))}
+      </div>
+    );
+    const priceContainer = (
+      <div className="priceContainer">
+        {priceLabels}
+        {priceButtons}
+      </div>
+    );
+
     return (
       <ThemeProvider theme={theme}>
         <div id="main-container">
@@ -126,101 +188,13 @@ class Map extends React.Component {
                     this.props.restaurantsList(latitude, longitude)
                   }
                 />
-                <form className="yellow-font">
-                  <h3>Rating:</h3>
-                  <label>
-                    5
-                    <input
-                      type="radio"
-                      name="rating"
-                      value="5"
-                      checked={this.state.rating === "5"}
-                      onChange={this.handleRadioChange}
-                    />
-                  </label>
-                  <label>
-                    4.5
-                    <input
-                      type="radio"
-                      name="rating"
-                      value="4.5"
-                      checked={this.state.rating === "4.5"}
-                      onChange={this.handleRadioChange}
-                    />
-                  </label>
-                  <label>
-                    4
-                    <input
-                      type="radio"
-                      name="rating"
-                      value="4"
-                      checked={this.state.rating === "4"}
-                      onChange={this.handleRadioChange}
-                    />
-                  </label>
-                  <label>
-                    Clear
-                    <input
-                      type="radio"
-                      name="rating"
-                      value="all"
-                      checked={this.state.rating === "all"}
-                      onChange={this.handleRadioChange}
-                    />
-                  </label>
+                <form className="rating-forms">
+                  <h3 className="centered-text">Rating:</h3>
+                  {rateContainer}
                 </form>
-                <form className="yellow-font">
-                  <h3>Price:</h3>
-                  <label>
-                    $$$$
-                    <input
-                      type="radio"
-                      name="price"
-                      value="$$$$"
-                      checked={this.state.price === "$$$$"}
-                      onChange={this.handleInputChange}
-                    />
-                  </label>
-                  <label>
-                    $$$
-                    <input
-                      type="radio"
-                      name="price"
-                      value="$$$"
-                      checked={this.state.price === "$$$"}
-                      onChange={this.handleInputChange}
-                    />
-                  </label>
-                  <label>
-                    $$
-                    <input
-                      type="radio"
-                      name="price"
-                      value="$$"
-                      checked={this.state.price === "$$"}
-                      onChange={this.handleInputChange}
-                    />
-                  </label>
-                  <label>
-                    $
-                    <input
-                      type="radio"
-                      name="price"
-                      value="$"
-                      checked={this.state.price === "$"}
-                      onChange={this.handleInputChange}
-                    />
-                  </label>
-                  <label>
-                    Clear
-                    <input
-                      type="radio"
-                      name="price"
-                      value="all"
-                      checked={this.state.price === "all"}
-                      onChange={this.handleInputChange}
-                    />
-                  </label>
+                <form className="rating-forms">
+                  <h3 className="centered-text">Price:</h3>
+                  {priceContainer}
                 </form>
               </div>
             </div>
@@ -244,23 +218,44 @@ class Map extends React.Component {
                   key={item.id}
                   onDragStart={handleDragStart}
                 >
-                  {item.name}
-                  <div>
-                    <p>{item.location.display_address}</p>
+                  <Paper elevation={12} className="res-card">
+                    <p id="res-card-text" className="capitalize-me">
+                      {item.name}
+                      <n />
+                      {item.location.address1}
+                      {item.location.address2}
+                      <n />
+                      {item.location.city} {item.location.state}{" "}
+                      {item.location.zip_code}
+                    </p>
                     <img className="restaurant-image" src={item.image_url} />
-                    <button
-                      type="button"
-                      onClick={() =>
-                        this.restaurantSelection(
-                          item.id,
-                          item.name,
-                          item.image_url
-                        )
-                      }
-                    >
-                      Select
-                    </button>
-                  </div>
+                    <div id="buttons-layout">
+                      <a href={item.url} target="_blank">
+                        <Button
+                          id="yelp-button"
+                          className="select-me"
+                          variant="contained"
+                        >
+                          Go To Yelp!
+                        </Button>
+                      </a>
+                      <Button
+                        id="select-res-button"
+                        className="select-me"
+                        type="button"
+                        variant="contained"
+                        onClick={() =>
+                          this.restaurantSelection(
+                            item.id,
+                            item.name,
+                            item.image_url
+                          )
+                        }
+                      >
+                        Select
+                      </Button>
+                    </div>
+                  </Paper>
                 </div>
               ))}
             </AliceCarousel>

@@ -2,6 +2,7 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/styles";
 import Paper from "@material-ui/core/Paper";
+import SendIcon from "@material-ui/icons/Send";
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
@@ -59,7 +60,7 @@ const RestaurantContainer = (props) => {
           size="large"
           onClick={() => props.addSelectionsToStore()}
         >
-          INVITE FRIENDS
+          INVITE FRIENDS <SendIcon color="#ff99bb" fontSize="small" />
         </Button>
       </div>
     </div>
