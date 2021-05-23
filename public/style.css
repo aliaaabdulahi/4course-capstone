@@ -52,7 +52,6 @@ form div {
   /*padding: 3px;*/
 }
 
-/*This is where the names of the restaurants you have picked will go: */
 #res-selections {
   display: flex;
   flex-direction: row;
@@ -375,8 +374,7 @@ form div {
   overflow: hidden;
 }
 
-/*
-li {
+.circel1 li {
   overflow: hidden;
   position: absolute;
   top: 0;
@@ -385,31 +383,31 @@ li {
   height: 50%;
   transform-origin: 0% 100%;
   /* list-style: none;
-  z-index: -1;
+  z-index: -1;*/
 }
-li:first-child .text {
+.circel1 li:first-child .text {
   background-color: #f1c40f;
 }
-li:nth-child(2) .text {
+.circel1 li:nth-child(2) .text {
   background-color: #e67e22;
 }
-li:nth-child(3) .text {
+.circel1 li:nth-child(3) .text {
   background-color: #e74c3c;
 }
-li:nth-child(4) .text {
+.circel1 li:nth-child(4) .text {
   background-color: #c0392b;
 }
 
-li:first-child {
+.circel1 li:first-child {
   transform: rotate(90deg);
 }
-li:nth-child(2) {
+.circel1 li:nth-child(2) {
   transform: rotate(180deg);
 }
-li:nth-child(3) {
+.circel1 li:nth-child(3) {
   transform: rotate(270deg);
 }
-li:nth-child(4) {
+.circel1 li:nth-child(4) {
   transform: rotate(360deg);
 }
 
@@ -434,8 +432,6 @@ ul.circel1 {
   animation-delay: 0.7s;
   z-index: 2;
 }
-*/
-
 @keyframes animateOne {
   0% {
     transform: translate(-50%, -50%) rotate(0deg);
