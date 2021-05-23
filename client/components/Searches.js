@@ -3,9 +3,10 @@ import Button from "@material-ui/core/Button";
 import Input from "@material-ui/core/Input";
 
 const initialState = {
-  searchTerm: "",
+  searchTerm: '"Pizza" or "Italian"',
   location: "",
   price: "",
+  disabled: false,
 };
 class Searches extends React.Component {
   constructor(props) {
@@ -15,7 +16,6 @@ class Searches extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.clearSelections = this.clearSelections.bind(this);
   }
-
   handleChange(e) {
     this.setState({
       [e.target.name]: e.target.value,
@@ -25,9 +25,16 @@ class Searches extends React.Component {
     e.preventDefault();
     const newCuisine = this.state.searchTerm.toLowerCase();
     this.props.searchCuisine(newCuisine, this.props.lat, this.props.lng);
+    this.setState({
+      searchTerm: " ",
+      disabled: true,
+    });
   }
   clearSelections(lat, long) {
     this.props.resClear(lat, long);
+    this.setState({
+      disabled: false,
+    });
   }
   render() {
     return (
@@ -43,9 +50,10 @@ class Searches extends React.Component {
           <Input
             color="secondary"
             type="text"
-            defaultValue='"Pizza" or "Italian"'
+            value={this.state.searchTerm}
             name="searchTerm"
             onChange={this.handleChange}
+            disabled={this.state.disabled}
           />
           <div id="search-cuisine-buttons">
             <Button
@@ -53,6 +61,7 @@ class Searches extends React.Component {
               type="submit"
               variant="contained"
               onClick={this.handleSubmit}
+              disabled={this.state.disabled}
             >
               Search
             </Button>

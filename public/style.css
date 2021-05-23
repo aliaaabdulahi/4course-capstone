@@ -32,6 +32,7 @@ form div {
   display: flex;
   flex-direction: row;
   align-items: stretch;
+  width: 300px;
 }
 
 #mapbox-container {
@@ -166,7 +167,7 @@ form div {
 }
 .begin-search {
   font-family: "Permanent Marker";
-  margin-top: 55px;
+  margin-top: 100px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -213,11 +214,15 @@ form div {
 .begin-search-form {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  justify-content: center;
+  align-items: flex-start;
+  margin-left: 30px;
+  margin-right: 30px;
 }
 
-.paper-color {
-  color: pink;
+.coral-font {
+  color: coral;
+  font-family: "Permanent Marker";
 }
 
 #search-text {
@@ -227,12 +232,14 @@ form div {
   /*margin-left: 20px;
   margin-top: 30px;*/
   height: max-content;
-  background-color: #dc143c;
+  background-color: coral;
   align-items: center;
-  -webkit-box-shadow: 3px 3px 5px 6px #dc143c; /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
-  -moz-box-shadow: 3px 3px 5px 6px #dc143c; /* Firefox 3.5 - 3.6 */
+  /*
+  -webkit-box-shadow: 3px 3px 5px 6px #dc143c; /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+
+  -moz-box-shadow: 3px 3px 5px 6px #dc143c;  Firefox 3.5 - 3.6 
   box-shadow: 3px 3px 5px 6px #dc143c;
-  padding: 10px;
+  */
+  padding: 15px;
 }
 .restaurant-animation {
   margin-top: 95px;
@@ -242,12 +249,36 @@ form div {
   height: 105px;
   width: 100px;
 }
-#sushi-pic {
-  height: 200px;
-  width: 260px;
-  border-radius: 2em;
-  background-color: "#dc143c";
+
+#pick-location-header {
+  text-align: center;
 }
+#or-header {
+  align-self: flex-start;
+}
+#location-forms {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+#begin-images {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding-top: 5px;
+}
+.begin-search-pics {
+  height: 100px;
+  width: 105px;
+  border-radius: 2em;
+}
+
+#text-field {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
 .center {
   text-align: center;
 }
