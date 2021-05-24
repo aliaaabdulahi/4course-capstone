@@ -14,12 +14,12 @@ class PastEvents extends React.Component {
 
   formatDate(timestamp) {
     const date = new Date(timestamp);
-    return date.getMonth()+1 + "-" + (date.getDate()+1) + "-" + date.getFullYear();
+    return date.getMonth()+1 + "-" + (date.getDate()) + "-" + date.getFullYear();
   }
 
   formatTime(timestamp) {
     const date = new Date(timestamp);
-    return ('0' + date.getUTCHours()).slice(-2) + ":" + ('0' + date.getUTCMinutes()).slice(-2) + ":" + ('0' + date.getSeconds()).slice(-2);
+    return ('0' + date.getHours()).slice(-2) + ":" + ('0' + date.getMinutes()).slice(-2) + ":" + ('0' + date.getSeconds()).slice(-2);
   }
 
   render () {
