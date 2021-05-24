@@ -23,9 +23,8 @@ class Wheel extends React.Component {
       roll: !this.state.roll,
     });
   }
+  
   render() {
-    console.log(this.state.roll);
-    console.log(this.props)
     return (
       <div>
         {this.state.roll === true ? (

@@ -25,7 +25,7 @@ router.get("/upcoming/:userId", async (req, res, next) => {
         },
         invitees: {
           [Op.contains]: [user.email],
-        },
+        }, 
       },
     });
     res.send(events);
@@ -129,6 +129,7 @@ router.get("/:eventId", async (req, res, next) => {
       where: {
         id: req.params.eventId,
       },
+      include: {model: Course},
     });
     res.send(event);
   } catch (error) {

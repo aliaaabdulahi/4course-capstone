@@ -1,5 +1,6 @@
 import React from "react";
-import { connect } from "react-redux";
+import { connect } from "react-redux"
+import { Link } from "react-router-dom";;
 import axios from "axios";
 
 /**
@@ -23,10 +24,13 @@ class Invite extends React.Component {
   render() {
     return (
       <div className="center">
+        
         <p>Time to fly the news to your friends!</p>
+        <Link to="/thankyou">
         <form onSubmit={this.handleEmail}>
           <input className="button bigCircle" type="submit" value="Send Link" />
         </form>
+        </Link>
       </div>
     );
   }

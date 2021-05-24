@@ -3,7 +3,7 @@ const db = require("../db");
 
 const Course = db.define("courses", {
   courseType: {
-    type: Sequelize.ENUM("drinks", "appetizer", "entree", "dessert"),
+    type: Sequelize.ENUM("Drinks", "Appetizer", "Entree", "Dessert"),
     allowNull: false,
   },
   restaurant: Sequelize.TEXT,
