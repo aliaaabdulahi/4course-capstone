@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
@@ -6,24 +7,40 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
+=======
+import React from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { upcomingEventsThunk } from "../store/events";
+import SingleEvent from "./SingleEvent";
+>>>>>>> main
 
 class UpcomingEvents extends React.Component {
-  constructor (props) {
-    super (props);
+  constructor(props) {
+    super(props);
   }
 
-   componentDidMount () {
-     this.props.upcomingEventsThunk (this.props.id);
+  componentDidMount() {
+    this.props.upcomingEventsThunk(this.props.id);
   }
 
   formatDate(timestamp) {
     const date = new Date(timestamp);
-    return date.getMonth()+1 + "-" + (date.getDate()+1) + "-" + date.getFullYear();
+    return (
+      date.getMonth() + 1 + "-" + date.getDate() + "-" + date.getFullYear()
+    );
   }
 
   formatTime(timestamp) {
     const date = new Date(timestamp);
-    return ('0' + date.getUTCHours()).slice(-2) + ":" + ('0' + date.getUTCMinutes()).slice(-2) + ":" + ('0' + date.getSeconds()).slice(-2);
+    date.setHours(date.getHours() - 4);
+    return (
+      ("0" + date.getHours()).slice(-2) +
+      ":" +
+      ("0" + date.getMinutes()).slice(-2) +
+      ":" +
+      ("0" + date.getSeconds()).slice(-2)
+    );
   }
 
   render () {
@@ -54,11 +71,11 @@ class UpcomingEvents extends React.Component {
   }
 }
 
-const mapState = state => {
+const mapState = (state) => {
   return {
     id: state.auth.id,
     events: state.events.events,
   };
 };
 
-export default connect (mapState, {upcomingEventsThunk}) (UpcomingEvents);
+export default connect(mapState, { upcomingEventsThunk })(UpcomingEvents);
