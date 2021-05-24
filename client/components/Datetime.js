@@ -7,23 +7,26 @@ import Anime1 from "./Anime1";
 import Button from "@material-ui/core/Button";
 import Paper from "@material-ui/core/Paper";
 import { connect } from "react-redux";
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles((theme) => ({
   dateTimeButton: {
     ...theme.typography.button,
     fontFamily: "Permanent Marker",
     color: "#fff100",
-    marginTop: "5.5em",
+    marginTop: "1.5em",
     "&:hover": {
-      color: "#DC143C",
-      backgroundColor: "fff100",
+      color: "#ffffff",
+      backgroundColor: "ffffff",
     },
   },
   text: {
-    color: "#fff100",
+    fontSize: "2em",
+    color: "#fffff",
     fontFamily: "Permanent Marker",
     backgroundColor: "#DC143C",
-    borderRadius: 10,
+    borderRadius: 20,
   },
   picker: {
     color: "#fff100",
@@ -39,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   paper: {
+    width: "100%",
     padding: theme.spacing(3),
     textAlign: "center",
     color: "#fff100",
@@ -85,23 +89,19 @@ function Datetime({ handleSave, history, id }) {
   };
 
   return (
-    <Grid container spacing={10} className={classes.grid}>
-      <Grid item xs={4}>
-        <Anime1 />
-      </Grid>
-      <Grid item xs={4}>
-        <Paper className={classes.paper}>
-          <h1 className={classes.text}>Choose Event Name</h1>
-          <input type="text" name="name" onChange={handleChange} />
-        </Paper>
-        <Paper className={classes.paper}>
-          <h1 className={classes.text}>Choose Date & Time</h1>
+    <Grid container justify="center" className={classes.grid}>
+      <Paper justify="center" className={classes.paper}>
+      <Grid item xs={4} >
+      <Typography className={classes.text}>Event Name</Typography>
+          <TextField label="Event Name..." name="name" size="small"
+                    variant="outlined" onChange={handleChange} />
+          <Typography className={classes.text}>Choose Date & Time</Typography>
           <DateTimePicker
             className={classes.picker}
             onChange={onChange}
             value={value}
           />
-        </Paper>
+        
       </Grid>
       <Grid item xs={4}>
         <Button
@@ -114,6 +114,8 @@ function Datetime({ handleSave, history, id }) {
           Save
         </Button>
       </Grid>
+      <Anime1 />
+      </Paper>
     </Grid>
   );
 }

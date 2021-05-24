@@ -15,6 +15,21 @@ const {
 } = require("../db");
 module.exports = router;
 
+router.get("/:eventId", async (req, res, next) => {
+  try {
+    const course = await Course.findAll({
+      where: {
+        eventId: req.params.eventId
+      }, include: {
+        model: User
+      }
+    })
+    res.send(course)
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.post("/:eventId", async (req, res, next) => {
   try {
     const courseObj = req.body;
@@ -34,3 +49,5 @@ router.post("/:eventId", async (req, res, next) => {
     next(err);
   }
 });
+
+

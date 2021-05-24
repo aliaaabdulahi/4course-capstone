@@ -21,6 +21,7 @@ import Wheel from "./components/Wheel";
 import UpcomingEvents from "./components/UpcomingEvents";
 import PastEvents from "./components/PastEvents";
 import SingleEvent from "./components/SingleEvent";
+import ThankYou from "./components/ThankYou";
 
 class Routes extends React.Component {
   componentDidMount() {
@@ -42,6 +43,7 @@ class Routes extends React.Component {
             <Route exact path="/pastevents" component={PastEvents} />
             <Route path="/wheel" component={Wheel} />
             <Route exact path="/events/:eventId" component={SingleEvent} />
+            <Route exact path="/thankyou" component={ThankYou} />
             <Redirect to="/" />
           </Switch>
         ) : (

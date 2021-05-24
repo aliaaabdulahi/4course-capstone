@@ -1,8 +1,19 @@
+<<<<<<< HEAD
+import React from 'react';
+import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
+import {upcomingEventsThunk} from '../store/events';
+import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+=======
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { upcomingEventsThunk } from "../store/events";
 import SingleEvent from "./SingleEvent";
+>>>>>>> main
 
 class UpcomingEvents extends React.Component {
   constructor(props) {
@@ -32,31 +43,30 @@ class UpcomingEvents extends React.Component {
     );
   }
 
-  render() {
-    console.log(this.props.events);
+  render () {
     return (
       <div className="center shape">
-        <h2 className="font">Upcoming Events</h2>
-        <div className="flex-center">
-          {this.props.events !== undefined && this.props.events.length > 0
-            ? this.props.events.map((event) => (
-                <div>
-                  <Link to={`/events/${event.id}`}>
-                    <div className="event">
-                      <p>{event.name}</p>
-                      <img
-                        style={{ width: "100px" }}
-                        src={JSON.parse(event.restaurants[0]).yelpImageUrl}
-                      ></img>
-                      <p>{this.formatDate(event.date)}</p>
-                      <p>{this.formatTime(event.date)}</p>
-                    </div>
-                  </Link>
-                </div>
-              ))
-            : null}
-        </div>
-      </div>
+      <div style={{ padding: 20 }}>
+      <h2 className="font">Upcoming Events</h2>
+      <Grid container justify="center">
+       {this.props.events !== undefined && this.props.events.length > 0 ? (
+         this.props.events.map (event => (
+          <Grid item md style={{ margin: 10,  }} >
+            <Paper style={{ padding: 5, maxWidth: 500, maxHeight: 500, }} >
+            <Link to={`/events/${event.id}`}>
+                  <Typography>{event.name}</Typography>
+                   <img style={{width: '300px'}} src={JSON.parse(event.restaurants[0]).yelpImageUrl}></img>
+                   <Typography>Date: {this.formatDate(event.date)}</Typography>
+                   <Typography>Time: {this.formatTime(event.date)}</Typography>
+                   </Link>
+                   </Paper>
+                 </Grid>
+                 ))
+       ) : null
+       }
+      </Grid>
+    </div>
+    </div>
     );
   }
 }
