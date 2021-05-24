@@ -26,7 +26,7 @@ class UpcomingEvents extends React.Component {
 
   formatTime(timestamp) {
     const date = new Date(timestamp);
-    date.setHours(date.getHours() - 4);
+    date.setHours(date.getHours());
     return (
       ("0" + date.getHours()).slice(-2) +
       ":" +
