@@ -89,24 +89,29 @@ function Datetime({ handleSave, history, id }) {
   };
 
   return (
-    <Grid container justify="center" className={classes.grid}>
-      <Paper justify="center" className={classes.paper}>
-      <Grid item xs={4} >
-      <Typography className={classes.text}>Event Name</Typography>
-          <TextField label="Event Name..." name="name" size="small"
-                    variant="outlined" onChange={handleChange} />
-          <Typography className={classes.text}>Choose Date & Time</Typography>
+    <Grid container justify="center" >
+      <Paper justify="center">
+      <Grid item justify="center" >
+      {/* <Typography>Event Name</Typography> */}
+      <Grid  style={{marginTop: 5, marginLeft:20}}>
+          <TextField label="Enter Event Name..." name="name" size="Normal"
+                    variant="standard" onChange={handleChange} />
+                    </Grid>
+                    <Grid  style={{marginTop: 20, marginLeft:20}}>
+          <Typography>Choose Date and Time</Typography>
+          
           <DateTimePicker
-            className={classes.picker}
+            // className={classes.picker}
             onChange={onChange}
             value={value}
           />
-        
+        </Grid>
       </Grid>
       <Grid item xs={4}>
         <Button
+          style={{marginTop: 20, marginLeft:20}}
           variant="contained"
-          className={classes.dateTimeButton}
+          // className={classes.dateTimeButton}
           onClick={onSave}
           color="secondary"
           size="large"
