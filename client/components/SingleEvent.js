@@ -5,6 +5,8 @@ import {getAssignmentsThunk} from '../store/courses'
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import { Link } from "react-router-dom";
+import { Button } from "@material-ui/core";
 
 class SingleEvent extends React.Component{
     componentDidMount () {
@@ -25,6 +27,9 @@ class SingleEvent extends React.Component{
             return(
               <div className="center shape">
                 <Grid container justify="center">
+                  <Link to="/">
+                  <Button>back</Button>
+                  </Link>
                 <Paper style={{ padding: 70 }} >
                 <Typography>Event Name: {this.props.singleEvent.name}</Typography>
                   <Typography>Date: {this.formatDate(this.props.singleEvent.date)}</Typography>
