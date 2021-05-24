@@ -6,7 +6,6 @@ import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import SingleEvent from "./SingleEvent";
-import SingleEvent from "./SingleEvent";
 
 class UpcomingEvents extends React.Component {
   constructor(props) {
