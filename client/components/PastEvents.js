@@ -38,7 +38,7 @@ class PastEvents extends React.Component {
                  <Paper style={{ padding: 5, }} >
                 <Link to={`/events/${event.id}`}>
                 <Typography>{event.name}</Typography>
-                  <img style={{width: '300px'}} src={JSON.parse(event.restaurants[0]).yelpImageUrl}></img>
+                  <img style={{width: '300px', height: "300px"}} src={JSON.parse(event.restaurants[0]).yelpImageUrl}></img>
                   <Typography>{this.formatDate(event.date)}</Typography>
                   <Typography>{this.formatTime(event.date)}</Typography>
                 </Link>

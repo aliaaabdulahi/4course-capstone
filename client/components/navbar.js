@@ -27,13 +27,17 @@ const useStyles = makeStyles((theme) => ({
   },
   welcomeLogo: {
     height: "175px",
-    width: "320px",
+    width: "360px",
     padding: "10px",
     marginTop: "16px",
   },
   logText: {
     color: "#ff99bb",
   },
+  welcomeButton :{
+    fontFamily: "Permanent Marker",
+    color: "#fff100",
+  }
 }));
 
 const Navbar = ({ handleClick, isLoggedIn }) => {
@@ -54,7 +58,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => {
         </ThemeProvider>
       ) : (
         <ThemeProvider theme={theme}>
-          <Grid container direction="column" justify="center">
+          <Grid container direction="column" justify="center" alignItems="center">
             <Grid item>
               <Paper className={classes.welcomeBar} elevation={15}>
                 <Typography className={classes.welcomeBarText}>
@@ -68,9 +72,10 @@ const Navbar = ({ handleClick, isLoggedIn }) => {
                 />
               </Paper>
             </Grid>
-            <Grid item>
+            <Grid item >
               <div id="login-signup-bar">
                 <Button
+                 style={{marginTop:30, marginRight:20}}
                   component={Link}
                   to="/login"
                   className={classes.welcomeButton}
@@ -80,6 +85,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => {
                   Login
                 </Button>
                 <Button
+                 style={{marginTop:30}}
                   component={Link}
                   to="/signup"
                   className={classes.welcomeButton}

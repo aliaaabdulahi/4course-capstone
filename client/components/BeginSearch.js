@@ -117,10 +117,10 @@ class BeginSearch extends React.Component {
         );
       } else {
         return (
-          <React.Fragment>
+          <React.Fragment >
             <div className="begin-search">
               <div id="search-text">
-                <Paper elevation={6}>
+                <Paper elevation={6} justify="center">
                   <div id="begin-images">
                     <img
                       className="begin-search-pics"

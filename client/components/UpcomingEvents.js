@@ -36,7 +36,7 @@ class UpcomingEvents extends React.Component {
       <div className="center shape">
         <div style={{ padding: 20 }}>
           <h2 className="font">Upcoming Events</h2>
-          <Grid container justify="center">
+          <Grid container px>
             {this.props.events !== undefined && this.props.events.length > 0
               ? this.props.events.map((event) => (
                   <Grid item md style={{ margin: 10 }}>
@@ -46,7 +46,7 @@ class UpcomingEvents extends React.Component {
                       <Link to={`/events/${event.id}`}>
                         <Typography>{event.name}</Typography>
                         <img
-                          style={{ width: "300px" }}
+                          style={{ width: "300px" , height: "300px" }}
                           src={JSON.parse(event.restaurants[0]).yelpImageUrl}
                         ></img>
                         <Typography>
