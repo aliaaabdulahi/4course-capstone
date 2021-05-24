@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
@@ -7,13 +6,7 @@ import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-=======
-import React from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { upcomingEventsThunk } from "../store/events";
 import SingleEvent from "./SingleEvent";
->>>>>>> main
 
 class UpcomingEvents extends React.Component {
   constructor(props) {
