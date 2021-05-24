@@ -52,18 +52,18 @@ class Wheel extends React.Component {
             </button>
           </div>
         ) : (
-          <div>
+          <div className="results-box">
             <p>Your assigned course is ...</p>
             <p>
               {Object.keys(this.props.courses).map((keyName, keyIndex) => (
                 <p>
-                  {keyName}: {this.props.courses[keyName].restaurant} -
+                  <span style={{color:"black"}}>{keyName}:</span> {this.props.courses[keyName].restaurant} -
                   {this.props.courses[keyName].course}
                 </p>
               ))}
             </p>
             <Link to="/invite">
-              <button>Next</button>
+              <button className="button">Next</button>
             </Link>
           </div>
         )}
