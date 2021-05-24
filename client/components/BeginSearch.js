@@ -2,11 +2,16 @@ import React from "react";
 import { connect } from "react-redux";
 import { setRestaurantsThunk, setLocationThunk } from "../store/restaurants";
 import Button from "@material-ui/core/Button";
-// import Paper from "@material-ui/core/Paper";
+import TextField from "@material-ui/core/TextField";
+import InputAdornment from "@material-ui/core/InputAdornment";
 import Map from "./Map.js";
 import Anime3 from "./Anime3";
-import Grid from "@material-ui/core/Grid";
+import Paper from "@material-ui/core/Paper";
+import SearchIcon from "@material-ui/icons/Search";
 import sushiPic from "../../public/sushi.png";
+import breakfast from "../../public/Breakfast.png";
+import fries from "../../public/fries.png";
+import drinks from "../../public/drinks.png";
 
 const initialState = {
   location: "",
@@ -29,8 +34,6 @@ class BeginSearch extends React.Component {
     };
     this.success = this.success.bind(this);
     this.error = this.error.bind(this);
-
-    console.log("props I get on BeginSearch", this.props);
   }
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(
@@ -65,7 +68,6 @@ class BeginSearch extends React.Component {
   handleLocationSubmit(e) {
     e.preventDefault();
     const newLocation = this.state.location.toLowerCase();
-    console.log("newLocation is", newLocation);
     this.props._searchLocation(newLocation);
     setTimeout(() => {
       this.setState({
@@ -118,38 +120,94 @@ class BeginSearch extends React.Component {
           <React.Fragment>
             <div className="begin-search">
               <div id="search-text">
-                <img src={sushiPic} alt="sushi" id="sushi-pic" />
-                <form className="begin-search-form">
-                  <h1 className="yellow-font">Where are we Starting?</h1>
-                  <h3 className="yellow-font">
-                    Enter a city, neighborhood(i.e."Chelsea,NY") or zipcode:{" "}
-                  </h3>
-                  <input
-                    placeholder="city, neighborhood, zipcode"
-                    type="text"
-                    name="location"
-                    onChange={this.handleChange}
-                  />
-                  <Button
-                    className="buttons"
-                    type="submit"
-                    variant="contained"
-                    onClick={this.handleLocationSubmit}
-                  >
-                    Search
-                  </Button>
-                </form>
-                <form className="begin-search-form">
-                  <h3 className="yellow-font">Search By Current Location: </h3>
-                  <Button
-                    className="buttons"
-                    type="button"
-                    variant="contained"
-                    onClick={this.handleSubmit}
-                  >
-                    Search
-                  </Button>
-                </form>
+                <Paper elevation={6}>
+                  <div id="begin-images">
+                    <img
+                      className="begin-search-pics"
+                      src={sushiPic}
+                      alt="sushi pic"
+                    />
+                    <img
+                      className="begin-search-pics"
+                      src={breakfast}
+                      alt="breakfast"
+                    />
+                    <img
+                      className="begin-search-pics"
+                      src={fries}
+                      alt="fries"
+                    />
+                    <img
+                      className="begin-search-pics"
+                      src={drinks}
+                      alt="drinks"
+                    />
+                  </div>
+                  <div id="pick-location-header">
+                    <Paper elevation={5}>
+                      {" "}
+                      <h1 className="coral-font">PICK A STARTING POINT: </h1>
+                    </Paper>
+                  </div>
+                  <div id="location-forms">
+                    <form className="begin-search-form">
+                      <h3 className="coral-font">
+                        Enter a city,
+                        <br />
+                        neighborhood (i.e."Chelsea,NY")
+                        <br />
+                        or zip-code:
+                      </h3>
+                      <div id="text-field">
+                        <TextField
+                          placeholder="city, neighborhood, zip-code"
+                          type="text"
+                          name="location"
+                          variant="outlined"
+                          style={{ width: 315 }}
+                          color="secondary"
+                          onChange={this.handleChange}
+                          size="small"
+                          InputProps={{
+                            startAdornment: (
+                              <InputAdornment position="start">
+                                <SearchIcon fontSize="small" />
+                              </InputAdornment>
+                            ),
+                          }}
+                        />{" "}
+                        <div>
+                          <Button
+                            className="buttons"
+                            type="submit"
+                            variant="contained"
+                            onClick={this.handleLocationSubmit}
+                          >
+                            Search
+                          </Button>
+                        </div>
+                      </div>
+                    </form>
+                    <h1 id="or-header" className="coral-font">
+                      OR
+                    </h1>
+                    <form className="begin-search-form">
+                      <h3 className="coral-font">
+                        Search By
+                        <br />
+                        Current Location:{" "}
+                      </h3>
+                      <Button
+                        className="buttons"
+                        type="button"
+                        variant="contained"
+                        onClick={this.handleSubmit}
+                      >
+                        Search
+                      </Button>
+                    </form>
+                  </div>
+                </Paper>
               </div>
               <div id="restaurant-animation">
                 <Anime3 />

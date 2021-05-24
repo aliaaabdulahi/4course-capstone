@@ -1,48 +1,57 @@
-import React from 'react';
-import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
-import {upcomingEventsThunk} from '../store/events';
-import SingleEvent from './SingleEvent'
+import React from "react";
+import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { upcomingEventsThunk } from "../store/events";
+import SingleEvent from "./SingleEvent";
 
 class UpcomingEvents extends React.Component {
-  constructor (props) {
-    super (props);
+  constructor(props) {
+    super(props);
   }
 
-   componentDidMount () {
-     this.props.upcomingEventsThunk (this.props.id);
+  componentDidMount() {
+    this.props.upcomingEventsThunk(this.props.id);
   }
 
   formatDate(timestamp) {
     const date = new Date(timestamp);
-    return date.getMonth()+1 + "-" + date.getDate() + "-" + date.getFullYear();
+    return (
+      date.getMonth() + 1 + "-" + date.getDate() + "-" + date.getFullYear()
+    );
   }
 
   formatTime(timestamp) {
     const date = new Date(timestamp);
-    date.setHours( date.getHours() - 4 );
-    return ('0' + date.getHours()).slice(-2) + ":" + ('0' + date.getMinutes()).slice(-2) + ":" + ('0' + date.getSeconds()).slice(-2);
+    date.setHours(date.getHours() - 4);
+    return (
+      ("0" + date.getHours()).slice(-2) +
+      ":" +
+      ("0" + date.getMinutes()).slice(-2) +
+      ":" +
+      ("0" + date.getSeconds()).slice(-2)
+    );
   }
 
-  render () {
-    console.log(this.props.events)
+  render() {
+    console.log(this.props.events);
     return (
       <div className="center shape">
-        <h2 className="font">
-          Upcoming Events
-        </h2>
+        <h2 className="font">Upcoming Events</h2>
         <div className="flex-center">
           {this.props.events !== undefined && this.props.events.length > 0
-            ? this.props.events.map (event => (
-              <div>
-                <Link to={`/events/${event.id}`}>
-                <div className="event">
-                  <p>{event.name}</p>
-                  <img style={{width: '100px'}} src={JSON.parse(event.restaurants[0]).yelpImageUrl}></img>
-                  <p>{this.formatDate(event.date)}</p>
-                  <p>{this.formatTime(event.date)}</p>
-                </div>
-                </Link>
+            ? this.props.events.map((event) => (
+                <div>
+                  <Link to={`/events/${event.id}`}>
+                    <div className="event">
+                      <p>{event.name}</p>
+                      <img
+                        style={{ width: "100px" }}
+                        src={JSON.parse(event.restaurants[0]).yelpImageUrl}
+                      ></img>
+                      <p>{this.formatDate(event.date)}</p>
+                      <p>{this.formatTime(event.date)}</p>
+                    </div>
+                  </Link>
                 </div>
               ))
             : null}
@@ -52,11 +61,11 @@ class UpcomingEvents extends React.Component {
   }
 }
 
-const mapState = state => {
+const mapState = (state) => {
   return {
     id: state.auth.id,
     events: state.events.events,
   };
 };
 
-export default connect (mapState, {upcomingEventsThunk}) (UpcomingEvents);
+export default connect(mapState, { upcomingEventsThunk })(UpcomingEvents);
