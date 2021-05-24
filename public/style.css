@@ -127,6 +127,12 @@ form div {
   font-size: 16px;
   margin: 4px 2px;
   cursor: pointer;
+  font-family: "Permanent Marker";
+  padding: 10px;
+}
+
+.button:hover {
+  opacity: 0.9;
 }
 
 .bigCircle {
@@ -382,4 +388,19 @@ ul.circel1 {
 
 .email {
   margin-bottom: 10px;
+}
+
+.login-box {
+  background-color: #dc143c;
+  width: 70%;
+  border-radius: 5px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.639);
+}
+
+.results-box {
+  background-color: #fff100;
+  padding: 10px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.639);
+  color: #dc143c;
+  font-family: "Permanent Marker";
 }
