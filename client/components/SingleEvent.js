@@ -43,14 +43,14 @@ class SingleEvent extends React.Component{
                                 { this.props.courses.length > 0 ? (
                               this.props.courses.map ((course) => (
                                 <div>
-                                  <Grid item md style={{ margin: 10 }} >
-                                  <Typography key={course.id}> 
+                                  <Grid key={course.id} item md style={{ margin: 10 }} >
+                                  <Typography > 
                                     User Name: {
-                                      course.user.username.toUpperCase()
+                                      course.user.username
                                     }  
 
                                   </Typography>
-                                  <Typography key={course.id}> 
+                                  <Typography> 
                                   Email: {
                                       course.user.email
                                     } 
@@ -76,28 +76,6 @@ class SingleEvent extends React.Component{
           }
      }
 }
-
-{/* <Grid item md style={{ margin: 10 }} >
-<Typography key={course.id}>
-{
-  this.props.users.filter(user => {
-    if (course.userId === user.id) {
-      return user.name
-    }
-  })
-}
-Email: 
-{
-  this.props.users.filter(user => {
-    if (course.userId === user.id) {
-      return user.email
-    }
-  })
-}
-
-{course.restaurant} ---  {course.courseType}
-</Typography>
-</Grid> */}
 
 const mapState = state => {
     return {
