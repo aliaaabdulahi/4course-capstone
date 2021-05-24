@@ -1,24 +1,27 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/styles";
-import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
+import SendIcon from "@material-ui/icons/Send";
 import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   resListButton: {
     ...theme.typography.button,
     fontFamily: "Permanent Marker",
-    color: "#fff100",
+    color: "coral",
   },
   listItem: {
     listStyleType: "none",
     backgroundColor: "#dc143c",
     fontSize: "15px",
+    textAlign: "center",
+    margin: "10px",
   },
   inviteButton: {
     fontFamily: "Permanent Marker",
     color: "#ff99bb",
+    alignSelf: "flex-end",
   },
 }));
 
@@ -32,9 +35,9 @@ const RestaurantContainer = (props) => {
   const classes = useStyles();
   return (
     <div id="main-selection-container">
-      <div>
+      <div id="res-selections">
         {props.resSelections.map((res) => (
-          <Grid item key={res.yelpId}>
+          <div key={res.yelpId}>
             <Paper elevation={5} className={classes.listItem}>
               <p className="yellow-font">{res.yelpName}</p>
             </Paper>
@@ -46,18 +49,20 @@ const RestaurantContainer = (props) => {
             >
               remove
             </Button>
-          </Grid>
+          </div>
         ))}
       </div>
-      <Button
-        className={classes.inviteButton}
-        variant="contained"
-        color="secondary"
-        size="large"
-        onClick={() => props.addSelectionsToStore()}
-      >
-        INVITE FRIENDS
-      </Button>
+      <div id="invite-button">
+        <Button
+          className={classes.inviteButton}
+          variant="contained"
+          color="secondary"
+          size="large"
+          onClick={() => props.addSelectionsToStore()}
+        >
+          INVITE FRIENDS <SendIcon color="#ff99bb" fontSize="small" />
+        </Button>
+      </div>
     </div>
   );
 };

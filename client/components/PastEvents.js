@@ -2,6 +2,10 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {pastEventsThunk} from '../store/events';
+import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 
 class PastEvents extends React.Component {
   constructor (props) {
@@ -23,27 +27,26 @@ class PastEvents extends React.Component {
   }
 
   render () {
-    console.log(this.props.events)
     return (
       <div className="center shape">
-        <h2 className="font">
-          Past Events
-        </h2>
-        <div className="flex-center">
+        <div style={{ padding: 20 }}>
+        <h2 className="font">Past Events</h2>
+        <Grid container justify="center">
           {this.props.events !== undefined && this.props.events.length > 0
             ? this.props.events.map (event => (
-              <div>
+              <Grid item md style={{ margin: 10 }} >
+                 <Paper style={{ padding: 5, }} >
                 <Link to={`/events/${event.id}`}>
-                <div className="event">
-                  <p>{event.name}</p>
-                  <img style={{width: '100px'}} src={JSON.parse(event.restaurants[0]).yelpImageUrl}></img>
-                  <p>{this.formatDate(event.date)}</p>
-                  <p>{this.formatTime(event.date)}</p>
-                </div>
+                <Typography>{event.name}</Typography>
+                  <img style={{width: '300px'}} src={JSON.parse(event.restaurants[0]).yelpImageUrl}></img>
+                  <Typography>{this.formatDate(event.date)}</Typography>
+                  <Typography>{this.formatTime(event.date)}</Typography>
                 </Link>
-                </div>
+                </Paper>
+                </Grid>
               ))
             : null}
+        </Grid>
         </div>
       </div>
     );
