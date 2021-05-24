@@ -56,10 +56,10 @@ class UpcomingEvents extends React.Component {
       <div className={classes.root}>
       <h2 className="font">Upcoming Events</h2>
       <GridList cellHeight={180} className={classes.gridList}>
-        {/* <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
+        <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
           <ListSubheader component="div">December</ListSubheader>
-        </GridListTile> */}
-       {/* {this.props.events !== undefined && this.props.events.length > 0 ? (
+        </GridListTile>
+       {this.props.events !== undefined && this.props.events.length > 0 ? (
          this.props.events.map (event => (
                    <GridListTile key={event.name}>
                    <img style={{width: '100px'}} src={JSON.parse(event.restaurants[0]).yelpImageUrl}></img>
@@ -74,7 +74,7 @@ class UpcomingEvents extends React.Component {
                    />
                  </GridListTile>))
        ) : null
-       } */}
+       }
       </GridList>
     </div>
 
