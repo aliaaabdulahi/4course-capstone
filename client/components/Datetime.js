@@ -9,30 +9,32 @@ import Paper from "@material-ui/core/Paper";
 import { connect } from "react-redux";
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
+import {Link} from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   dateTimeButton: {
     ...theme.typography.button,
     fontFamily: "Permanent Marker",
     color: "#fff100",
-    marginTop: "1.5em",
+    // marginTop: "1em",
     "&:hover": {
       color: "#ffffff",
       backgroundColor: "ffffff",
     },
   },
   text: {
-    fontSize: "2em",
-    color: "#fffff",
+    textAlign: "center",
+    fontSize: "1.5em",
+    color: "#DC143C",
     fontFamily: "Permanent Marker",
-    backgroundColor: "#DC143C",
+    backgroundColor: "#fff100",
     borderRadius: 20,
   },
   picker: {
     color: "#fff100",
   },
   grid: {
-    width: "100%",
+    // width: "100%",
     marginTop: "8em",
     [theme.breakpoints.down("sm")]: {
       marginTop: "3em",
@@ -42,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   paper: {
-    width: "100%",
+    // width: "100%",
     padding: theme.spacing(3),
     textAlign: "center",
     color: "#fff100",
@@ -56,8 +58,6 @@ function Datetime({ handleSave, history, id }) {
   const [eventName, setEventName] = useState("");
 
   const onSave = (e) => {
-    console.log("what is id?", id);
-    console.log("saved datetime", formatDate(value));
     handleSave(e,eventName, formatDate(value), id);
     history.push(`/startchallenge`);
   };
@@ -89,22 +89,32 @@ function Datetime({ handleSave, history, id }) {
   };
 
   return (
-    <Grid container justify="center" className={classes.grid}>
-      <Paper justify="center" className={classes.paper}>
-      <Grid item xs={4} >
-      <Typography className={classes.text}>Event Name</Typography>
-          <TextField label="Event Name..." name="name" size="small"
-                    variant="outlined" onChange={handleChange} />
-          <Typography className={classes.text}>Choose Date & Time</Typography>
+    <Grid container justify="center" >
+      <Paper justify="center">
+      <Grid item justify="center" >
+      <Typography 
+      style={{marginTop: 20}}
+      className={classes.text}
+      >Choose Event Name</Typography>
+      <Grid  style={{marginTop: 15, marginLeft:120, marginBottom:15}}>
+
+          <TextField label="Enter Event Name..." name="name" size="Normal"
+                    variant="standard" onChange={handleChange} />
+                    </Grid>
+         <Typography 
+         style={{marginTop:30}}
+         className={classes.text}>Choose Date and Time</Typography>
+         <Grid  style={{marginTop: 20, marginLeft:90}}>
           <DateTimePicker
-            className={classes.picker}
+            // className={classes.picker}
             onChange={onChange}
             value={value}
           />
-        
+        </Grid>
       </Grid>
       <Grid item xs={4}>
         <Button
+          style={{marginTop: 30, marginLeft:160}}
           variant="contained"
           className={classes.dateTimeButton}
           onClick={onSave}

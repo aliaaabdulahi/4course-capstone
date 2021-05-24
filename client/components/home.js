@@ -41,7 +41,7 @@ export const Home = (props) => {
 
   return (
     <div>
-      <Typography className={classes.headers} variant="h4">
+      <Typography className={classes.headers} variant="h4" style={{marginTop: 30, marginLeft: 30}}>
         Welcome, {username}
       </Typography>
       <div className="shape">
@@ -59,12 +59,12 @@ export const Home = (props) => {
           </form>
           <div className="row">
             <div className="column">
-              <Typography variant="h5" className={classes.upcomingTitle}>
-                <Link to="/upcomingevents">Upcoming Events</Link>
+              <Typography variant="h5" className={classes.upcomingTitle} style={{marginTop: 30, marginBottom: 15}}>
+                <Link to="/upcomingevents" >Upcoming Events</Link>
               </Typography>
             </div>
             <div className="column">
-              <Typography variant="h5" className={classes.pastTitle}>
+              <Typography variant="h5" className={classes.pastTitle} style={{marginTop: 30, marginBottom: 15}}>
                 <Link to="/pastevents">Past Events</Link>
               </Typography>
             </div>
