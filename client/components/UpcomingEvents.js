@@ -1,4 +1,4 @@
-import React form 'react'
+import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { upcomingEventsThunk } from "../store/events";
@@ -7,12 +7,13 @@ import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 import SingleEvent from "./SingleEvent";
-
 class UpcomingEvents extends React.Component {
   constructor(props) {
     super(props);
   }
-
+  componentDidMount() {
+    this.props.upcomingEventsThunk(this.props.id);
+  }
   formatDate(timestamp) {
     const date = new Date(timestamp);
     return (
@@ -21,7 +22,7 @@ class UpcomingEvents extends React.Component {
   }
   formatTime(timestamp) {
     const date = new Date(timestamp);
-    date.setHours(date.getHours());
+    date.setHours(date.getHours() - 4);
     return (
       ("0" + date.getHours()).slice(-2) +
       ":" +
@@ -30,7 +31,6 @@ class UpcomingEvents extends React.Component {
       ("0" + date.getSeconds()).slice(-2)
     );
   }
-
   render() {
     return (
       <div className="center shape">
@@ -72,5 +72,4 @@ const mapState = (state) => {
     events: state.events.events,
   };
 };
-
 export default connect(mapState, { upcomingEventsThunk })(UpcomingEvents);
