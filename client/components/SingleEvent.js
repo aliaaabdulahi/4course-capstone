@@ -31,35 +31,36 @@ class SingleEvent extends React.Component{
                   <Button>back</Button>
                   </Link>
                 <Paper style={{ padding: 70 }} >
-                <Typography>Event Name: {this.props.singleEvent.name}</Typography>
+                <h2 style={{fontFamily: "Permanent Marker", color: "#DC143C"}}>Event Name: {this.props.singleEvent.name}</h2>
                   <Typography>Date: {this.formatDate(this.props.singleEvent.date)}</Typography>
-                        <h2>Restaurants</h2>
+                        <h2 style={{fontFamily: "Permanent Marker", color: "#DC143C"}}>Restaurants</h2>
                               {this.props.singleEvent.restaurants.map ((restaurant) => (
                                <Grid item md style={{ margin: 10 }} >
                                 <Typography key={restaurant.id}>{JSON.parse (restaurant).yelpName}</Typography>
                                 </Grid>
                               ))}
-                        <h2>Invitees</h2>
+                        <h2 style={{fontFamily: "Permanent Marker", color: "#DC143C"}}>Invitees</h2>
                                 { this.props.courses.length > 0 ? (
                               this.props.courses.map ((course) => (
                                 <div>
                                   <Grid item md style={{ margin: 10 }} >
-                                  <Typography key={course.id}>
-                                    Username: <b>{
-                                      course.user.username.toUpperCase()
-                                    }</b>
-
-                                  </Typography>
                                   <Typography key={course.id}>
                                   Email: {
                                       course.user.email
                                     }
                                     </Typography>
                                 </Grid>
+                                <Grid item md style={{ margin: 10 }} >
+                                <Typography key={course.id}>
+                                    Username: <b>{
+                                      course.user.username.toUpperCase()
+                                    }</b>
+                                  </Typography>
+                                  </Grid>
                                   </div>
                               ))
                                 ): null}
-                        <h2>Assigned Courses</h2>
+                        <h2 style={{fontFamily: "Permanent Marker", color: "#DC143C"}}>Assigned Courses</h2>
                         { this.props.courses.length > 0 ? (
                               this.props.courses.map ((course) => (
                                 <Grid item md style={{ margin: 10 }} >
@@ -77,28 +78,6 @@ class SingleEvent extends React.Component{
      }
 }
 
-
-{/* <Grid item md style={{ margin: 10 }} >
-<Typography key={course.id}>
-{
-  this.props.users.filter(user => {
-    if (course.userId === user.id) {
-      return user.name
-    }
-  })
-}
-Email:
-{
-  this.props.users.filter(user => {
-    if (course.userId === user.id) {
-      return user.email
-    }
-  })
-}
-
-{course.restaurant} ---  {course.courseType}
-</Typography>
-</Grid> */}
 
 const mapState = state => {
     return {
