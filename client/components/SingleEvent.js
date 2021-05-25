@@ -77,6 +77,7 @@ class SingleEvent extends React.Component{
      }
 }
 
+
 {/* <Grid item md style={{ margin: 10 }} >
 <Typography key={course.id}>
 {
