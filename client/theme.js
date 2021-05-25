@@ -1,19 +1,19 @@
 import { createMuiTheme } from "@material-ui/core/styles";
 
-const arcPink = "#ff99bb";
-const arcCrimson = "#DC143C";
+const ourPink = "#ff99bb";
+const ourCrimson = "#DC143C";
 
 export default createMuiTheme({
   palette: {
     common: {
-      pink: arcPink,
-      hotPink: arcCrimson,
+      pink: ourPink,
+      hotPink: ourCrimson,
     },
     primary: {
-      main: arcPink,
+      main: ourPink,
     },
     secondary: {
-      main: arcCrimson,
+      main: ourCrimson,
     },
     typography: {
       button: {
