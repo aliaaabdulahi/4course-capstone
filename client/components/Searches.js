@@ -1,52 +1,49 @@
-import React from "react";
-import Button from "@material-ui/core/Button";
-import Input from "@material-ui/core/Input";
+import React from 'react';
+import Button from '@material-ui/core/Button';
+import Input from '@material-ui/core/Input';
 
 const initialState = {
   searchTerm: '"Pizza" or "Italian"',
-  location: "",
-  price: "",
+  location: '',
+  price: '',
   disabled: false,
 };
 class Searches extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super (props);
     this.state = initialState;
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.clearSelections = this.clearSelections.bind(this);
+    this.handleSubmit = this.handleSubmit.bind (this);
+    this.handleChange = this.handleChange.bind (this);
+    this.clearSelections = this.clearSelections.bind (this);
   }
-  handleChange(e) {
-    this.setState({
+  handleChange (e) {
+    this.setState ({
       [e.target.name]: e.target.value,
     });
   }
-  handleSubmit(e) {
-    e.preventDefault();
-    const newCuisine = this.state.searchTerm.toLowerCase();
-    this.props.searchCuisine(newCuisine, this.props.lat, this.props.lng);
-    this.setState({
-      searchTerm: " ",
+  handleSubmit (e) {
+    e.preventDefault ();
+    const newCuisine = this.state.searchTerm.toLowerCase ();
+    this.props.searchCuisine (newCuisine, this.props.lat, this.props.lng);
+    this.setState ({
+      searchTerm: ' ',
       disabled: true,
     });
   }
-  clearSelections(lat, long) {
-    this.props.resClear(lat, long);
-    this.setState({
+  clearSelections (lat, long) {
+    this.props.resClear (lat, long);
+    this.setState ({
       disabled: false,
     });
   }
-  render() {
+  render () {
     return (
       <div id="searches">
         <form>
-          <h1 className="centered-text">
-            Search By
-            <span className="centered-text" id="smaller">
-              {" "}
-              Cuisine:
-            </span>{" "}
-          </h1>
+          <div style={{color: "#dc143c"}} className="centered-text" id="smaller">
+            {' '}
+            Cuisine:
+          </div>{' '}
           <Input
             color="secondary"
             type="text"
@@ -70,8 +67,7 @@ class Searches extends React.Component {
               type="button"
               variant="contained"
               onClick={() =>
-                this.clearSelections(this.props.lat, this.props.lng)
-              }
+                this.clearSelections (this.props.lat, this.props.lng)}
             >
               Clear
             </Button>

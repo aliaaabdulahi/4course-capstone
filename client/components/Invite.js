@@ -23,9 +23,9 @@ class Invite extends React.Component {
 
   render() {
     return (
-      <div className="center">
-        
-        <p>Time to fly the news to your friends!</p>
+      <div style={{marginTop: "100px"}} className="center">
+
+        <p className="black">Time to fly the news to your friends!</p>
         <Link to="/thankyou">
         <form onSubmit={this.handleEmail}>
           <input className="button bigCircle" type="submit" value="Send Link" />

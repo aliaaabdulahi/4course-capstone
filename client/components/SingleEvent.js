@@ -18,7 +18,7 @@ class SingleEvent extends React.Component{
     const date = new Date(timestamp);
     return date.getMonth()+1 + "-" + (date.getDate()+1) + "-" + date.getFullYear();
   }
-  
+
      render(){
        console.log(this.props.courses)
           if (!this.props.singleEvent.date) {
@@ -33,27 +33,27 @@ class SingleEvent extends React.Component{
                 <Paper style={{ padding: 70 }} >
                 <Typography>Event Name: {this.props.singleEvent.name}</Typography>
                   <Typography>Date: {this.formatDate(this.props.singleEvent.date)}</Typography>
-                        <h2>Restaurants</h2>   
+                        <h2>Restaurants</h2>
                               {this.props.singleEvent.restaurants.map ((restaurant) => (
                                <Grid item md style={{ margin: 10 }} >
                                 <Typography key={restaurant.id}>{JSON.parse (restaurant).yelpName}</Typography>
                                 </Grid>
-                              ))}     
+                              ))}
                         <h2>Invitees</h2>
                                 { this.props.courses.length > 0 ? (
                               this.props.courses.map ((course) => (
                                 <div>
                                   <Grid item md style={{ margin: 10 }} >
-                                  <Typography key={course.id}> 
-                                    User Name: {
+                                  <Typography key={course.id}>
+                                    Username: <b>{
                                       course.user.username.toUpperCase()
-                                    }  
+                                    }</b>
 
                                   </Typography>
-                                  <Typography key={course.id}> 
+                                  <Typography key={course.id}>
                                   Email: {
                                       course.user.email
-                                    } 
+                                    }
                                     </Typography>
                                 </Grid>
                                   </div>
@@ -63,13 +63,13 @@ class SingleEvent extends React.Component{
                         { this.props.courses.length > 0 ? (
                               this.props.courses.map ((course) => (
                                 <Grid item md style={{ margin: 10 }} >
-                                  <Typography key={course.id}> 
-                                    {course.user.username.toUpperCase()} is getting {course.courseType} at {course.restaurant}
+                                  <Typography key={course.id}>
+                                    <b>{course.user.username.toUpperCase()}</b> is getting {course.courseType} at {course.restaurant}
                                   </Typography>
                                 </Grid>
                               ))
                                 ): null}
-                  </Paper>                
+                  </Paper>
                 </Grid>
                 </div>
             )
@@ -86,7 +86,7 @@ class SingleEvent extends React.Component{
     }
   })
 }
-Email: 
+Email:
 {
   this.props.users.filter(user => {
     if (course.userId === user.id) {
@@ -113,7 +113,6 @@ const mapState = state => {
       fetchTheEvent: (eventId) => dispatch(fetchEvent(eventId)),
     };
   };
-  
-  
+
+
   export default connect (mapState, mapDispatch) (SingleEvent);
-  

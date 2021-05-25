@@ -9,19 +9,19 @@ const useStyles = makeStyles((theme) => ({
   resListButton: {
     ...theme.typography.button,
     fontFamily: "Permanent Marker",
-    color: "coral",
+    color: "#fff100",
   },
   listItem: {
     listStyleType: "none",
-    backgroundColor: "#dc143c",
+    backgroundColor: "#fff100",
     fontSize: "15px",
     textAlign: "center",
     margin: "10px",
   },
   inviteButton: {
     fontFamily: "Permanent Marker",
-    color: "#ff99bb",
-    alignSelf: "flex-end",
+    color: "#fff100",
+    alignSelf: "center",
   },
 }));
 
@@ -39,7 +39,7 @@ const RestaurantContainer = (props) => {
         {props.resSelections.map((res) => (
           <div key={res.yelpId}>
             <Paper elevation={5} className={classes.listItem}>
-              <p className="yellow-font">{res.yelpName}</p>
+              <p className="red">{res.yelpName}</p>
             </Paper>
             <Button
               className={classes.resListButton}
