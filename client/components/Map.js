@@ -14,10 +14,16 @@ import { restaurantSelectionThunk } from "../store/restaurantSelections";
 
 const handleDragStart = (e) => e.preventDefault();
 const responsive = {
-  0: {
+  324: {
+    items: 1,
+  },
+  712: {
+    items: 2,
+  },
+  912: {
     items: 3,
   },
-  1024: {
+  1099: {
     items: 4,
   },
 };
@@ -172,11 +178,9 @@ class Map extends React.Component {
         <div id="main-container">
           <div id="main-map-container">
             <div id="search-and-select">
-              <RestaurantContainer
-                resSelections={this.state.selections}
-                removal={(resId) => this.removeSelection(resId)}
-                addSelectionsToStore={this.addSelectionsToStore}
-              />
+              <div style={{backgroundColor: "#fff100"}} id="main-selection-container">
+                <h2 style={{color: "#dc143c"}} className="centered-text">SEARCH BY :</h2>
+              </div>
               <div id="main-rating-container">
                 <Searches
                   searchCuisine={(cuisine, lat, long) =>
@@ -189,11 +193,11 @@ class Map extends React.Component {
                   }
                 />
                 <form className="rating-forms">
-                  <h3 className="centered-text">Rating:</h3>
+                  <h3 className="centered-text red">Rating:</h3>
                   {rateContainer}
                 </form>
                 <form className="rating-forms">
-                  <h3 className="centered-text">Price:</h3>
+                  <h3 className="centered-text red">Price:</h3>
                   {priceContainer}
                 </form>
               </div>
@@ -260,6 +264,11 @@ class Map extends React.Component {
               ))}
             </AliceCarousel>
           </div>
+          <RestaurantContainer
+                resSelections={this.state.selections}
+                removal={(resId) => this.removeSelection(resId)}
+                addSelectionsToStore={this.addSelectionsToStore}
+              />
         </div>
       </ThemeProvider>
     );

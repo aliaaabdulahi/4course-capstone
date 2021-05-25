@@ -33,11 +33,18 @@ form div {
   flex-direction: row;
   align-items: stretch;
   width: 300px;
+  margin-left: 60px;
+}
+
+@media (max-width: 1000px) {
+  #main-map-container {
+    flex-direction: column;
+  }
 }
 
 #mapbox-container {
-  background-color: pink;
   border: 5px solid white;
+  margin-left: 20px;
 }
 
 #main-selection-container {
@@ -45,6 +52,7 @@ form div {
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
+  justify-content: center;
   border: 2px solid pink;
   /*
   height: 85px;
@@ -63,6 +71,7 @@ form div {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  height: 220px;
 }
 .rating-forms {
   background-color: pink;
@@ -85,11 +94,14 @@ form div {
   display: flex;
   flex-direction: row;
   width: 200px;
+  color: black;
+  margin-top: 0px;
 }
 
 .priceLabels {
   display: flex;
   flex-direction: column;
+  color: black;
 }
 .priceButtons {
   display: flex;
@@ -100,6 +112,7 @@ form div {
   display: flex;
   flex-direction: row;
   width: 200px;
+  margin-top: 0px;
 }
 
 #search-and-select {
@@ -108,7 +121,9 @@ form div {
   justify-content: space-between;
 }
 #restaurant-container {
-  background-color: pink;
+  margin-top: 10px;
+  border: 2px solid pink;
+  padding-top: 20px;
 }
 
 .res-card {
@@ -171,6 +186,13 @@ form div {
   flex-direction: row;
   justify-content: space-around;
 }
+
+@media (max-width: 1000px) {
+  .begin-search {
+    flex-direction: column;
+  }
+}
+
 .yellow-font {
   font-family: "Permanent Marker";
   color: #fff100;
@@ -235,7 +257,7 @@ form div {
   align-items: center;
   /*
   -webkit-box-shadow: 3px 3px 5px 6px #dc143c; /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+
-  -moz-box-shadow: 3px 3px 5px 6px #dc143c;  Firefox 3.5 - 3.6 
+  -moz-box-shadow: 3px 3px 5px 6px #dc143c;  Firefox 3.5 - 3.6
   box-shadow: 3px 3px 5px 6px #dc143c;
   */
   padding: 15px;
@@ -554,9 +576,16 @@ ul.circel1 {
 
 .login-box {
   background-color: #dc143c;
-  width: 70%;
   border-radius: 5px;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.639);
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+  margin-left: 100px;
+  margin-right: 100px;
 }
 
 .results-box {
@@ -564,5 +593,19 @@ ul.circel1 {
   padding: 10px;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.639);
   color: #dc143c;
+  font-family: "Permanent Marker";
+}
+
+.red {
+  color: #dc143c;
+  font-family: "Permanent Marker";
+}
+
+.yellow {
+  color: #fff100;
+}
+
+.black {
+  color: black;
   font-family: "Permanent Marker";
 }

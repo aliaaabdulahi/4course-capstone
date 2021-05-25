@@ -89,7 +89,8 @@ class Wheel extends React.Component {
             </React.Fragment>
           </div>
         ) : (
-          <div>
+          <div style={{marginTop: "100px"}}>
+            <h2 style={{marginLeft:"20px"}} className="red">Assigned Restaurants and Courses</h2>
             <List width="10%" aria-label="assigned courses">
               {Object.keys(this.props.courses).map((keyName) => (
                 <div>
